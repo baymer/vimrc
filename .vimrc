@@ -1,7 +1,4 @@
-"-------------------------
-" Pento VIM settings
-"-------------------------
-
+" based on http://code.google.com/p/myvim/
 
 "-------------------------
 " Common settings
@@ -54,6 +51,8 @@ set number
 
 " I don't like backups
 set nobackup
+set nowritebackup
+set noswapfile
 
 " Switch off folds
 set nofoldenable
@@ -63,7 +62,7 @@ set foldmethod=indent
 set incsearch
 
 " Do not highlight search results
-set nohlsearch
+" set nohlsearch
 
 " Jump 5 lines when running out of the screen
 set scrolljump=7
@@ -72,7 +71,7 @@ set scrolljump=7
 set scrolloff=7
 
 " Write all tmp files to /tmp
-set dir=/tmp
+"set dir=/tmp
 
 " Turn off any bells
 set novisualbell
@@ -110,6 +109,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+
+" change working directory
+set autochdir
 
 " Status line format
 set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
@@ -190,8 +192,8 @@ call SMap("<F11>", ":TlistToggle<cr>")
 call SMap("<F12>", ":Explore<cr>")
 
 " < & > to indent blocks
-vmap < <gv
-vmap > >gv
+" vmap < <gv
+" vmap > >gv
 
 " Switch off fucked 'Replace mode'
 imap <Ins> <Esc>wq
@@ -236,7 +238,8 @@ map <CR> o<Esc>
 " Colors
 "-------------------------
 
-colorscheme default
+set t_Co=256
+colorscheme xoria256
 
 "-------------------------
 " Advanced Settings
@@ -282,6 +285,8 @@ let g:SessionMgr_DefaultName = "mysession"
 let g:Tlist_Show_One_File = 1
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
 let g:snippetsEmu_key = "<C-l>"
 
 nmap <Leader>va <Plug>VCSAdd
@@ -309,3 +314,22 @@ let html_use_css=1
 "-------------------------
 au BufRead,BufNewFile *.w3af set filetype=w3af
 au BufRead,BufNewFile *.json set filetype=javascript
+
+function! BufNewFile_PY()
+0put = '#!/usr/bin/env python'
+1put = '#-*- coding: utf-8 -*-'
+normal G
+endfunction
+
+autocmd BufNewFile *.py call BufNewFile_PY()
+
+function! BufNewFile_HTML()
+0put = '<html>'
+1put = '    <head>'
+2put = '    </head>'
+3put = '    <body>'
+$put = '    </body>'
+$put = '<html>'
+normal 5
+endfunction
+autocmd BufNewFile *.html call BufNewFile_HTML()
