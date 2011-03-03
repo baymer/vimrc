@@ -321,7 +321,6 @@ function! BufNewFile_PY()
 1put = '#-*- coding: utf-8 -*-'
 normal G
 endfunction
-
 autocmd BufNewFile *.py call BufNewFile_PY()
 
 function! BufNewFile_HTML()

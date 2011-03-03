@@ -17,6 +17,15 @@ set noswapfile
 set lines=35
 set columns=110
 
+set autoindent
+set smartindent
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set smarttab
+set autochdir
+
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -62,3 +71,22 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+function! BufNewFile_PY()
+0put = '#!/usr/bin/env python'
+1put = '#-*- coding: utf-8 -*-'
+normal G
+endfunction
+autocmd BufNewFile *.py call BufNewFile_PY()
+
+function! BufNewFile_HTML()
+0put = '<html>'
+1put = '    <head>'
+2put = '    </head>'
+3put = '    <body>'
+4put = '    </body>'
+5put = '<html>'
+normal 4G
+endfunction
+autocmd BufNewFile *.html call BufNewFile_HTML()
+
