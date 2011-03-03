@@ -1,8 +1,4 @@
-"-------------------------
-"
-" Pento VIM settings
-"-------------------------
-
+" based on http://code.google.com/p/myvim/
 
 "-------------------------
 " Common settings
@@ -66,7 +62,7 @@ set foldmethod=indent
 set incsearch
 
 " Do not highlight search results
-set nohlsearch
+" set nohlsearch
 
 " Jump 5 lines when running out of the screen
 set scrolljump=7
@@ -75,7 +71,7 @@ set scrolljump=7
 set scrolloff=7
 
 " Write all tmp files to /tmp
-set dir=/tmp
+"set dir=/tmp
 
 " Turn off any bells
 set novisualbell
@@ -113,6 +109,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+
+" change working directory
+set autochdir
 
 " Status line format
 set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
@@ -314,10 +313,9 @@ au BufRead,BufNewFile *.json set filetype=javascript
 function! BufNewFile_PY()
 0put = '#!/usr/bin/env python'
 1put = '#-*- coding: utf-8 -*-'
-$put = 
-$put = 
 normal G
 endfunction
+
 autocmd BufNewFile *.py call BufNewFile_PY()
 
 function! BufNewFile_HTML()
