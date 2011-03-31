@@ -1,8 +1,8 @@
 set nocompatible
 colorscheme xoria256
 
-"set guifont=Fixedsys:h11:::
-set guifont=Monospace_821_BT:h11
+" set guifont=Monospace_821_BT:h10
+set guifont=Monaco:h10
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -54,7 +54,7 @@ endfunction
 "braces autoclosing
 imap [ []<LEFT>
 imap ( ()<LEFT>
-imap { {<ENTER><ENTER>}<UP><TAB>
+imap { {}<LEFT>
 
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
@@ -62,10 +62,7 @@ inoremap ' ''<LEFT>
 
 "inoremap <C-space> <C-x><C-o>
 
-cmap T tabnew 
-
-"au Filetype html,xml,xsl source ~/_vim/scripts/closetag.vim
-au Filetype html,xml,xsl source $VIM/scripts/closetag.vim
+cmap <c-t> tabnew 
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
