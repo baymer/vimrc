@@ -1,8 +1,8 @@
-set nocompatible
 colorscheme xoria256
 
 " set guifont=Monospace_821_BT:h10
-set guifont=Monaco:h10
+set guifont=Monaco:h10          " windows
+" set guifont=Inconsolata\ 12   " linux
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -62,7 +62,7 @@ inoremap ' ''<LEFT>
 
 "inoremap <C-space> <C-x><C-o>
 
-cmap <c-t> tabnew 
+cnoremap <c-t> tabnew 
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS

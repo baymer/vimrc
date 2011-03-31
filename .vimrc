@@ -3,9 +3,21 @@
 "-------------------------
 " Common settings
 "-------------------------
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+set nocompatible                         "don't need to keep compatibility with Vi
+
+set background=dark                      "make vim use colors that look good on a dark background
+set showcmd                              "show incomplete cmds down the bottom
+set showmode                             "show current mode down the bottom
+" set foldenable                           "enable folding
+set showmatch                            "set show matching parenthesis
+
+" set noexrc                    " don't use the local config
+
+set virtualedit=all                      "allow the cursor to go in to "invalid" places
+
+set incsearch                            "find the next match as we type the search
+set hlsearch                             "highlight searches by default
+set ignorecase                           "ignore case when searching
 
 " New leader key
 let mapleader = ","
@@ -30,9 +42,7 @@ function SMap(key, action, ...)
     endif
 endfunction
 
-" Enable loading filetype and indentation plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on       " enable detection, plugins and indenting in one step
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -42,9 +52,6 @@ set history=50
 
 " Show the cursor position all the time
 set ruler		
-
-" Display incomplete commands
-set showcmd		
 
 " Turn on number vertical line
 set number
@@ -57,12 +64,6 @@ set noswapfile
 " Switch off folds
 set nofoldenable
 set foldmethod=indent
-
-" Use incremental searching
-set incsearch
-
-" Do not highlight search results
-" set nohlsearch
 
 " Jump 5 lines when running out of the screen
 set scrolljump=7
@@ -99,8 +100,7 @@ set autoindent
 " Auto indent after a {
 set smartindent
 
-" Switch on syntax highlighting if it wasn't on yet.
-syntax on
+syntax on                                "Turn on syntax highlighting
 
 " Expand tab to spaces ?
 set expandtab
