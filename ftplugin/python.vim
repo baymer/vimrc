@@ -43,3 +43,6 @@ if has("gui_win32") && !exists("b:browsefilter")
     let b:browsefilter = "Python Files (*.py)\t*.py\n" .
 		       \ "All Files (*.*)\t*.*\n"
 endif
+
+nmap <F3> :w<cr>:! python <C-r>%<cr>
+
