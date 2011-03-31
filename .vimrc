@@ -163,7 +163,7 @@ imap <S-Insert> <MiddleMouse>
 imap <C-F> <C-X><C-O>
 
 " Search & replace the word under the cursor
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
+nmap ; :%s:\<<c-r>=expand("<cword>")<cr>\>:
 
 " F2 to quick save
 call SMap("<F2>", ":w<cr>")
