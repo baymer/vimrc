@@ -44,5 +44,6 @@ if has("gui_win32") && !exists("b:browsefilter")
 		       \ "All Files (*.*)\t*.*\n"
 endif
 
-nmap <F3> :w<cr>:! python <C-r>%<cr>
+nmap <F3> :w<cr>:!python <c-r>%<cr>
+imap <F3> <esc>:w<cr>:!python <c-r>%<cr>
 
