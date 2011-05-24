@@ -1,7 +1,7 @@
 snippet add
 	${1:obj}.add('${2:selector expression}')${3}
-snippet addClass
-	${1:obj}.addClass('${2:class name}')${3}
+snippet addcl
+	addClass('${1:classname}')${2}
 snippet after
 	${1:obj}.after('${2:Some text <b>and bold!</b>}')${3}
 snippet ajax
@@ -258,8 +258,8 @@ snippet remove
 	${1:obj}.remove()${2}
 snippet removeattr
 	${1:obj}.removeAttr('${2:attribute name}')${3}
-snippet removeclass
-	${1:obj}.removeClass('${2:class name}')${3}
+snippet remcl
+	removeClass('${1:classname}')${2}
 snippet reset
 	${1:obj}.reset(function() {
 		${2:// Act on the event}
@@ -315,8 +315,8 @@ snippet tog
 		${3:// Stuff to do every *even* time the element is clicked;}
 	});
 	${4}
-snippet togclass
-	${1:obj}.toggleClass('${2:class name}')${3}
+snippet togcl
+	toggleClass('${1:classname}')${2}
 snippet togsh
 	${1:obj}.toggle('${2:slow/400/fast}')${3}
 snippet trig
