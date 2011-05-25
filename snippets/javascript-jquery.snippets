@@ -1,3 +1,5 @@
+snippet $
+	$('${1:obj}')${2}
 snippet add
 	${1:obj}.add('${2:selector expression}')${3}
 snippet addcl
@@ -6,10 +8,10 @@ snippet after
 	${1:obj}.after('${2:Some text <b>and bold!</b>}')${3}
 snippet ajax
 	$.ajax({
-		url: "${1:mydomain.com/url}",
-		type: "${2:POST}",
-		dataType: "${3:xml/html/script/json}",
-		data: $.param( $("${4:Element or Expression}") ),
+		url: '${1:mydomain.com/url}',
+		type: '${2:POST}',
+		dataType: '${3:xml/html/script/json}',
+		data: $.param( $('${4:Element or Expression}') ),
 
 		complete: function() {
 			${5://called when complete}
@@ -108,9 +110,9 @@ snippet change
 snippet children
 	${1:obj}.children('${2:selector expression}')${3}
 snippet click
-	${1:obj}.click(function() {
-		${2:// Act on the event}
-	});
+	click(function() {
+		${1:// Act on the event}
+	})
 snippet clone
 	${1:obj}.clone()${2}
 snippet contains
@@ -158,7 +160,7 @@ snippet fadetoc
 snippet filter
 	${1:obj}.filter('${2:selector expression}')${3}
 snippet find
-	${1:obj}.find('${2:selector expression}')${3}
+	find('${1:selector}')${2}
 snippet focus
 	${1:obj}.focus(function() {
 		${2:// Act on the event}
@@ -305,7 +307,7 @@ snippet supc
 		${3://Stuff to do *after* the animation takes place};
 	});
 snippet text
-	${1:obj}.text(${2:'some text'})${3}
+	text(${1:'some text'})${2}
 snippet this
 	$(this)${1}
 snippet tog
