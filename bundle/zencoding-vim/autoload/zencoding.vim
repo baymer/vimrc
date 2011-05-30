@@ -1337,7 +1337,7 @@ unlet! s:zen_settings
 let s:zen_settings = {
 \    'indentation': "\t",
 \    'lang': "en",
-\    'charset': "UTF-8",
+\    'charset': "utf-8",
 \    'css': {
 \        'snippets': {
 \            '@i': '@import url(|);',
@@ -1887,7 +1887,7 @@ let s:zen_settings = {
 \            'link:touch': [{'rel': 'apple-touch-icon'}, {'href': '|favicon.png'}],
 \            'link:rss': [{'rel': 'alternate'}, {'type': 'application/rss+xml'}, {'title': 'RSS'}, {'href': '|rss.xml'}],
 \            'link:atom': [{'rel': 'alternate'}, {'type': 'application/atom+xml'}, {'title': 'Atom'}, {'href': 'atom.xml'}],
-\            'meta:utf': [{'http-equiv': 'Content-Type'}, {'content': 'text/html;charset=UTF-8'}],
+\            'meta:utf': [{'http-equiv': 'Content-Type'}, {'content': 'text/html;charset=utf-8'}],
 \            'meta:win': [{'http-equiv': 'Content-Type'}, {'content': 'text/html;charset=Win-1251'}],
 \            'meta:compat': [{'http-equiv': 'X-UA-Compatible'}, {'content': 'IE=7'}],
 \            'style': {'type': 'text/css'},
