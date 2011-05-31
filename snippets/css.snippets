@@ -25,13 +25,13 @@ snippet !
 	!important
 snippet pos
 	position: ${1};${2}
-snippet pos:s
+snippet poss
 	position: static;${1}
-snippet pos:a
+snippet posa
 	position: absolute;${1}
-snippet pos:r
+snippet posr
 	position: relative;${1}
-snippet pos:f
+snippet posf
 	position: fixed;${1}
 snippet t
 	top: ${1};${2}
@@ -55,21 +55,21 @@ snippet z:a
 	z-index: auto;${1}
 snippet fl
 	float: ${1};${2}
-snippet fl:n
+snippet fln
 	float: none;${1}
-snippet fl:l
+snippet fll
 	float: left;${1}
-snippet fl:r
+snippet flr
 	float: right;${1}
 snippet cl
 	clear: ${1};${2}
-snippet cl:n
+snippet cln
 	clear: none;${1}
-snippet cl:l
+snippet cll
 	clear: left;${1}
-snippet cl:r
+snippet clr
 	clear: right;${1}
-snippet cl:b
+snippet clb
 	clear: both;${1}
 snippet d
 	display: ${1};${2}
@@ -464,7 +464,7 @@ snippet bdblrs
 snippet bg
 	background: ${1};${2}
 snippet bg+
-	background: #fff url(${1}) 0 0 no-repeat;${2}
+	background: url(${1:../images/}${2}) 0 0 no-repeat;${3}
 snippet bg:n
 	background: none;${1}
 snippet bg:ie
@@ -530,7 +530,7 @@ snippet bgz:ct
 snippet bgz:cv
 	background-size: cover;${1}
 snippet c
-	color: #000;${1}
+	color: #${1:000};${2}
 snippet tbl
 	table-layout: ${1};${2}
 snippet tbl:a
@@ -913,21 +913,21 @@ snippet rz:v
 	resize: vertical;${1}
 snippet cur
 	cursor: ${1};${2}
-snippet cur:a
+snippet cura
 	cursor: auto;${1}
-snippet cur:d
+snippet curd
 	cursor: default;${1}
-snippet cur:c
+snippet curc
 	cursor: crosshair;${1}
-snippet cur:ha
+snippet curha
 	cursor: hand;${1}
-snippet cur:he
+snippet curhe
 	cursor: help;${1}
-snippet cur:m
+snippet curm
 	cursor: move;${1}
-snippet cur:p
+snippet curp
 	cursor: pointer;${1}
-snippet cur:t
+snippet curt
 	cursor: text;${1}
 snippet pgbb
 	page-break-before: ${1};${2}
