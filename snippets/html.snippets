@@ -118,11 +118,11 @@ snippet head
 	</head>
 snippet title
 	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
-snippet script
+snippet scr
 	<script type='text/javascript' charset='utf-8'>
 		${1}
 	</script>
-snippet sscript
+snippet sscr
 	<script src='${1:script}.js' type='text/javascript'></script>${2}
 snippet jquery
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js' type='text/javascript'></script>${1}
@@ -156,7 +156,7 @@ snippet fieldset
 snippet form
 	<form action='${1:`Filename('$1_submit')`}' method='${2:get}' accept-charset='utf-8'>
 		${3}
-		<p><input type='submit' value='Continue &rarr;' /></p>
+		<p><input type='submit' value='Continue' /></p>
 	</form>
 snippet t
 	<${1:div}>
