@@ -22,7 +22,6 @@ snippet fun
 	function ${1}(${2}) {
 		${3}
 	};
-	${4}
 snippet if
 	if (${1:true}) { 
 		${2}
@@ -69,3 +68,11 @@ snippet while
 	while (${1:true}) { 
 		${2}
 	};${3}
+snippet gebi
+	document.getElementById('${1}')${2}
+snippet gebc
+	document.getElementsByClassName('${1}')${2:[0]}
+snippet gebt
+	document.getElementsByTagName('${1}')${2:[0]}
+snippet gebn
+	document.getElementsByName('${1}')${2:[0]}
