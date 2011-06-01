@@ -231,7 +231,11 @@ snippet set
 snippet $
 	\$\{${1:expression}}${2}
 snippet %
-	%{${1:script}}%${2}
+	# %{${1:script}}%${2}
+	{% ${1} %}${2}
+snippet {
+	# %{${1:script}}%${2}
+	{{ ${1:val} }}${2}
 snippet *
 	*{ ${1:comment} }*${2}
 snippet ul
