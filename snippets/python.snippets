@@ -1,0 +1,56 @@
+snippet classold
+	class ${1:``Snippet_PythonClassNameFromFilename()``}(${2:data}):
+	${3}
+snippet class
+	class ${1:MyClass}(${2:Parent}):
+		${3:pass}
+snippet def
+	def ${1:name}(${2:self}):
+		${3:pass}
+snippet for
+	for ${1:var} in ${2:set}:
+		${3:pass}
+snippet from
+	from ${1:module} import ${2:name}
+snippet get
+	def get_${1:name}(self):
+		return self._$1
+	${2}
+snippet ifmain
+	if __name__ == '__main__':
+		${1}
+snippet imp
+	import ${1:module}
+snippet init
+	def __init__(self, ${1:args}):
+		${2:pass}
+snippet li
+	logging.info(${1})${2}
+snippet set
+	def set_${1:name}(self, ${2:value}):
+		self._$1 = $2
+	${3}
+snippet try
+	try:
+		${1}
+	except ${2:Exception}:
+		${3:pass}
+snippet gae
+	from google.appengine.ext import webapp
+	from google.appengine.ext.webapp import template, util
+
+	class Handler(webapp.RequestHandler):
+		def get(self):
+			self.response.out.write('It Works')
+
+	def main():
+		application = webapp.WSGIApplication([('.*', Handler)],
+																				 debug=True)
+		util.run_wsgi_app(application)
+
+	if __name__ == '__main__':
+		main()
+snippet req
+	self.request.get('${1}')${2}
+snippet resp
+	self.response.out.write(${1})${2}
