@@ -39,9 +39,9 @@ snippet ife
 snippet l
 	console.log(${1});${2}
 snippet cl
-	cl('${1:this}');${2}
+	console.log('${1:this}');${2}
 snippet clv
-	cl('${1:var}: ' + $1);${2}
+	console.log('${1:var}: ' + $1);${2}
 snippet col
 	col('${1:this}');${2}
 snippet colv
@@ -64,9 +64,10 @@ snippet proto
 	};
 snippet t
 	I18n.t('${1:type.key}', { defaultValue: '${2}' })${3}
-snippet timeout
-	setTimeout(function() { ${1} }, ${2:10});
-	${3}
+snippet sett
+	setTimeout(function() {
+		${2}
+	}, ${1:0});
 snippet while
 	while (${1:true}) { 
 		${2}
