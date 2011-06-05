@@ -28,15 +28,15 @@ set autochdir
 set hidden
 set diffopt=vertical
 
-"braces autoclosing
+" braces autoclosing
 imap [ []<LEFT>
-" imap ( ()<LEFT>
+imap ( ()<LEFT>
 imap { {}<LEFT>
 
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 
-"inoremap <C-space> <C-x><C-o>
+" inoremap <C-space> <C-x><C-o>
 
 cnoremap <c-t> tabnew 
 

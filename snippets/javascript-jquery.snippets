@@ -1,5 +1,5 @@
 snippet $
-	$('${1:obj}')${2}
+	$(${1:this})${2}
 snippet add
 	add('${1:selector}')${2}
 snippet addcl
@@ -33,25 +33,21 @@ snippet get
 	$.get('${1:/url}', function(${2:data}) {
 		${4}
 	}${3:, 'text'});
+snippet post
+	$.post('${1:/url}', ${2:params}, function(${3:data}) {
+		${5}
+	}${4:, 'text'});
 snippet getjson
-	$.getJSON('<+/path/to/file.cgi+>',{
-	 <+<+param1+>: "<+value1+>", <+param2+>: "<+value2+>"+>},
-	 function(json){
-			<+//stuff to do after event occurs;+>
+	$.getJSON('${1:/url}', function(${2:data}) {
+		${3}
 	});
-snippet getscript
-	$.getScript('${1:somescript.js}', function(){
+snippet getscr
+	$.getScript('${1:somescript.js}', function() {
 		${2://optional stuff to do after getScript;}
 	});
 snippet ajaxgetif
-	$.getIfModified('${1:/test/test.cgi}', function(data){
+	$.getIfModified('${1:/test/test.cgi}', function(data) {
 		${2:alert( "Data loaded: " + data ) //optional stuff to do after get;}
-	});
-snippet ajaxpost
-	$.post('<+/path/to/file.cgi+>',{
-	 <+<+param1+>: "<+value1+>", <+param2+>: "<+value2+>"+>},
-	 function(){
-			<+//stuff to do after event occurs;+>
 	});
 snippet ajaxsend
 	.ajaxSend(function(${1:request, settings}) {
@@ -92,7 +88,7 @@ snippet animate
 	animate({${1:param1: value1, param2: value2}}, ${2:speed})${3}
 snippet append
 	append('${1:Some text <b>and bold!</b>}')${2}
-snippet appendTo
+snippet appendto
 	appendTo('${1:selector}')${2}
 snippet attr
 	attr('${1:attribute}', '${2:value}')${3}
@@ -296,8 +292,6 @@ snippet supc
 	});
 snippet text
 	text(${1:'some text'})${2}
-snippet this
-	$(this)${1}
 snippet tog
 	toggle(function() {
 		${1:// Stuff to do every *odd* time the element is clicked;}
