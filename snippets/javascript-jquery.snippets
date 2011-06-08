@@ -86,10 +86,10 @@ snippet ajaxsuccess
 	});
 snippet animate
 	animate({${1:param1: value1, param2: value2}}, ${2:speed})${3}
-snippet append
+snippet app
 	append('${1:Some text <b>and bold!</b>}')${2}
-snippet appendto
-	appendTo('${1:selector}')${2}
+snippet appto
+	appendTo(${1:selector})${2}
 snippet attr
 	attr('${1:attribute}', '${2:value}')${3}
 snippet attrm
@@ -127,7 +127,7 @@ snippet dblclick
 		${1:// Act on the event}
 	});
 snippet each
-	each(function(i) {
+	each(function() {
 		${1:this.innerHTML = this + " is the element, " + i + " is the position";}
 	});
 snippet eltrim
@@ -280,6 +280,8 @@ snippet size
 	size()${1}
 snippet stoggle
 	slideToggle('${1:slow/400/fast}')${2}
+snippet stop
+	stop(${1:true, true})${2}
 snippet submit
 	submit(function() {
 		${1:// Act on the event once}
@@ -312,3 +314,5 @@ snippet width
 	width(${1:integer})${2}
 snippet wrap
 	wrap('${1:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')${2}
+snippet data
+	data('${1:val}')${2}

@@ -119,11 +119,11 @@ snippet drbtg
 	display: ruby-text-group;${1}
 snippet v
 	visibility: ${1};${2}
-snippet v:v
+snippet vv
 	visibility: visible;${1}
-snippet v:h
+snippet vh
 	visibility: hidden;${1}
-snippet v:c
+snippet vc
 	visibility: collapse;${1}
 snippet ov
 	overflow: ${1};${2}
@@ -273,7 +273,7 @@ snippet bd
 	border: ${1};${2}
 snippet bd+
 	border: 1px solid #${1:000};${2}
-snippet bd:n
+snippet bdn
 	border: none;${1}
 snippet bdbk
 	border-break: ${1};${2}
@@ -959,3 +959,10 @@ snippet orp
 	orphans: ${1};${2}
 snippet wid
 	widows: ${1};${2}
+snippet lgrad
+	background: -webkit-gradient(linear, 0 top, 0 bottom,
+															from(#000),
+															to(#fff),
+															color-stop(.5, #aaa)
+															);
+
