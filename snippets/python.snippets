@@ -37,15 +37,16 @@ snippet try
 		${3:pass}
 snippet gae
 	from google.appengine.ext import webapp
-	from google.appengine.ext.webapp import template, util
+	from google.appengine.ext.webapp import util
 
 	class Handler(webapp.RequestHandler):
 		def get(self):
-			self.response.out.write('It Works')
+			self.response.out.write('<h1>It Works</h1>')
 
 	def main():
-		application = webapp.WSGIApplication([('.*', Handler)],
-																				 debug=True)
+		application = webapp.WSGIApplication([
+			('.*', Handler)
+			], debug=True)
 		util.run_wsgi_app(application)
 
 	if __name__ == '__main__':
