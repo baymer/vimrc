@@ -1893,7 +1893,7 @@ let s:zen_settings = {
 \            'style': {'type': 'text/css'},
 \            'script': {'type': 'text/javascript'},
 \            'script:src': [{'type': 'text/javascript'}, {'src': ''}],
-\            'img': [{'src': ''}, {'alt': ''}],
+\            'img': [{'src': ''}, {'height': ''}, {'width': ''}, {'alt': ''}],
 \            'iframe': [{'src': ''}, {'frameborder': '0'}],
 \            'embed': [{'src': ''}, {'type': ''}],
 \            'object': [{'data': ''}, {'type': ''}],

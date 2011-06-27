@@ -8,13 +8,12 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 
 set guioptions-=T "hide toolbar
-set fileformat=unix
 
 set nobackup
 set nowritebackup
 set noswapfile
 
-" window size
+"window size
 set lines=35
 set columns=110
 
@@ -28,7 +27,6 @@ set smarttab
 set autochdir
 set hidden
 set diffopt=vertical
-set iskeyword+=-
 
 " braces autoclosing
 imap [ []<LEFT>
@@ -37,9 +35,8 @@ imap { {}<LEFT>
 
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
-snoremap ' ''<LEFT>
 
-"inoremap <C-space> <C-x><C-o>
+" inoremap <C-space> <C-x><C-o>
 
 cnoremap <c-t> tabnew 
 
@@ -60,8 +57,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
 imap <F2> <esc>:w<cr>
 nmap <F2> :w<cr>
 nmap <F3> :w<cr>:!launch.bat<cr>
-nmap <F4> yiw:new temp.js<cr>:r!findstr /n "<c-r>"" *.*
-" nmap <F4> yiw:vimgrep "<c-r>"" * | :copen
+nmap <F4> yaw:new temp.js<cr>:r!findstr /n "<c-r>"" *.*
 nmap <F6> :bp<cr>
 nmap <F7> :bn<cr>
 nmap <F9> :NERDTreeToggle<cr>

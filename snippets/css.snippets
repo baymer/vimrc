@@ -470,7 +470,7 @@ snippet bg:n
 snippet bg:ie
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=''${1}x.png'');${2}
 snippet bgc
-	background-color: #fff;${1}
+	background-color: #${1:fff};${2}
 snippet bgi
 	background-image: url(${1});${2}
 snippet bgi:n
@@ -649,13 +649,13 @@ snippet tal:r
 	text-align-last: right;${1}
 snippet td
 	text-decoration: ${1};${2}
-snippet td:n
+snippet tdn
 	text-decoration: none;${1}
-snippet td:u
+snippet tdu
 	text-decoration: underline;${1}
-snippet td:o
+snippet tdo
 	text-decoration: overline;${1}
-snippet td:l
+snippet tdl
 	text-decoration: line-through;${1}
 snippet te
 	text-emphasis: ${1};${2}
@@ -797,13 +797,13 @@ snippet f+
 	font: 1em Arial,sans-serif;${1}
 snippet fw
 	font-weight: ${1};${2}
-snippet fw:n
+snippet fwn
 	font-weight: normal;${1}
-snippet fw:b
+snippet fwb
 	font-weight: bold;${1}
-snippet fw:br
+snippet fwbr
 	font-weight: bolder;${1}
-snippet fw:lr
+snippet fwlr
 	font-weight: lighter;${1}
 snippet fs
 	font-style: ${1};${2}
