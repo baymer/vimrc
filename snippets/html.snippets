@@ -214,6 +214,8 @@ snippet b
 	<b>${1}</b>${2}
 snippet i
 	<i>${1}</i>${2}
+snippet u
+	<u>${1}</u>${2}
 snippet img
 	<img src='${1}' height=${2} width=${3} alter='${4:image}' />
 snippet inp
@@ -256,6 +258,14 @@ snippet #
 	#{${1:tagName}} /}${2}
 snippet ##
 	#{${1:tagName} ${2:param}} ${3} #{/${1}}
+snippet dl
+	<dl>
+		${1}
+	</dl>
+snippet dt
+	<dt>${1}</dt>${2}
+snippet dd
+	<dd>${1}</dd>${2}
 snippet dobody
 	#{doBody /}${1}
 snippet dolayout
@@ -288,6 +298,10 @@ snippet =
 	{{ ${1} }}${2}
 snippet *
 	*{ ${1:comment} }*${2}
+snippet ol
+	<ol>
+	  ${1}
+	</ol>
 snippet ul
 	<ul>
 	  <li>${1:item}</li>${2}
