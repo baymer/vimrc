@@ -146,7 +146,7 @@ snippet scr
 snippet sscr
 	<script src='${1:script}.js'></script>${2}
 snippet jquery
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js' type='text/javascript'></script>${1}
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js' type='text/javascript'></script>${1}
 snippet style
 	<style type='text/css'>
 		${1}
@@ -247,17 +247,44 @@ snippet select
 	</select>${5}
 snippet span
 	<span>${1}</span>${2}
+snippet strong
+	<strong>${1}</strong>${2}
 snippet table
-	<table border='${1:0}'>
-		<tr><th>${2:Header}</th></tr>
-		<tr><th>${3:Data}</th></tr>
-	</table>${4}
+	<table>
+		<tr><th>${1:Header}</th></tr>
+		<tr><th>${2:Data}</th></tr>
+	</table>
+snippet thead
+	<thead>
+		<tr><th>${1:Header}</th></tr>
+	</thead>
+snippet tbody
+	<tbody>
+		<tr><th>${1:Header}</th></tr>
+	</tbody>
+snippet tfoot
+	<tfoot>
+		<tr><th>${1:Header}</th></tr>
+	</tfoot>
+snippet tr
+	<tr>
+		${1}
+	</tr>
+snippet th
+	<th>${1}</th>${2}
+snippet td
+	<td>${1}</td>${2}
 snippet text
 	<textarea name='${1:text}' id='${2:text}' rows='${3:8}' cols='${4:40}'>${4}</textarea>${5}
 snippet #
 	#{${1:tagName}} /}${2}
 snippet ##
 	#{${1:tagName} ${2:param}} ${3} #{/${1}}
+snippet dl+
+	<dl>
+		<dt>${1}</dt>
+		<dd>${2}</dd>
+	</dl>
 snippet dl
 	<dl>
 		${1}
