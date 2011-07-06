@@ -1,5 +1,13 @@
 # Some useful Unicode entities
 # Non-Breaking Space
+snippet tm
+	&trade;
+snippet quot
+	&quot;
+snippet bull
+	&bull;
+snippet copy
+	&copy;
 snippet nbs
 	&nbsp;
 # ←
@@ -138,7 +146,7 @@ snippet scr
 snippet sscr
 	<script src='${1:script}.js'></script>${2}
 snippet jquery
-	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js' type='text/javascript'></script>${1}
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js' type='text/javascript'></script>${1}
 snippet style
 	<style type='text/css'>
 		${1}
@@ -199,24 +207,28 @@ snippet ah
 snippet h1
 	<h1>${1}</h1>${2}
 snippet h2
-	<h2 id='${1:heading}'>${2:$1}</h2>
+	<h2>${1}</h2>${2}
 snippet h3
-	<h3 id='${1:heading}'>${2:$1}</h3>
+	<h3>${1}</h3>${2}
+snippet b
+	<b>${1}</b>${2}
 snippet i
 	<i>${1}</i>${2}
+snippet u
+	<u>${1}</u>${2}
 snippet img
-	<img src='${1}' />
-snippet input
+	<img src='${1}' height=${2} width=${3} alter='${4:image}' />
+snippet inp
 	<input type='${1:text}' name='${2:some_name}' value='${3}' />${4}
-snippet inputl
-	<label for='${2:$1}'>${1:name}</label>
-	<input type='${3:text}' name='${4:$2}' value='${5}' id='${6:$2}' />${7}
+snippet inpl
+	<label for='${1:name}'>${2:Name}</label>
+	<input type='${3:text}' name='${4:$1}' value='${5}' id='${6:$1}' />${7}
 snippet label
 	<label for='${1:id}'>${2:label_text}</label>${3}
 snippet li
 	<li>${1}</li>${2}
 snippet link
-	<link rel='${1:stylesheet}' href='${2:/css/main.css}' type='text/css' charset='utf-8' / />${3}
+	<link rel='${1:stylesheet}' href='${2:/css/main.css}' type='text/css' charset='utf-8' />${3}
 snippet mailto
 	<a href='mailto:${1:joe@example.com}?subject=${2:feedback}'>${3:email me}</a>
 snippet meta
@@ -235,17 +247,52 @@ snippet select
 	</select>${5}
 snippet span
 	<span>${1}</span>${2}
+snippet strong
+	<strong>${1}</strong>${2}
 snippet table
-	<table border='${1:0}'>
-		<tr><th>${2:Header}</th></tr>
-		<tr><th>${3:Data}</th></tr>
-	</table>${4}
+	<table>
+		<tr><th>${1:Header}</th></tr>
+		<tr><th>${2:Data}</th></tr>
+	</table>
+snippet thead
+	<thead>
+		<tr><th>${1:Header}</th></tr>
+	</thead>
+snippet tbody
+	<tbody>
+		<tr><th>${1:Header}</th></tr>
+	</tbody>
+snippet tfoot
+	<tfoot>
+		<tr><th>${1:Header}</th></tr>
+	</tfoot>
+snippet tr
+	<tr>
+		${1}
+	</tr>
+snippet th
+	<th>${1}</th>${2}
+snippet td
+	<td>${1}</td>${2}
 snippet text
 	<textarea name='${1:text}' id='${2:text}' rows='${3:8}' cols='${4:40}'>${4}</textarea>${5}
 snippet #
 	#{${1:tagName}} /}${2}
 snippet ##
 	#{${1:tagName} ${2:param}} ${3} #{/${1}}
+snippet dl+
+	<dl>
+		<dt>${1}</dt>
+		<dd>${2}</dd>
+	</dl>
+snippet dl
+	<dl>
+		${1}
+	</dl>
+snippet dt
+	<dt>${1}</dt>${2}
+snippet dd
+	<dd>${1}</dd>${2}
 snippet dobody
 	#{doBody /}${1}
 snippet dolayout
@@ -278,6 +325,10 @@ snippet =
 	{{ ${1} }}${2}
 snippet *
 	*{ ${1:comment} }*${2}
+snippet ol
+	<ol>
+	  ${1}
+	</ol>
 snippet ul
 	<ul>
 	  <li>${1:item}</li>${2}
