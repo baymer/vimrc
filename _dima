@@ -1,0 +1,177 @@
+    "Window operations
+"Alt key is much handy
+map <M-h> <C-w>h
+map <M-j> <C-w>j
+map <M-k> <C-w>k
+map <M-l> <C-w>l
+map <M-c> <C-w>c
+	"split
+map <M-s> :sp<CR>
+map <M-v> :vsplit<CR>
+	"vertical resize by 2 lines
+map <M-=> <C-W>2+
+map <M--> <C-W>2-
+	"horizontal resize by 2 digits
+map <M-.> <C-w>2>
+map <M-,> <C-w>2<
+	"moving windows
+map <M-J> <C-w>J
+map <M-K> <C-w>K
+map <M-H> <C-w>H
+map <M-L> <C-w>L
+	"Exchange current window with next one
+map <M-x> <C-w>x
+    "Move the current window to a new tab page
+map <M-t> <C-w>T
+
+let NERDTreeWinSize=41
+let NERDTreeChDirMode=2
+    "buffer explorer
+map <F7> \bv
+
+    "Text navigation
+map J <C-d>
+map K <C-u>
+map H ^
+map L $
+
+    "Tab operations
+nmap T :e \pt
+nmap t :tabnew
+cnoremap \pt <C-R>=expand("%:h")<CR>
+nmap th :tabprev<CR>
+nmap tl :tabnext<CR>
+nmap tn :tabnew<CR>
+nmap td :tabclose<CR>
+nmap tH :tabr<CR>
+nmap tL :tabl<CR>
+map <C-h> :tabprev<CR>
+map <C-L> :tabnext<CR>
+noremap <C-j> <C-o>
+noremap <C-k> <C-i>
+
+	"Search
+nmap n nzz
+nmap N Nzz
+
+let treeexplvertical=1
+
+    "Folding
+set nofoldenable
+"set foldmethod=marker
+"set foldmarker={,}
+"set foldnestmax=1
+map zh :foldclose<CR>
+map zl :foldopen<CR>
+"open all folds
+noremap zo zR
+"close all folds
+noremap zc zM
+"add new line before each {
+map zJ :%s/)\s*{/)\r{/g<CR>
+"show javascript functions in outline view
+map <F12> :TToC \(\w\+\s=\sfunction(.*)\)\\|\(\(function\)\@<=.*\)<CR>
+map zU :TToC 
+
+	"Diff
+set diffopt=filler
+"ignore whitespaces
+set diffopt+=iwhite
+"always open horizontal diffsplit
+set diffopt+=horizontal
+" Catch the transition to diff mode
+au FilterWritePre * if &diff | exe 'noremap <space> ]c' | exe 'noremap <S-space> [c' | endif
+au FilterWritePre * if &diff | exe 'set diffopt=filler,context:1000' |
+
+	"Functions
+
+"all project files merged in one by script for fast search
+"this jump command set cursor in origin file
+nmap ge :call EDITSOURCE()<CR>
+
+function! EDITSOURCE()
+	let position = getpos(".")
+	let endLine = position[1]
+	let flags = "be"
+	call search("File:", flags)
+	let startLine = line(".")
+	let lineN = endLine - startLine - 1 
+	call setpos(".", [0, startLine, 9,0])
+	edit <cfile>
+	call setpos(".", [0, lineN, position[2] ,0])
+endfunction
+
+"there are several main locations in daily use
+map <F8> <esc>:call SWITCHLOCATION()<cr>
+function! SWITCHLOCATION()
+	"let paths = ['D:\CME\Source\Tridion.Web.UI\Tridion.Web.UI.Core', , 'D:\SE\Source\SiteEditSolution\Tridion.Web.UI.Editors.SiteEdit']
+	let currentPath = getcwd()
+	"get index of currentPath in array;
+	"get element with index++ divided without rest on array size
+	let path_0 = 'D:\SE\Source\SiteEditSolution\Tridion.Web.UI.Editors.SiteEdit'
+	let path_1 = 'D:\CME\Source\Tridion.Web.UI\Tridion.Web.UI.Core'
+	let path_2 = 'D:\CME\Source\Tridion.Web.UI.Editors\CME2011\Tridion.Web.UI.Editors.CME'
+	let $CHANGEPATH = path_0
+	let j = 0
+	while j < 2
+	  let entry = 'path_' . j
+	  if currentPath == {entry}
+		  "if j is a last element
+		if j == 2
+			let i = 0
+		else
+			let i = j + 1
+		endif
+		let entry = 'path_' . i
+	 	let $CHANGEPATH = {entry}
+	  endif
+	  let j = j + 1
+	endwhile
+	:cd $CHANGEPATH
+	:NERDTree $CHANGEPATH
+	:pwd
+endfunction
+
+	"Notes
+"remove readonly attribute for current file in Windows
+"!attrib -R %
+	"Use Tab for exiting edit mode - Esc is far from hand!
+"nnoremap <Tab> <Esc>
+"vnoremap <Tab> <Esc>gV
+"onoremap <Tab> <Esc>
+"inoremap <Tab> <Esc>`^
+"inoremap <Leader><Tab> <Tab>
+
+"map <F5>  <esc>:call SWITCHFOLD()<cr>
+function! SWITCHFOLD()
+    if &foldmethod=="marker"
+        set foldmethod=syntax
+        return
+    endif
+    if &foldmethod=="syntax"
+		set foldmethod=marker
+		return
+	endif
+" set foldmethod=syntax
+" set foldmethod=marker
+endfunction
+
+	"Regexp notes
+"/text1\(text2\)\@=	'text1' followed by 'text2'
+"/\(text1\)\@<=text2	'text2' preceded with 'text1'
+"
+"search items nearby (multiline)
+"word\_.{-}word2
+
+	"Shorcuts to use
+	"Search
+"gd - go nearest definition
+"dD - gd - search from file start
+"g* - search for this word included in bigger
+"/pattern1/;/pattern2
+"/test/e	put cursor on the last t of "test"
+"c/pattern/	cut and insert until found pattern
+
+"noh[lsearch]
+":reg[isters] show registers content
+"	"ayL	copy text from cursor to the line end to register 'a'
