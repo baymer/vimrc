@@ -1,3 +1,5 @@
+snippet p
+	print 
 snippet classold
 	class ${1:``Snippet_PythonClassNameFromFilename()``}(${2:data}):
 	${3}
@@ -45,12 +47,16 @@ snippet gae
 
 	def main():
 		application = webapp.WSGIApplication([
-			('.*', Handler)
-			], debug=True)
+					('.*', Handler)
+					], debug=True)
 		util.run_wsgi_app(application)
 
 	if __name__ == '__main__':
 		main()
+snippet handl
+	class ${1:Handler}(webapp.RequestHandler):
+		def get(self):
+			${2}
 snippet req
 	self.request.get('${1}')${2}
 snippet resp
