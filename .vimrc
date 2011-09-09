@@ -45,7 +45,9 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set smarttab
-set autochdir
+" set autochdir
+set hlsearch
+set incsearch
 set hidden
 set diffopt=filler
 set diffopt+=vertical
@@ -95,3 +97,5 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 let g:user_zen_leader_key = ','
+
+nnoremap <c-t> :<c-u>FufFile **/<cr>
