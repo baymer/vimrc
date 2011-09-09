@@ -1,5 +1,5 @@
 snippet $
-	$(${1:this})${2}
+	$(${1})${2}
 snippet add
 	add('${1:selector}')${2}
 snippet addcl
@@ -159,7 +159,7 @@ snippet fadetoc
 snippet filter
 	filter('${1:selector}')${2}
 snippet find
-	find('${1:selector}')${2}
+	find(${1})${2}
 snippet focus
 	focus(function() {
 		${1:// Act on the event}
@@ -179,7 +179,7 @@ snippet hover
 		${2:// Stuff to do when the mouse leaves the element;}
 	});
 snippet html
-	html('${1:Some text <b>and bold!</b>}')${2}
+	html(${1})${2}
 snippet insertAfter
 	insertAfter('${1:selector}')${2}
 snippet insertBefore
