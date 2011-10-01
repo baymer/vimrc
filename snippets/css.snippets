@@ -1,3 +1,7 @@
+snippet el
+	${1} {
+		${2}
+	}
 snippet #  
 	#${1:id} {
 		${2}
@@ -73,6 +77,8 @@ snippet clb
 	clear: both;${1}
 snippet d
 	display: ${1};${2}
+snippet da
+	display: auto;${1}
 snippet dn
 	display: none;${1}
 snippet db
@@ -960,9 +966,9 @@ snippet orp
 snippet wid
 	widows: ${1};${2}
 snippet lgrad
-	background: -webkit-gradient(linear, 0 top, 0 bottom,
-															from(#000),
-															to(#fff),
-															color-stop(.5, #aaa)
-															);
+	background: gradient(linear, 0 top, 0 bottom,
+											from(#000),
+											to(#fff),
+											color-stop(.5, #aaa)
+											);
 
