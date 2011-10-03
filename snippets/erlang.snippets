@@ -1,0 +1,14 @@
+snippet mod
+	-module(${1}).${2}
+snippet exp
+	-export([${1}]).${2}
+snippet fun
+	${1}(${2}) ->
+		${3}
+snippet rec
+	receive
+		${1}
+	end
+snippet spawn
+	spawn(${1}, ${2}, [${3}])${4}
+	

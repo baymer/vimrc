@@ -106,7 +106,7 @@ call pathogen#helptags()
 let g:user_zen_leader_key = ','
 
 " search file (working dir should be the root)
-nnoremap <c-t> :<c-u>FufFile **/<cr>
+nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
 
 " Window operations
   " Alt key is much handy

@@ -1,3 +1,5 @@
+snippet ?
+	( ${1} ) ? ${2} : ${3}
 snippet d
 	debugger
 snippet r
@@ -32,7 +34,11 @@ snippet ife
 	} else {
 	};
 snippet cl
-	console.log(${1:this});${2}
+	console.log(${1});${2}
+snippet ce
+	console.error(${1});${2}
+snippet cw
+	console.warning(${1});${2}
 snippet clv
 	console.log('${1:var}: ' + $1);${2}
 snippet proto
