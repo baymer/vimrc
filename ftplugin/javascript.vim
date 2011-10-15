@@ -1,1 +1,1 @@
-ab fun function()<space>{<cr>}
+match ErrorMsg '\t'

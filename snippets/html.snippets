@@ -192,8 +192,8 @@ snippet ife
 	{% else %}
 	{% endif %}
 snippet form
-	<form action='${1:`Filename('$1_submit')`}' method='${2:post}'>
-		${3}
+	<form method='${1:post}'>
+		${2}
 		<p><input type='submit' value='Submit' /></p>
 	</form>
 snippet t

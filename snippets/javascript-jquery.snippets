@@ -1,5 +1,5 @@
 snippet $
-	$(${1})${2}
+	$('${1}')${2}
 snippet add
 	add('${1:selector}')${2}
 snippet addcl
@@ -14,20 +14,20 @@ snippet ajax
 		data: ${4:{}},
 
 		complete: function() {
-			${5:// called when complete}
+			${5}
 		},
 
 		success: function() {
-			${6:// called when successful}
+			${6}
 		},
 
 		error: function() {
-			${7:// called when there is an error}
+			${7}
 		},
 	});
 snippet ajaxerror
 	.ajaxError(function(${1:request, settings}) {
-		${2:// stuff to do when an AJAX call returns an error};
+		${2};
 	});
 snippet get
 	$.get('${1:/url}', function(${2:data}) {
@@ -43,7 +43,7 @@ snippet getjson
 	});
 snippet getscr
 	$.getScript('${1:somescript.js}', function() {
-		${2://optional stuff to do after getScript;}
+		${2}
 	});
 snippet ajaxgetif
 	$.getIfModified('${1:/test/test.cgi}', function(data) {
@@ -51,7 +51,7 @@ snippet ajaxgetif
 	});
 snippet ajaxsend
 	.ajaxSend(function(${1:request, settings}) {
-		${2://stuff to do when an AJAX call returns an error};
+		${2};
 	});
 snippet ajaxsetup
 	$.ajaxSetup({
@@ -61,28 +61,28 @@ snippet ajaxsetup
 		data: $.param( $("${4:Element or Expression}") ),
 
 		complete: function() {
-			${5://called when complete}
+			${5}
 		},
 
 		success: function() {
-			${6://called when successful}
+			${6}
 		},
 
 		error: function() {
-			${7://called when there is an error}
+			${7}
 		},
 	});
 snippet ajaxstart
 	$.ajaxStart(function() {
-		${1://stuff to do when an AJAX call is started and no other AJAX calls are in progress};
+		${1};
 	});
 snippet ajaxstop
 	$.ajaxStop(function() {
-		${1://stuff to do when an AJAX call is started and no other AJAX calls are in progress};
+		${1};
 	});
 snippet ajaxsuccess
 	$.ajaxSuccess(function() {
-		${1://stuff to do when an AJAX call is started and no other AJAX calls are in progress};
+		${1};
 	});
 snippet animate
 	animate({${1:param1: value1, param2: value2}}, ${2:speed})${3}
@@ -98,21 +98,21 @@ snippet before
 	before('${1:Some text <b>and bold!</b>}')${2}
 snippet bind
 	bind('${1:event}', function(${2:event}) {
-		${3:// Act on the event}
+		${3}
 	});
 snippet blur
 	blur(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet change
 	change(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet children
 	children('${1:selector}')${2}
 snippet click
 	click(function() {
-		${1:// Act on the event}
+		${1}
 	})
 snippet clone
 	clone()${1}
@@ -124,7 +124,7 @@ snippet cssm
 	css({${1:attribute1}: '${2:value1}', ${3:attribute2}: '${4:value2}'})${5}
 snippet dblclick
 	dblclick(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet each
 	each(function() {
@@ -136,25 +136,25 @@ snippet end
 	end()${1}
 snippet error
 	error(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet fadein
 	fadeIn('${1:slow/400/fast}')${2}
 snippet fadeinc
 	fadeIn('slow/400/fast', function() {
-		${1://Stuff to do *after* the animation takes place};
+		${1};
 	});
 snippet fadeout
 	fadeOut('${1:slow/400/fast}')${2}
 snippet fadeoutc
 	fadeOut('slow/400/fast', function() {
-		${1://Stuff to do *after* the animation takes place};
+		${1};
 	});
 snippet fadeto
 	fadeTo('${1:slow/400/fast}', ${2:0.5})${3}
 snippet fadetoc
 	fadeTo('slow/400/fast', ${1:0.5}, function() {
-		${2://Stuff to do *after* the animation takes place};
+		${2};
 	});
 snippet filter
 	filter('${1:selector}')${2}
@@ -162,7 +162,7 @@ snippet find
 	find(${1})${2}
 snippet focus
 	focus(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet height
 	height(${1:integer})${2}
@@ -170,13 +170,13 @@ snippet hide
 	hide('${1:slow/400/fast}')${2}
 snippet hidec
 	hide('${1:slow/400/fast}', function() {
-		${2://Stuff to do *after* the animation takes place}
+		${2}
 	});
 snippet hover
 	hover(function() {
-		${1:// Stuff to do when the mouse enters the element;}
+		${1}
 	}, function() {
-		${2:// Stuff to do when the mouse leaves the element;}
+		${2}
 	});
 snippet html
 	html(${1})${2}
@@ -188,7 +188,7 @@ snippet is
 	is('${1:selector}')${2}
 snippet load
 	load(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet loadf
 	<+obj+>.load('<+/path/to/file.htm+>', { <+<+param1+>: "<+value1+>", <+param2+>: "<+value2+>"+> }, function() {
@@ -200,23 +200,23 @@ snippet loadif
 	});
 snippet mdown
 	mousedown(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet mmove
 	mousemove(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet mout
 	mouseout(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet mover
 	mouseover(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet mup
 	mouseup(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet next
 	next('${1:selector}')${2}
@@ -224,7 +224,7 @@ snippet not
 	not('${1:selector}')${2}
 snippet one
 	one('${1:event name}', function(${2:event}) {
-		${3:// Act on the event once}
+		${3}
 	});
 snippet parent
 	parent('${1:selector}')${2}
@@ -242,37 +242,37 @@ snippet ready
 	});
 snippet rem
 	remove()${1}
-snippet remattr
-	removeAttr('${1:attribute name}')${2}
+snippet remat
+	removeAttr('${1}')${2}
 snippet remcl
-	removeClass('${1:classname}')${2}
+	removeClass('${1}')${2}
 snippet reset
 	reset(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet resize
 	resize(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet scroll
 	scroll(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet sdown
 	slideDown('${1:slow/400/fast}')${2}
 snippet sdownc
 	slideDown('${1:slow/400/fast}', function() {
-		${2://Stuff to do *after* the animation takes place};
+		${2};
 	});
 snippet select
 	select(function() {
-		${1:// Act on the event}
+		${1}
 	});
 snippet show
 	show('${1:slow/400/fast}')${2}
 snippet showc
 	show('${1:slow/400/fast}', function() {
-		${2://Stuff to do *after* the animation takes place}
+		${2}
 	});
 snippet sib
 	siblings('${1:selector}')${2}
@@ -284,21 +284,21 @@ snippet stop
 	stop(${1:true, true})${2}
 snippet submit
 	submit(function() {
-		${1:// Act on the event once}
+		${1}
 	});
 snippet sup
 	slideUp('${1:slow/400/fast}')${2}
 snippet supc
 	slideUp('${1:slow/400/fast}', function() {
-		${2://Stuff to do *after* the animation takes place};
+		${2};
 	});
 snippet text
 	text(${1:'some text'})${2}
 snippet tog
 	toggle(function() {
-		${1:// Stuff to do every *odd* time the element is clicked;}
+		${1}
 	}, function() {
-		${2:// Stuff to do every *even* time the element is clicked;}
+		${2}
 	});
 snippet togcl
 	toggleClass('${1:classname}')${2}

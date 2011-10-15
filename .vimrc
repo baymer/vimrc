@@ -68,7 +68,7 @@ snoremap ' ''<LEFT>
 
 "inoremap <C-space> <C-x><C-o>
 
-cnoremap <c-t> tabnew 
+" cnoremap <c-t> tabnew 
 nnoremap <silent> <c-s-pagedown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 nnoremap <silent> <c-s-pageup> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 
@@ -115,25 +115,27 @@ nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
 " map <M-k> <C-w>k
 " map <M-l> <C-w>l
 " map <M-c> <C-w>c
-	" split
+  " split
 " map <M-s> :sp<CR>
 " map <M-v> :vsplit<CR>
-	" vertical resize by 2 lines
+  " vertical resize by 2 lines
 nmap <M-=> <C-W>2+
 nmap <M--> <C-W>2-
-	" horizontal resize by 2 digits
+  " horizontal resize by 2 digits
 nmap <M-.> <C-w>2>
 nmap <M-,> <C-w>2<
-	" moving windows
+  " moving windows
 " map <M-J> <C-w>J
 " map <M-K> <C-w>K
 " map <M-H> <C-w>H
 " map <M-L> <C-w>L
-	" Exchange current window with next one
+  " Exchange current window with next one
 " map <M-x> <C-w>x
   " Move the current window to a new tab page
 " map <M-t> <C-w>T
+nmap <m-t> :tabnew 
 nmap <m-d> :diffsplit 
+vmap <m-b> :Gblame<cr>
 
 """"""""""
 set showcmd
@@ -157,4 +159,24 @@ function! ToggleFoldMethod()
 endfunction
 nmap <silent> <F3> :call ToggleFoldMethod()<cr>
 
-" let g:syntastic_enable_signs=1
+imap <c-f> <right>
+" set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" set keymap=russian-jcukenwin 
+" set iminsert=0
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+au BufRead,BufNewFile * syntax match ErrorMsg /\t/
+
+function! JsStyling()
+  %s:\s\+$::g
+  %s:\t:  :g
+  %s:){:) {:
+  %s:if\s*(\s*:if ( :
+  %s:}\_\s*else\s*{:} else {:
+  g:\<if\>:s:\s*) {$: ) {:
+  %s:\(\S\)\s*\(&&\|||\)\s*:\1 \2 :g
+endfunction
+
+set virtualedit=block
