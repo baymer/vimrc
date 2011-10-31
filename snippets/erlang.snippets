@@ -11,4 +11,7 @@ snippet rec
 	end
 snippet spawn
 	spawn(${1}, ${2}, [${3}])${4}
-	
+snippet reg
+	register(${1}, spawn(${2}, ${3}, [${4}]))${5}
+snippet form
+	io:format("${1}~n", [${2}])${3}

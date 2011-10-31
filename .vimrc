@@ -26,7 +26,16 @@ function! ToggleGuiOptions()
   endif
 endfunction
 
-nmap <silent> <F5> :call ToggleGuiOptions()<cr>
+function! ToggleNu()
+  if &number == 0
+    set number
+  else
+    set nonumber
+  endif
+endfunction
+
+" nmap <silent> <F5> :call ToggleGuiOptions()<cr>
+nmap <silent> <F5> :call ToggleNu()<cr>
 
 set fileformat=unix
 
@@ -68,7 +77,6 @@ snoremap ' ''<LEFT>
 
 "inoremap <C-space> <C-x><C-o>
 
-" cnoremap <c-t> tabnew 
 nnoremap <silent> <c-s-pagedown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 nnoremap <silent> <c-s-pageup> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 
@@ -168,15 +176,28 @@ set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 au BufRead,BufNewFile * syntax match ErrorMsg /\t/
+" au BufRead,BufNewFile * syntax match ErrorMsg /\s\+$/
+" au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 
 function! JsStyling()
-  %s:\s\+$::g
-  %s:\t:  :g
-  %s:){:) {:
-  %s:if\s*(\s*:if ( :
-  %s:}\_\s*else\s*{:} else {:
-  g:\<if\>:s:\s*) {$: ) {:
-  %s:\(\S\)\s*\(&&\|||\)\s*:\1 \2 :g
+  %s:\s\+$::ge
+  %s:\t:  :ge
+  %s:){:) {:e
+  %s:if\s*(\s*:if ( :e
+  %s:}\_\s*else\s*{:} else {:e
+  g:\<if\>:s:\s*) {$: ) {:e
+  %s:\(\S\)\s*\(&&\|||\)\s*:\1 \2 :ge
 endfunction
 
+function! HamlStyling()
+  %s:{{\(\w\+\)}}:{{ \1 }}:ge
+  %s:\([^{]\){\s*\([^{]\):\1{ \2:ge
+  %s:\([^}]\)\s*}$:\1 }:ge
+  %s:\(\S\)\s*=>\s*\(\S\):\1 => \2:ge
+endfunction
+
+
 set virtualedit=block
+
+set listchars=trail:$
+set list

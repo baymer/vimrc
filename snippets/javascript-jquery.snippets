@@ -3,12 +3,12 @@ snippet $
 snippet add
 	add('${1:selector}')${2}
 snippet addcl
-	addClass('${1:classname}')${2}
+	addClass('${1}')${2}
 snippet after
-	after('${1:Some text <b>and bold!</b>}')${2}
+	after('${1}')${2}
 snippet ajax
 	$.ajax({
-		url: '${1:/url}',
+		url: '${1}',
 		type: '${2:POST}',
 		dataType: '${3:json}',
 		data: ${4:{}},
@@ -159,7 +159,7 @@ snippet fadetoc
 snippet filter
 	filter('${1:selector}')${2}
 snippet find
-	find(${1})${2}
+	find('${1}')${2}
 snippet focus
 	focus(function() {
 		${1}
