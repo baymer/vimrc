@@ -69,7 +69,9 @@ set iskeyword+=-
 " braces autoclosing
 imap [ []<LEFT>
 imap ( ()<LEFT>
-imap { {}<LEFT>
+" imap { {}<LEFT>
+inoremap { {}<LEFT>
+inoremap {<cr> {<cr><bs>}<esc>O
 
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
@@ -111,7 +113,7 @@ nmap <F12> :copen<cr>
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-let g:user_zen_leader_key = ','
+let g:user_zen_leader_key = '\'
 
 " search file (working dir should be the root)
 nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
@@ -169,7 +171,7 @@ nmap <silent> <F3> :call ToggleFoldMethod()<cr>
 
 imap <c-f> <right>
 " set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-" set keymap=russian-jcukenwin 
+" set keymap=russian-jcukenwin
 " set iminsert=0
 set keymap=russian-jcukenwin
 set iminsert=0
@@ -177,7 +179,7 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 au BufRead,BufNewFile * syntax match ErrorMsg /\t/
 " au BufRead,BufNewFile * syntax match ErrorMsg /\s\+$/
-" au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
+au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 
 function! JsStyling()
   %s:\s\+$::ge
@@ -196,8 +198,23 @@ function! HamlStyling()
   %s:\(\S\)\s*=>\s*\(\S\):\1 => \2:ge
 endfunction
 
+function! MergeSnippets()
+  " merge.sh
+  " for file in `ls .`
+  " do
+  "   echo $file >> ruby.snippets
+  "   cat $file >> ruby.snippets
+  " done
+  v:snippet:s:^:\t:
+  g:snippet:s:^\(\w\+\).*$:snippet \1:
+endfunction
 
 set virtualedit=block
 
 set listchars=trail:$
 set list
+
+" :redir @a>
+" :history : -20,
+" :redir END
+" "ap
