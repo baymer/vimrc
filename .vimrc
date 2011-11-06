@@ -205,6 +205,7 @@ function! MergeSnippets()
   "   echo $file >> ruby.snippets
   "   cat $file >> ruby.snippets
   " done
+  " for file in `ls .` do; echo $file >> ruby.snippets; cat $file >> ruby.snippets; done
   v:snippet:s:^:\t:
   g:snippet:s:^\(\w\+\).*$:snippet \1:
 endfunction
