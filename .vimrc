@@ -1,5 +1,10 @@
 if has('gui_running')
   colorscheme xoria256
+
+  " window size
+  set lines=34
+  set columns=148
+  set showtabline=2
 endif
 
 if has('unix')
@@ -43,13 +48,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" window size
-set lines=34
-set columns=148
-se showtabline=2
-
 set autoindent
-set smartindent
+" set smartindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -67,15 +67,15 @@ set diffopt+=iwhite
 set iskeyword+=-
 
 " braces autoclosing
-imap [ []<LEFT>
-imap ( ()<LEFT>
-" imap { {}<LEFT>
-inoremap { {}<LEFT>
+imap [ []<left>
+imap ( ()<left>
+inoremap { {}<left>
+inoremap {<space> {<space><space>}<left><left>
 inoremap {<cr> {<cr><bs>}<esc>O
 
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-snoremap ' ''<LEFT>
+inoremap " ""<left>
+inoremap ' ''<left>
+snoremap ' ''<left>
 
 "inoremap <C-space> <C-x><C-o>
 
@@ -110,10 +110,12 @@ nmap g<F4> :Ggrep -l '\W<c-r>=expand("<cword>")<cr>\W'<cr> <bar> :copen<cr>
 nmap <F10> :NERDTreeFind<cr>
 nmap <F12> :copen<cr>
 
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-let g:user_zen_leader_key = '\'
+filetype on
+let g:user_zen_leader_key = '<c-,>'
 
 " search file (working dir should be the root)
 nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
@@ -146,6 +148,10 @@ nmap <M-,> <C-w>2<
 nmap <m-t> :tabnew 
 nmap <m-d> :diffsplit 
 vmap <m-b> :Gblame<cr>
+nmap <m-c> :Gcommit -am ''<left>
+nmap <m-p> :Git pull origin dev<cr>
+nmap <m-s> :Git push origin dev<cr>
+nmap <m-f> :Ggrep 
 
 """"""""""
 set showcmd
@@ -177,17 +183,31 @@ set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
-au BufRead,BufNewFile * syntax match ErrorMsg /\t/
-" au BufRead,BufNewFile * syntax match ErrorMsg /\s\+$/
+au BufWinEnter * syntax match ErrorMsg /\t/
+au BufWinEnter * syntax match ErrorMsg /\s\+$/
+" au BufRead,BufNewFile * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
+
+function! PyStyling()
+  v:^\s*#\|'\|":s:\s*\([-+/*%]\)\(=\)\@!\s*: \1 :g
+  v:^\s*#\|'\|":s:\s*\([-+/*%<>!=]=\)\s*: \1 :g
+  " %s:\s*\(-[^=]\|+[^=]\)\s*:\1 \2 :ge
+  " %s:\s\+$::ge
+  " %s:\s\+$::ge
+  " %s:\t:  :ge
+  " %s:){:) {:e
+  " %s:if\s*(\s*:if ( :e
+  " %s:}\_\s*else\s*{:} else {:e
+  " g:\<if\>:s:\s*) {$: ) {:e
+endfunction
 
 function! JsStyling()
   %s:\s\+$::ge
   %s:\t:  :ge
   %s:){:) {:e
-  %s:if\s*(\s*:if ( :e
+  %s:\(if\|while\|for\)\s*(\s*:\1 ( :e
   %s:}\_\s*else\s*{:} else {:e
-  g:\<if\>:s:\s*) {$: ) {:e
+  g:\<if\>\|\<for\>:s:\s*) {$: ) {:e
   %s:\(\S\)\s*\(&&\|||\)\s*:\1 \2 :ge
 endfunction
 
@@ -205,15 +225,25 @@ function! MergeSnippets()
   "   echo $file >> ruby.snippets
   "   cat $file >> ruby.snippets
   " done
-  " for file in `ls .` do; echo $file >> ruby.snippets; cat $file >> ruby.snippets; done
+  " for file in `ls .`; do echo $file >> ruby.snippets; cat $file >> ruby.snippets; done
   v:snippet:s:^:\t:
   g:snippet:s:^\(\w\+\).*$:snippet \1:
+endfunction
+
+function! AutoGenSass()
+  " autocmd BufWritePost *.sass !sass this.sass this.css
+  " autocmd BufWritePost *.sass silent execute '!sass '.expand('%:t').' '.expand('%:t:r').'.css'
+  set autochdir
+  echo 'sass '.expand('%:t').' '.expand('%:t:r').'.css'
+  autocmd BufWritePost *.sass call
+          \ system('sass '.expand('%:t').' '.expand('%:t:r').'.css')
 endfunction
 
 set virtualedit=block
 
 set listchars=trail:$
-set list
+" set list
+set spell
 
 " :redir @a>
 " :history : -20,

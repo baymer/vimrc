@@ -128,7 +128,7 @@ snippet dblclick
 	});
 snippet each
 	each(function() {
-		${1:this.innerHTML = this + " is the element, " + i + " is the position";}
+		${1}
 	});
 snippet eltrim
 	$.trim('${1:string}')${2}
@@ -157,7 +157,9 @@ snippet fadetoc
 		${2};
 	});
 snippet filter
-	filter('${1:selector}')${2}
+	filter(function() {
+		${1}
+	});
 snippet find
 	find('${1}')${2}
 snippet focus
