@@ -24,9 +24,6 @@ snippet m
 	${1}: function(${2}) {
 		${3}
 	},
-snippet i
-	if ( ${1} )
-		${2}
 snippet if
 	if ( ${1} ) {
 		${2}
@@ -37,7 +34,7 @@ snippet ife
 	} else {
 	};
 snippet cl
-	console.log(${1});${2}
+	console.log 
 snippet ce
 	console.error(${1});${2}
 snippet cw
@@ -81,15 +78,15 @@ snippet try
 		// error
 	}
 
-snippet get
-	get('${1}')${2}
-# snippet set
-# set('${1}', '${2}')${3}
-snippet set
-	set({ '${1}': '${2}' })${3}
-snippet ext
-	_.extend(${1}, ${2})
 snippet map
 	map(function(${1:i}) {
 		${2}
 	});
+snippet des
+	describe '${1}', ->
+		
+snippet it
+	it 'should ${1}', ->
+		
+snippet exp
+	expect(${1}).${2}

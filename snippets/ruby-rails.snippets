@@ -9,19 +9,19 @@ snippet artpp
 snippet artp
 	assert_redirected_to ${2:${12:model}_path(${13:@}${14:${12}})}
 snippet art
-	assert_redirected_to ${1::action => "${2:index}"}
+	assert_redirected_to ${1::action => '${2:index}'}
 snippet asd
-	assert_difference "${1:Model}.${2:count}", $1 do
+	assert_difference '${1:Model}.${2:count}', $1 do
 		${3}
 	end
 snippet asnd
-	assert_no_difference "${1:Model}.${2:count}" do
+	assert_no_difference '${1:Model}.${2:count}' do
 		${3}
 	end
 snippet asre
 	assert_response :${1:success}, @response.body${2}
 snippet asrj
-	assert_rjs :${1:replace}, ${2:"${3:dom id}"}
+	assert_rjs :${1:replace}, ${2:'${3:dom id}'}
 snippet ass
 	assert_select '${1:path}'${2:, :${3:text} => ${4:'${5:inner_html}'}}${6: do
 		$0
@@ -43,7 +43,7 @@ snippet defcreate
 				wants.html { redirect_to(@$1) }
 				wants.xml  { render :xml => @$1, :status => :created, :location => @$1 }
 			else
-				wants.html { render :action => "new" }
+				wants.html { render :action => 'new' }
 				wants.xml  { render :xml => @$1.errors, :status => :unprocessable_entity }
 			end
 		end
@@ -99,7 +99,7 @@ snippet defupdate
 				wants.html { redirect_to(@$1) }
 				wants.xml  { head :ok }
 			else
-				wants.html { render :action => "edit" }
+				wants.html { render :action => 'edit' }
 				wants.xml  { render :xml => @$1.errors, :status => :unprocessable_entity }
 			end
 		end
@@ -113,11 +113,11 @@ snippet fini
 snippet finl
 	find(:last, :conditions => ['${1:field} = ?', ${2:true}])${3}
 snippet flash
-	flash[:${1:notice}] = "${2}"
+	flash[:${1:notice}] = '${2}'
 snippet habtm
-	has_and_belongs_to_many :${1:object}, :join_table => "${2:table_name}", :foreign_key => "${3}_id"${4}
+	has_and_belongs_to_many :${1:object}, :join_table => '${2:table_name}', :foreign_key => '${3}_id'${4}
 snippet hmd
-	has_many :${1:object}s${2:, :class_name => "${1}", :foreign_key => "${4:reference}_id"}
+	has_many :${1:object}s${2:, :class_name => '${1}', :foreign_key => '${4:reference}_id'}
 snippet hm
 	has_many :${1:object}
 snippet hmt
@@ -127,23 +127,23 @@ snippet ho
 snippet i18
 	I18n.t('${1:type.key}')${2}
 snippet ist
-	<%= image_submit_tag("<+agree.png+>"<+<+, :id => "<+id+>"+><+, :name => "<+name+>"+><+, :class => "<+class+>"+><+, :disabled => <+false+>+>+>) %>
+	<%= image_submit_tag('<+agree.png+>'<+<+, :id => '<+id+>'+><+, :name => '<+name+>'+><+, :class => '<+class+>'+><+, :disabled => <+false+>+>+>) %>
 snippet logd
-	logger.debug { "${1:message}" }${2}
+	logger.debug { '${1:message}' }${2}
 snippet loge
-	logger.error { "${1:message}" }${2}
+	logger.error { '${1:message}' }${2}
 snippet logf
-	logger.fatal { "${1:message}" }${2}
+	logger.fatal { '${1:message}' }${2}
 snippet logi
-	logger.info { "${1:message}" }${2}
+	logger.info { '${1:message}' }${2}
 snippet log
 	RAILS_DEFAULT_LOGGER.${1:debug} ${2}
 snippet logw
-	logger.warn { "${1:message}" }${2}
+	logger.warn { '${1:message}' }${2}
 snippet mac
 	add_column :${1:table}, :${2:column}, :${3:type}
 snippet mapca
-	${1:map}.catch_all "*${2:anything}", :controller => "${3:default}", :action => "${4:error}"${5}
+	${1:map}.catch_all '*${2:anything}', :controller => '${3:default}', :action => '${4:error}'${5}
 snippet mapc
 	${1:map}.${2:connect} '${3:controller/:action/:id}'
 snippet mapr
@@ -194,50 +194,50 @@ snippet nc
 snippet pa
 	params[:${1:id}]${2}
 snippet ral
-	render :action => "${1:action}", :layout => "${2:layoutname}"
+	render :action => '${1:action}', :layout => '${2:layoutname}'
 snippet ra
-	render :action => "${1:action}"
+	render :action => '${1:action}'
 snippet rest
 	respond_to do |wants|
 		wants.${1:html}${2: { $0 \}}
 	end
 	
 snippet rf
-	render :file => "${1:filepath}"
+	render :file => '${1:filepath}'
 snippet rfu
-	render :file => "${1:filepath}", :use_full_path => ${2:false}
+	render :file => '${1:filepath}', :use_full_path => ${2:false}
 snippet ril
-	render :inline => "${1:<%= 'hello' %>}", :locals => { ${2::name} => "${3:value}"${4} }
+	render :inline => '${1:<%= 'hello' %>}', :locals => { ${2::name} => '${3:value}'${4} }
 snippet ri
-	render :inline => "${1:<%= 'hello' %>}"
+	render :inline => '${1:<%= 'hello' %>}'
 snippet rit
-	render :inline => "${1:<%= 'hello' %>}", :type => ${2::rxml}
+	render :inline => '${1:<%= 'hello' %>}', :type => ${2::rxml}
 snippet rj
 	render :json => 
 snippet rl
-	render :layout => "${1:layoutname}"
+	render :layout => '${1:layoutname}'
 snippet rn
 	render :nothing => ${1:true}
 snippet rns
 	render :nothing => ${1:true}, :status => ${2:401}
 snippet rpc
-	render :partial => "${1:item}", :collection => ${2:@$1s}
+	render :partial => '${1:item}', :collection => ${2:@$1s}
 snippet rpl
-	render :partial => "${1:item}", :locals => { :${2:$1} => ${3:@$1}$0 }
+	render :partial => '${1:item}', :locals => { :${2:$1} => ${3:@$1}$0 }
 snippet rpo
-	render :partial => "${1:item}", :object => ${2:@$1}
+	render :partial => '${1:item}', :object => ${2:@$1}
 snippet rp
-	render :partial => "${1:item}"
+	render :partial => '${1:item}'
 snippet rps
-	render :partial => "${1:item}", :status => ${2:500}
+	render :partial => '${1:item}', :status => ${2:500}
 snippet rtl
-	render :text => "${1:text to render}", :layout => "${2:layoutname}"
+	render :text => '${1:text to render}', :layout => '${2:layoutname}'
 snippet rtlt
-	render :text => "${1:text to render}", :layout => ${2:true}
+	render :text => '${1:text to render}', :layout => ${2:true}
 snippet rt
-	render :text => "${1:text to render...}", :layout => "${2:layoutname}"
+	render :text => '${1:text to render...}', :layout => '${2:layoutname}'
 snippet rts
-	render :text => "${1:text to render}", :status => ${2:401}
+	render :text => '${1:text to render}', :status => ${2:401}
 snippet ru
 	render :update do |${1:page}|
 		$1.${2}
@@ -310,7 +310,7 @@ snippet tctss
 	t.timestamps
 	${1}
 snippet test
-	test "${1:case_name}" do
+	test '${1:case_name}' do
 		${2}
 	end
 snippet trc

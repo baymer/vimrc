@@ -71,7 +71,7 @@ imap [ []<left>
 imap ( ()<left>
 inoremap { {}<left>
 inoremap {<space> {<space><space>}<left><left>
-inoremap {<cr> {<cr><bs>}<esc>O
+inoremap {<cr> {<cr>}<esc>O<tab>
 
 inoremap " ""<left>
 inoremap ' ''<left>
@@ -96,6 +96,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
 
 " au FileType javascript set syntax=jquery
 au FileType htmldjango set ft=html.htmldjango
+au FileType scss set ft=scss.css
 
 nmap <F2> :w<cr>
 imap <F2> <esc>:w<cr>
@@ -115,7 +116,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 filetype on
-let g:user_zen_leader_key = '<c-,>'
+" let g:user_zen_leader_key = ','
 
 " search file (working dir should be the root)
 nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
@@ -147,11 +148,15 @@ nmap <M-,> <C-w>2<
 " map <M-t> <C-w>T
 nmap <m-t> :tabnew 
 nmap <m-d> :diffsplit 
+nmap <m-b> :.Gblame<cr>
 vmap <m-b> :Gblame<cr>
 nmap <m-c> :Gcommit -am ''<left>
 nmap <m-p> :Git pull origin dev<cr>
 nmap <m-s> :Git push origin dev<cr>
-nmap <m-f> :Ggrep 
+nmap <m-g> :Ggrep 
+nmap <m-f> g*:Ggrep <c-r>/<cr>
+nmap <m-v> :tabnew ~/.vim/.vimrc<cr>
+nmap <m-o> <c-o>:copen<cr><c-w>T
 
 """"""""""
 set showcmd

@@ -24,7 +24,7 @@ snippet ff
 	= form_for @${1:model} do |f|
 		${2}
 snippet ffs
-	= ${1:f}.submit "${2:Submit}"
+	= ${1:f}.submit '${2:Submit}'
 snippet ffta
 	= ${1:f}.text_area :${2:attribute}
 snippet fftf
@@ -36,7 +36,7 @@ snippet for
 	- for ${1:item} in ${2:items}
 		${3}
 snippet ft
-	= form_tag(:action => "${1:update}") do
+	= form_tag(:action => '${1:update}') do
 		${2}
 snippet hamls
 snippet ife
@@ -47,47 +47,47 @@ snippet if
 	- if ${1}
 		${2}
 snippet it
-	= image_tag "${1}"
+	= image_tag '${1}'
 snippet jit
 	= javascript_include_tag ${1::all}, :cache => ${2:true}
 snippet jsit
-	= javascript_include_tag "${1}"
+	= javascript_include_tag '${1}'
 snippet liai
-	= link_to "${1:link_text}", :action => "${2:edit}", :id => ${3:@item}
+	= link_to '${1:link_text}', :action => '${2:edit}', :id => ${3:@item}
 snippet lia
-	= link_to "${1:link text}", :action => "${2:index}"
+	= link_to '${1:link text}', :action => '${2:index}'
 snippet licai
-	= link_to "${1:link text}", :controller => "${2:items}", :action => "${3:edit}", :id => ${4:@item}
+	= link_to '${1:link text}', :controller => '${2:items}', :action => '${3:edit}', :id => ${4:@item}
 snippet lica
-	= link_to "${1:link text}", :controller => "${2:items}", :action => "${3:index}"
+	= link_to '${1:link text}', :controller => '${2:items}', :action => '${3:index}'
 snippet lic
-	= link_to "${1:link text}", :controller => "${2:items}"
+	= link_to '${1:link text}', :controller => '${2:items}'
 snippet lim
 	= link_to ${1:model}.${2:name}, $1_path($1)
 snippet linpp
-	= link_to "${1:link text}", ${2:parent}_${3:child}_path(@$2)
+	= link_to '${1:link text}', ${2:parent}_${3:child}_path(@$2)
 snippet linp
-	= link_to "${1:link text}", ${2:parent}_${3:child}_path(@$2, @$3)
+	= link_to '${1:link text}', ${2:parent}_${3:child}_path(@$2, @$3)
 snippet lipp
-	= link_to "${1:link text}", ${2:model}s_path
+	= link_to '${1:link text}', ${2:model}s_path
 snippet lip
-	= link_to "${1:link text}", ${2:model}_path(${3:@instance})
+	= link_to '${1:link text}', ${2:model}_path(${3:@instance})
 snippet lt
-	= link_to "${1}", ${2:dest}
+	= link_to '${1}', ${2:dest}
 snippet ofcfs
 	= options_from_collection_for_select ${1:collection}, ${2:value_method}, ${3:text_method}, ${4:[selected_value]}
 snippet rf
-	= render :file => "${1:file}"${2}
+	= render :file => '${1:file}'${2}
 snippet rp
-	= render :partial => "${1:file}"${2}
+	= render :partial => '${1:file}'${2}
 snippet rt
-	= render :template => "${1:file}"${2}
+	= render :template => '${1:file}'${2}
 snippet slt
 	= stylesheet_link_tag ${1::all}, :cache => ${2:true}
 snippet sslt
-	= stylesheet_link_tag "${1}"
+	= stylesheet_link_tag '${1}'
 snippet st
-	= submit_tag "${1:Save changes}"
+	= submit_tag '${1:Save changes}'
 snippet unless
 	- unless ${1}
 		${2}
