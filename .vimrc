@@ -2,8 +2,8 @@ if has('gui_running')
   colorscheme xoria256
 
   " window size
-  set lines=34
-  set columns=148
+  " set lines=34
+  " set columns=148
   set showtabline=2
 endif
 
@@ -17,10 +17,8 @@ else
   " behave mswin
 endif
 
-set encoding=utf8
 set guioptions-=T
 set guioptions-=m
-
 function! ToggleGuiOptions()
   if &guioptions =~# 'T'
     set guioptions-=T
@@ -38,10 +36,9 @@ function! ToggleNu()
     set nonumber
   endif
 endfunction
-
-" nmap <silent> <F5> :call ToggleGuiOptions()<cr>
 nmap <silent> <F5> :call ToggleNu()<cr>
 
+set encoding=utf8
 set fileformat=unix
 
 set nobackup
@@ -77,7 +74,7 @@ inoremap " ""<left>
 inoremap ' ''<left>
 snoremap ' ''<left>
 
-"inoremap <C-space> <C-x><C-o>
+" inoremap <C-space> <C-x><C-o>
 
 nnoremap <silent> <c-s-pagedown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 nnoremap <silent> <c-s-pageup> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -88,9 +85,9 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 function! BufNewFile_PY()
-0put = '#!/usr/bin/env python'
-1put = '#-*- coding: utf-8 -*-'
-normal G
+  0put = '#!/usr/bin/env python'
+  1put = '#-*- coding: utf-8 -*-'
+  normal G
 endfunction
 autocmd BufNewFile *.py call BufNewFile_PY()
 
@@ -122,32 +119,18 @@ filetype on
 nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
 
 " Window operations
-  " Alt key is much handy
-" map <M-h> <C-w>h
-" map <M-j> <C-w>j
-" map <M-k> <C-w>k
-" map <M-l> <C-w>l
-" map <M-c> <C-w>c
-  " split
-" map <M-s> :sp<CR>
-" map <M-v> :vsplit<CR>
   " vertical resize by 2 lines
 nmap <M-=> <C-W>2+
 nmap <M--> <C-W>2-
   " horizontal resize by 2 digits
 nmap <M-.> <C-w>2>
 nmap <M-,> <C-w>2<
-  " moving windows
-" map <M-J> <C-w>J
-" map <M-K> <C-w>K
-" map <M-H> <C-w>H
-" map <M-L> <C-w>L
-  " Exchange current window with next one
-" map <M-x> <C-w>x
-  " Move the current window to a new tab page
-" map <M-t> <C-w>T
+
 nmap <m-t> :tabnew 
 nmap <m-d> :diffsplit 
+nmap <m-v> :tabnew ~/.vim/.vimrc<cr>
+
+" fugitive
 nmap <m-b> :.Gblame<cr>
 vmap <m-b> :Gblame<cr>
 nmap <m-c> :Gcommit -am ''<left>
@@ -155,7 +138,6 @@ nmap <m-p> :Git pull origin dev<cr>
 nmap <m-s> :Git push origin dev<cr>
 nmap <m-g> :Ggrep 
 nmap <m-f> g*:Ggrep <c-r>/<cr>
-nmap <m-v> :tabnew ~/.vim/.vimrc<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
 
 """"""""""
@@ -188,10 +170,16 @@ set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
-au BufWinEnter * syntax match ErrorMsg /\t/
-au BufWinEnter * syntax match ErrorMsg /\s\+$/
-" au BufRead,BufNewFile * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
+
+function! HighlightUnwantedSpaces()
+  if &ft =~ 'help\|snippet'
+    return
+  endif
+  syntax match ErrorMsg /\t/
+  syntax match ErrorMsg /\s\+$/
+  let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
+endfunction
+au BufWinEnter * call HighlightUnwantedSpaces()
 
 function! PyStyling()
   v:^\s*#\|'\|":s:\s*\([-+/*%]\)\(=\)\@!\s*: \1 :g
