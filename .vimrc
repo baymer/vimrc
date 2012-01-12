@@ -5,6 +5,23 @@ if has('gui_running')
   " set lines=34
   " set columns=148
   set showtabline=2
+
+  function! ToggleGuiOptions()
+    if &guioptions =~# 'T'
+      set guioptions-=T
+      set guioptions-=m
+    else
+      set guioptions+=T
+      set guioptions+=m
+    endif
+  endfunction
+
+  set guioptions-=T
+  set guioptions-=m
+  set guioptions-=R
+  set guioptions-=r
+  set guioptions-=L
+
 endif
 
 if has('unix')
@@ -16,18 +33,6 @@ else
   " source $VIMRUNTIME/mswin.vim
   " behave mswin
 endif
-
-set guioptions-=T
-set guioptions-=m
-function! ToggleGuiOptions()
-  if &guioptions =~# 'T'
-    set guioptions-=T
-    set guioptions-=m
-  else
-    set guioptions+=T
-    set guioptions+=m
-  endif
-endfunction
 
 function! ToggleNu()
   if &number == 0
@@ -60,8 +65,11 @@ set diffopt=filler
 set diffopt+=vertical
 set diffopt+=iwhite
 " set updatetime=1000
+set scrolloff=2
 
 set iskeyword+=-
+
+nnoremap <cr> :nohlsearch<cr>
 
 " braces autoclosing
 imap [ []<left>
@@ -133,9 +141,11 @@ nmap <m-v> :tabnew ~/.vim/.vimrc<cr>
 " fugitive
 nmap <m-b> :.Gblame<cr>
 vmap <m-b> :Gblame<cr>
-nmap <m-c> :Gcommit -am ''<left>
+" nmap <m-c> :Gcommit -am ''<left>
+nmap <m-c> :Gcommit<cr>
+nmap <m-s> :Gstatus
 nmap <m-p> :Git pull origin dev<cr>
-nmap <m-s> :Git push origin dev<cr>
+nmap <m-h> :Git push origin dev<cr>
 nmap <m-g> :Ggrep 
 nmap <m-f> g*:Ggrep <c-r>/<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
@@ -180,6 +190,8 @@ function! HighlightUnwantedSpaces()
   let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 endfunction
 au BufWinEnter * call HighlightUnwantedSpaces()
+
+command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
 function! PyStyling()
   v:^\s*#\|'\|":s:\s*\([-+/*%]\)\(=\)\@!\s*: \1 :g
