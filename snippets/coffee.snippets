@@ -12,27 +12,6 @@ snippet fori
 	for (${1:var i} in ${2}) {
 		${3}
 	};
-snippet fun
-	function(${1}) {
-		${2}
-	}
-snippet func
-	function ${1}(${2}) {
-		${3}
-	};
-snippet m
-	${1}: function(${2}) {
-		${3}
-	},
-snippet if
-	if ( ${1} ) {
-		${2}
-	};
-snippet ife
-	if ( ${1} ) {
-		${2}
-	} else {
-	};
 snippet cl
 	console.log 
 snippet ce
@@ -79,9 +58,12 @@ snippet try
 	}
 
 snippet map
-	map(function(${1:i}) {
+	map (${1:i}) ->
 		${2}
-	});
+snippet filter
+	filter (${1:i}) ->
+		${2}
+
 snippet des
 	describe '${1}', ->
 		
@@ -90,3 +72,33 @@ snippet it
 		
 snippet exp
 	expect(${1}).${2}
+# jquery
+snippet $
+	$('${1}')${2}
+snippet find
+	find('${1}')${2}
+snippet addcl
+	addClass('${1}')${2}
+snippet remcl
+	removeClass('${1}')${2}
+snippet hascl
+	hasClass('${1}')${2}
+snippet is
+	is('${1}')${2}
+snippet par
+	parents('${1}')${2}
+snippet sib
+	siblings('${1}')${2}
+snippet css
+	css('${1}')${2}
+snippet csss
+	css('${1}', ${2})${3}
+snippet ajax
+	$.ajax
+		url: '${1}',
+		type: '${2}',
+		dataType: '${3}',
+		data: ${4},
+		success: function() {
+			${6}
+		}

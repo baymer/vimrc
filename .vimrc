@@ -1,5 +1,11 @@
+" following strings are required in .bashrc for proper work in terminal
+" if [ "$COLORTERM" == "gnome-terminal" ]; then
+"   export TERM=xterm-256color
+" fi
+colorscheme xoria256
+
+
 if has('gui_running')
-  colorscheme xoria256
 
   " window size
   " set lines=34
@@ -69,7 +75,7 @@ set scrolloff=2
 
 set iskeyword+=-
 
-nnoremap <cr> :nohlsearch<cr>
+nnoremap <cr> :nohlsearch<cr><cr>
 
 " braces autoclosing
 imap [ []<left>
@@ -102,11 +108,12 @@ autocmd BufNewFile *.py call BufNewFile_PY()
 " au FileType javascript set syntax=jquery
 au FileType htmldjango set ft=html.htmldjango
 au FileType scss set ft=scss.css
+au BufNewFile *.json set ft=javascript
 
 nmap <F2> :w<cr>
 imap <F2> <esc>:w<cr>
-nmap <F6> :bp<cr>
-nmap <F7> :bn<cr>
+" nmap <F6> :bp<cr>
+" nmap <F7> :bn<cr>
 nmap <F9> :NERDTreeToggle<cr>
 " new
 " nmap <F4> *:noautocmd vimgrep /<c-r>//j **/* <bar> :copen<cr>
@@ -115,6 +122,7 @@ nmap <F4> :Ggrep '\W<c-r>=expand("<cword>")<cr>\W'<cr> <bar> :copen<cr>
 nmap g<F4> :Ggrep -l '\W<c-r>=expand("<cword>")<cr>\W'<cr> <bar> :copen<cr>
 nmap <F10> :NERDTreeFind<cr>
 nmap <F12> :copen<cr>
+nmap Q ZQ
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -143,9 +151,10 @@ nmap <m-b> :.Gblame<cr>
 vmap <m-b> :Gblame<cr>
 " nmap <m-c> :Gcommit -am ''<left>
 nmap <m-c> :Gcommit<cr>
-nmap <m-s> :Gstatus
-nmap <m-p> :Git pull origin dev<cr>
-nmap <m-h> :Git push origin dev<cr>
+nmap <m-s> :Gstatus<cr>5j
+" nmap <m-p> :Git pull origin dev<cr>
+" nmap <m-h> :Git push origin dev<cr>
+nmap <m-p> :!git pull && git push<cr>
 nmap <m-g> :Ggrep 
 nmap <m-f> g*:Ggrep <c-r>/<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
@@ -181,15 +190,21 @@ set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
-function! HighlightUnwantedSpaces()
-  if &ft =~ 'help\|snippet'
-    return
+highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=#800000
+match UnwantedSpaces /\s\+$/
+let m = matchadd("UnwantedSpaces", '\%80v.\+')
+let m = matchadd("UnwantedSpaces", '\t')
+let g:highlight_unwanted_spaces = 1
+function! ToggleSpaceHighlighting()
+  if exists("g:highlight_unwanted_spaces")
+    highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=NONE
+    unlet g:highlight_unwanted_spaces
+  else
+    highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=#800000
+    let g:highlight_unwanted_spaces = 1
   endif
-  syntax match ErrorMsg /\t/
-  syntax match ErrorMsg /\s\+$/
-  let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 endfunction
-au BufWinEnter * call HighlightUnwantedSpaces()
+nmap <F6> :call ToggleSpaceHighlighting()<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
@@ -244,7 +259,7 @@ function! AutoGenSass()
           \ system('sass '.expand('%:t').' '.expand('%:t:r').'.css')
 endfunction
 
-set virtualedit=block
+" set virtualedit=block
 
 set listchars=trail:$
 " set list
