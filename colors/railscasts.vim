@@ -112,8 +112,14 @@ hi Title                     guifg=#FFFFFF
 "rubyConstant
 hi Type                      guifg=#DA4939 gui=NONE
 
-hi DiffAdd                   guifg=#E6E1DC guibg=#144212
-hi DiffDelete                guifg=#E6E1DC guibg=#660000
+" hi DiffAdd                   guifg=#E6E1DC guibg=#144212
+" hi DiffDelete                guifg=#E6E1DC guibg=#660000
+
+"hi diffDelete   ctermfg=bg  guifg=bg      ctermbg=186 guibg=#dfdf87 cterm=none gui=none
+hi diffAdd            ctermbg=151 guibg=#003010
+hi diffDelete         ctermbg=246 guibg=#555555 cterm=none gui=none
+hi diffChange         ctermbg=181 guibg=#402000
+hi diffText           ctermbg=174 guibg=#a00000 cterm=none gui=none
 
 hi link htmlTag              xmlTag
 hi link htmlTagName          xmlTagName

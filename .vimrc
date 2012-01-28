@@ -2,7 +2,8 @@
 " if [ "$COLORTERM" == "gnome-terminal" ]; then
 "   export TERM=xterm-256color
 " fi
-colorscheme xoria256
+" colorscheme xoria256
+colorscheme railscasts
 
 
 if has('gui_running')
@@ -63,7 +64,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set smarttab
-set autochdir
 set hlsearch
 set incsearch
 set hidden
@@ -131,8 +131,16 @@ call pathogen#helptags()
 filetype on
 " let g:user_zen_leader_key = ','
 
-" search file (working dir should be the root)
-nnoremap <c-t> 1gt:<c-u>FufFile **/<cr>
+" open files
+" do not set autochdir (working dir should be root)
+nnoremap <m-t> :tabnew <c-r>=expand("%:h")<cr>/
+nnoremap :e :e <c-r>=expand("%:h")<cr>/
+nnoremap <m-v> :tabnew ~/.vim/.vimrc<cr>
+
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+nnoremap <c-t> :<c-u>FufFile **/<cr>
+nnoremap <c-b> :<c-u>FufBuffer<cr>
+
 
 " Window operations
   " vertical resize by 2 lines
@@ -142,22 +150,22 @@ nmap <M--> <C-W>2-
 nmap <M-.> <C-w>2>
 nmap <M-,> <C-w>2<
 
-nmap <m-t> :tabnew 
 nmap <m-d> :diffsplit 
-nmap <m-v> :tabnew ~/.vim/.vimrc<cr>
 
 " fugitive
 nmap <m-b> :.Gblame<cr>
 vmap <m-b> :Gblame<cr>
-" nmap <m-c> :Gcommit -am ''<left>
 nmap <m-c> :Gcommit<cr>
-nmap <m-s> :Gstatus<cr>5j
-" nmap <m-p> :Git pull origin dev<cr>
-" nmap <m-h> :Git push origin dev<cr>
+nmap <m-s> :Gstatus<cr>/modif<cr>:nohls<cr>
+nmap <m-w> :Gwrite<cr>
 nmap <m-p> :!git pull && git push<cr>
 nmap <m-g> :Ggrep 
+nmap <m-G> :Ggrep -l 
 nmap <m-f> g*:Ggrep <c-r>/<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
+" nmap <m-c> :Gcommit -am ''<left>
+" nmap <m-p> :Git pull origin dev<cr>
+" nmap <m-h> :Git push origin dev<cr>
 
 """"""""""
 set showcmd
@@ -181,7 +189,11 @@ function! ToggleFoldMethod()
 endfunction
 nmap <silent> <F3> :call ToggleFoldMethod()<cr>
 
+" some bash shortcuts
 imap <c-f> <right>
+cmap <m-f> <c-right>
+cmap <m-b> <c-left>
+
 " set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
 " set iminsert=0
@@ -190,21 +202,27 @@ set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 
-highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=#800000
-match UnwantedSpaces /\s\+$/
-let m = matchadd("UnwantedSpaces", '\%80v.\+')
-let m = matchadd("UnwantedSpaces", '\t')
+function! HighlightUnwantedSpaces()
+  if &ft =~ 'help\|snippet'
+    return
+  endif
+  syntax match ErrorMsg /\t/
+  let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
+  let w:m3=matchadd('ErrorMsg', '\%80v.\+', -1)
+endfunction
+au BufWinEnter * call HighlightUnwantedSpaces()
+
 let g:highlight_unwanted_spaces = 1
-function! ToggleSpaceHighlighting()
+function! ToggleErrorMsg()
   if exists("g:highlight_unwanted_spaces")
-    highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=NONE
+    highlight ErrorMsg ctermfg=white ctermbg=red guifg=NONE guibg=NONE
     unlet g:highlight_unwanted_spaces
   else
-    highlight UnwantedSpaces ctermfg=white ctermbg=red guifg=white guibg=#800000
+    highlight ErrorMsg ctermfg=white ctermbg=red guifg=white guibg=#800000
     let g:highlight_unwanted_spaces = 1
   endif
 endfunction
-nmap <F6> :call ToggleSpaceHighlighting()<cr>
+nmap <F6> :call ToggleErrorMsg()<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
