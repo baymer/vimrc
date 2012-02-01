@@ -72,6 +72,8 @@ set diffopt+=vertical
 set diffopt+=iwhite
 " set updatetime=1000
 set scrolloff=2
+set wildmenu
+set autoread
 
 set iskeyword+=-
 
@@ -122,7 +124,9 @@ nmap <F4> :Ggrep '\W<c-r>=expand("<cword>")<cr>\W'<cr> <bar> :copen<cr>
 nmap g<F4> :Ggrep -l '\W<c-r>=expand("<cword>")<cr>\W'<cr> <bar> :copen<cr>
 nmap <F10> :NERDTreeFind<cr>
 nmap <F12> :copen<cr>
-nmap Q ZQ
+
+" OPTIMIZE: try to improve behavior
+nmap Q <c-w>v:bp<cr><c-w>l:bd<cr>
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -130,12 +134,15 @@ call pathogen#helptags()
 
 filetype on
 " let g:user_zen_leader_key = ','
+filetype indent on
 
 " open files
 " do not set autochdir (working dir should be root)
 nnoremap <m-t> :tabnew <c-r>=expand("%:h")<cr>/
-nnoremap :e :e <c-r>=expand("%:h")<cr>/
+nnoremap <m-e> :e <c-r>=expand("%:h")<cr>/
 nnoremap <m-v> :tabnew ~/.vim/.vimrc<cr>
+
+nnoremap <m-r> :!rm %<cr>Q
 
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 nnoremap <c-t> :<c-u>FufFile **/<cr>

@@ -15,9 +15,9 @@ snippet fori
 snippet cl
 	console.log 
 snippet ce
-	console.error(${1});${2}
+	console.error 
 snippet cw
-	console.warning(${1});${2}
+	console.warning 
 snippet clv
 	console.log('${1:var}: ' + $1);${2}
 snippet proto
@@ -95,6 +95,7 @@ snippet ajax
 		type: '${2}',
 		dataType: '${3}',
 		data: ${4},
-		success: function() {
-			${6}
-		}
+		success: (data) ->
+			${5}
+snippet on
+	on('${1}', ${2})
