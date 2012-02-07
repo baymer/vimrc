@@ -126,7 +126,7 @@ nmap <F10> :NERDTreeFind<cr>
 nmap <F12> :copen<cr>
 
 " OPTIMIZE: try to improve behavior
-nmap Q <c-w>v:bp<cr><c-w>l:bd<cr>
+nnoremap Q <c-w>v:bp<cr><c-w>l:bd<cr>
 
 filetype off
 call pathogen#runtime_append_all_bundles()
