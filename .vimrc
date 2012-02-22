@@ -32,7 +32,7 @@ if has('gui_running')
 endif
 
 if has('unix')
-  set guifont=Inconsolata\ 13
+  set guifont=Inconsolata\ 12
 else
   " set guifont=Monospace_821_BT:h10
   " set guifont=Monaco:h11          " windows
@@ -144,7 +144,7 @@ nnoremap <m-v> :tabnew ~/.vim/.vimrc<cr>
 
 nnoremap <m-r> :!rm %<cr>Q
 
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 nnoremap <c-t> :<c-u>FufFile **/<cr>
 nnoremap <c-b> :<c-u>FufBuffer<cr>
 

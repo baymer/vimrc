@@ -1,0 +1,252 @@
+aft.snippet
+after(${1::each}) do
+	${2}
+end
+annot.snippet
+any_number_of_times
+anra.snippet
+and_raise(${1:exception})
+anrb.snippet
+and_return { ${1} }
+anr.snippet
+and_return(${1:value})
+ant.snippet
+and_throw(${1:sym})
+any.snippet
+and_yield(${1:values})
+atl.snippet
+at_least(${1:n}).times
+atm.snippet
+at_most(${1:n}).times
+bef.snippet
+before(${1::each}) do
+	${2}
+end
+cap.snippet
+"([^\"]*)"
+conn.snippet
+controller_name :${1:controller}
+cont.snippet
+context "${1}" do
+  ${2}
+end
+desc.snippet
+require File.expand_path('spec/spec_helper')
+
+describe ${1:controller} do
+	${2}
+end
+desrc.snippet
+describe ${1:controller}, "${2:GET|POST|PUT|DELETE} ${3:/some/path}${4}" do
+	${5}
+end
+des.snippet
+describe ${1:subject} do
+	${2}
+end
+dest.snippet
+describe ${1:Type} do
+	${2}
+end
+dests.snippet
+describe ${1:Type}, "${2:description}" do
+	${3}
+end
+ex.snippet
+exactly(${1:n}).times
+Given.snippet
+Given /^${1:something} ${2:"([^\"]*)"}$/ do |${3:arg1}|
+  ${4:pending}
+end
+isbl.snippet
+it_should_behave_like '${1:do something}'
+itb.snippet
+it { ${1} }
+it.snippet
+it "${1}" do
+	${2}
+end
+it.snippet.orig
+<<<<<<< HEAD:ruby-rspec/it.snippet
+it '${1}' do
+  ${2}
+=======
+it "${1}" do
+	${2}
+>>>>>>> 7e58374... Ruby rspec snippets improvements:ruby-rspec/it.snippet
+end
+its.snippet
+it "should ${1:work correctly}" do${2}
+mat.snippet
+class ${1:ReverseTo}
+	def initialize(${2:param})
+		@$2 = $2
+	end
+
+	def matches?(actual)
+		@actual = actual
+		# Satisfy expectation here. Return false or raise an error if it's not met.
+		${3:@actual.reverse.should == @$2}
+		true
+	end
+
+	def failure_message
+		"expected #{@actual.inspect} to ${4} #{@$2.inspect}, but it didn't"
+	end
+
+	def negative_failure_message
+		"expected #{@actual.inspect} not to ${5} #{@$2.inspect}, but it did"
+	end
+end
+
+def ${6:reverse_to}(${7:expected})
+	${8}.new($7)
+end
+mm.snippet
+mock_model(${1:model})${2}
+moc.snippet
+${1:var} = mock("${2:mock_name}"${3:, :null_object => true})
+${4}
+mocw.snippet
+Spec::Runner.configure do |config|
+	config.mock_with :${1:mocha|flexmock|rr}
+end
+on.snippet
+once
+resh.snippet
+require File.dirname(__FILE__) + '/../spec_helper'
+sef.snippet
+shared_examples_for "${1:do something}" do
+  ${2}
+end
+shbc.snippet
+${1:target}.should be_close(${2:result}, ${3:tolerance})
+${4}
+shbio.snippet
+${1:target}.should be_instance_of(${2:class})
+${3}
+shbko.snippet
+${1:target}.should be_a_kind_of(${2:class})
+${3}
+shbr.snippet
+response.should be_redirect
+${1}
+shb.snippet
+${1:target}.should be(${2:result})
+${3}
+shbs.snippet
+response.should be_success
+${1}
+shdm.snippet
+${1:target}.should match(/${2:regexp}/)
+${3}
+sheq.snippet
+${1:target}.should equal(${2:value})
+${3}
+she.snippet
+${1:target}.should eql(${2:value})
+${3}
+shhal.snippet
+${1:target}.should have_at_least(${2:num}).${3:things}
+${4}
+shham.snippet
+${1:target}.should have_at_most(${2:num}).${3:things}
+${4}
+shhr.snippet
+${1:target}.should have(${2:n}).records
+${3}
+shh.snippet
+${1:target}.should have(${2:num}).${3:things}
+${4}
+shnbc.snippet
+${1:target}.should_not be_close(${2:result}, ${3:tolerance})
+${4}
+shnbio.snippet
+${1:target}.should_not be_instance_of(${2:klass})
+${3}
+shnbko.snippet
+${1:target}.should_not be_a_kind_of(${2:klass})
+${3}
+shnbr.snippet
+response.should_not be_redirect
+${1}
+shnb.snippet
+${1:target}.should_not be(${2:result})
+${3}
+shnbs.snippet
+response.should_not be_success
+${1}
+shnc.snippet
+lambda do
+	${1}
+end.should_not change(${2:target}, :${3:method})
+shneq.snippet
+	${1:target}.should_not equal(${2:value})
+	${3}
+shne.snippet
+${1:target}.should_not eql(${2:value})
+${3}
+shnm.snippet
+${1:target}.should_not match(/${2:regexp}/)
+${3}
+shnp.snippet
+${1:target}.should_not be_${2:predicate}
+shnredt.snippet
+response.should_not redirect_to(${1:url})
+${2}
+shnre.snippet
+${1:target}.should_not raise_error(${2:error})
+${3}
+shnr.snippet
+${1:mock}.should_not_receive(:${2:message})${3}
+${4}
+shnrt.snippet
+${1:target}.should_not respond_to(:${2:sym})
+${3}
+shn.snippet
+${1:target}.should_not == ${2:value}
+${3}
+shnt.snippet
+lambda { ${1} }.should_not throw_symbol(:${2:symbol})
+${3}
+shp.snippet
+${1:target}.should be_${2:predicate}
+shredt.snippet
+response.should redirect_to(${1:url})
+${2}
+shre.snippet
+${1:target}.should raise_error(${2:error})
+${3}
+shr.snippet
+${1:mock}.should_receive(:${2:message})${3}
+${4}
+shrt.snippet
+${1:target}.should respond_to(:${2:sym})
+${3}
+sh.snippet
+${1:target}.should == ${2:value}
+${3}
+shs.snippet
+${1:target}.should satisfy { |${2:obj}| ${3} }
+${4}
+shtemp.snippet
+response.should render_template(:${1:template})
+${2}
+sht.snippet
+${1:target}.should throw_symble(:${2:symbol})
+${3}
+st.snippet
+stub!(:${1}).and_return(${2})
+Then.snippet
+Then /^${1:something} ${2:"([^\"]*)"}$/ do |${3:arg1}|
+  ${4:pending}
+end
+tw.snippet
+twice
+When.snippet
+When /^${1:something} ${2:"([^\"]*)"}$/ do |${3:arg1}|
+  ${4:pending}
+end
+wia.snippet
+with(${1:args})
+${2}
