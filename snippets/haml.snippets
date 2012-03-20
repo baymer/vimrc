@@ -23,6 +23,8 @@ snippet ffrb
 snippet ff
 	= form_for @${1:model} do |f|
 		${2}
+snippet ffsl
+	= ${1:f}.select :${2:attribute}
 snippet ffs
 	= ${1:f}.submit '${2:Submit}'
 snippet ffta

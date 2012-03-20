@@ -11,7 +11,7 @@ if has('gui_running')
   " window size
   " set lines=34
   " set columns=148
-  set showtabline=2
+  set showtabline=1
 
   function! ToggleGuiOptions()
     if &guioptions =~# 'T'
@@ -126,7 +126,8 @@ nmap <F10> :NERDTreeFind<cr>
 nmap <F12> :copen<cr>
 
 " OPTIMIZE: try to improve behavior
-nnoremap Q <c-w>v:bp<cr><c-w>l:bd<cr>
+" nnoremap Q <c-w>v:bp<cr><c-w>l:bd<cr>
+nnoremap Q :bd<cr>
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -140,14 +141,14 @@ filetype indent on
 " do not set autochdir (working dir should be root)
 nnoremap <m-t> :tabnew <c-r>=expand("%:h")<cr>/
 nnoremap <m-e> :e <c-r>=expand("%:h")<cr>/
-nnoremap <m-v> :tabnew ~/.vim/.vimrc<cr>
+nnoremap <m-v> :e ~/.vim/.vimrc<cr>
 
 nnoremap <m-r> :!rm %<cr>Q
 
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 nnoremap <c-t> :<c-u>FufFile **/<cr>
 nnoremap <c-b> :<c-u>FufBuffer<cr>
-
+nnoremap <m-F> :FufRenewCache<cr>
 
 " Window operations
   " vertical resize by 2 lines
@@ -169,6 +170,7 @@ nmap <m-p> :!git pull && git push<cr>
 nmap <m-g> :Ggrep 
 nmap <m-G> :Ggrep -l 
 nmap <m-f> g*:Ggrep <c-r>/<cr>
+" nmap <m-f> g*:vimgrep /<c-r>// **/*<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
 " nmap <m-c> :Gcommit -am ''<left>
 " nmap <m-p> :Git pull origin dev<cr>
@@ -215,7 +217,7 @@ function! HighlightUnwantedSpaces()
   endif
   syntax match ErrorMsg /\t/
   let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
-  let w:m3=matchadd('ErrorMsg', '\%80v.\+', -1)
+  let w:m3=matchadd('ErrorMsg', '\%81v.\+', -1)
 endfunction
 au BufWinEnter * call HighlightUnwantedSpaces()
 
@@ -282,6 +284,10 @@ function! AutoGenSass()
   echo 'sass '.expand('%:t').' '.expand('%:t:r').'.css'
   autocmd BufWritePost *.sass call
           \ system('sass '.expand('%:t').' '.expand('%:t:r').'.css')
+endfunction
+
+function! SQLUpperCase()
+  %s:\<as\>\|\<by\>\|\<desc\>\|\<from\>\|\<in\>\|\<insert\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
 endfunction
 
 " set virtualedit=block

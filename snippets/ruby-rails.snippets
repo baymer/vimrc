@@ -142,6 +142,8 @@ snippet logw
 	logger.warn { '${1:message}' }${2}
 snippet mac
 	add_column :${1:table}, :${2:column}, :${3:type}
+snippet mai
+	add_index :${1:table}, :${2:column}
 snippet mapca
 	${1:map}.catch_all '*${2:anything}', :controller => '${3:default}', :action => '${4:error}'${5}
 snippet mapc
@@ -156,10 +158,14 @@ snippet mapwo
 	end
 snippet mbs
 	before_save :${1:method}
+snippet mdt
+	drop_table :
 snippet mccc
 	t.column :${1:title}, :${2:string}
 snippet mcc
 	change_column :${1:table}, :${2:column}, :${3:type}
+snippet mccd
+	change_column_default :${1:table}, :${2:column}, ${3:value}
 snippet mcht
 	change_table :${1:table_name} do |t|
 		${2}
@@ -180,8 +186,6 @@ snippet migration
 		end
 	end
 snippet mrc
-	remove_column :${1:table}, :${2:column}
-snippet mrmc
 	remove_column :${1:table}, :${2:column}
 snippet mrnc
 	rename_column :${1:table}, :${2:old}, :${3:new}
@@ -360,3 +364,9 @@ snippet times
 	${1}.times do
 		${2}
 	end
+snippet fb
+	find_by_
+snippet fab
+	find_all_by_
+snippet ld
+	logger.debug 
