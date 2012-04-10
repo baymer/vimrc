@@ -1,17 +1,18 @@
 snippet facb
-	Factory.build(:${1}, ${2})${3}
-snippet facc
-	Factory.create(:${1})${2}
+	FactoryGirl.build(:${1}, ${2})${3}
 snippet facd
-	Factory.define(:${1:model}) do |f|
+	FactoryGirl.define :${1:model} do |f|
 	  ${2}
 	end
 snippet facn
-	Factory.next(:${1:sequence-name})${2}
+	FactoryGirl.next(:${1:sequence-name})${2}
 snippet fac
-	Factory(:${1}, ${2})${3}
+	factory :${1} do
+		${2}
+	end
+#	FactoryGirl(:${1}, ${2})${3}
 snippet facs
-	Factory.sequence :${1:sequence-name} do |${2:m}|
+	FactoryGirl.sequence :${1:sequence-name} do |${2:m}|
 		${3}
 	end
 	${4}

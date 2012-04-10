@@ -3,11 +3,11 @@
 "   export TERM=xterm-256color
 " fi
 " colorscheme xoria256
-colorscheme railscasts
 
 
 if has('gui_running')
 
+  colorscheme railscasts
   " window size
   " set lines=34
   " set columns=148
@@ -95,10 +95,15 @@ snoremap ' ''<left>
 nnoremap <silent> <c-s-pagedown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 nnoremap <silent> <c-s-pageup> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" autocmd FileType python set omnifunc=pythoncomplete#Complete
+" autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType python setlocal sw=4
+autocmd FileType python setlocal ts=4
+autocmd FileType python setlocal sts=4
+
+autocmd! FileType sass,scss syn cluster sassCssAttributes add=@cssColors
 
 function! BufNewFile_PY()
   0put = '#!/usr/bin/env python'
@@ -143,12 +148,12 @@ nnoremap <m-t> :tabnew <c-r>=expand("%:h")<cr>/
 nnoremap <m-e> :e <c-r>=expand("%:h")<cr>/
 nnoremap <m-v> :e ~/.vim/.vimrc<cr>
 
-nnoremap <m-r> :!rm %<cr>Q
+nnoremap <m-r> :!rm %<cr>:bd<cr>
 
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
-nnoremap <c-t> :<c-u>FufFile **/<cr>
-nnoremap <c-b> :<c-u>FufBuffer<cr>
-nnoremap <m-F> :FufRenewCache<cr>
+" nnoremap <c-t> :<c-u>FufFile **/<cr>
+" nnoremap <c-b> :<c-u>FufBuffer<cr>
+" nnoremap <m-F> :FufRenewCache<cr>
 
 " Window operations
   " vertical resize by 2 lines
@@ -287,7 +292,7 @@ function! AutoGenSass()
 endfunction
 
 function! SQLUpperCase()
-  %s:\<as\>\|\<by\>\|\<desc\>\|\<from\>\|\<in\>\|\<insert\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
+  %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
 endfunction
 
 " set virtualedit=block

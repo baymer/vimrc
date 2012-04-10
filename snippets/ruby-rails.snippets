@@ -217,7 +217,7 @@ snippet ri
 snippet rit
 	render :inline => '${1:<%= 'hello' %>}', :type => ${2::rxml}
 snippet rj
-	render :json => 
+	render json: 
 snippet rl
 	render :layout => '${1:layoutname}'
 snippet rn
@@ -364,9 +364,13 @@ snippet times
 	${1}.times do
 		${2}
 	end
+snippet ai
+	after_initialize 
 snippet fb
-	find_by_
+	find_by_${1}('${2}')${3}
 snippet fab
-	find_all_by_
+	find_all_by_${1}('${2}')${3}
+snippet da
+	destroy_all
 snippet ld
 	logger.debug 
