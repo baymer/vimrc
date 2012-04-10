@@ -57,6 +57,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+syntax on
 set autoindent
 " set smartindent
 set expandtab
@@ -151,9 +152,9 @@ nnoremap <m-v> :e ~/.vim/.vimrc<cr>
 nnoremap <m-r> :!rm %<cr>:bd<cr>
 
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
-" nnoremap <c-t> :<c-u>FufFile **/<cr>
-" nnoremap <c-b> :<c-u>FufBuffer<cr>
-" nnoremap <m-F> :FufRenewCache<cr>
+nnoremap <c-t> :<c-u>FufFile **/<cr>
+nnoremap <c-b> :<c-u>FufBuffer<cr>
+nnoremap <m-F> :FufRenewCache<cr>
 
 " Window operations
   " vertical resize by 2 lines
