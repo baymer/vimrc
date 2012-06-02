@@ -1,5 +1,5 @@
 snippet ?
-	( ${1} ) ? ${2} : ${3}
+	(${1}) ? ${2} : ${3}
 snippet d
 	debugger
 snippet r
@@ -25,16 +25,20 @@ snippet m
 		${3}
 	},
 snippet i
-	if ( ${1} )
+	if (${1})
 		${2}
 snippet if
-	if ( ${1} ) {
+	if (${1}) {
 		${2}
 	};
 snippet ife
-	if ( ${1} ) {
+	if (${1}) {
 		${2}
 	} else {
+	};
+snippet switch
+	switch (${1}) {
+		case ${2}: 
 	};
 snippet cl
 	console.log(${1});${2}
@@ -50,7 +54,7 @@ snippet clv
 	console.log('${1:var}: ' + $1);${2}
 snippet proto
 	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
-		${4:// body}
+		${4}
 	};
 snippet t
 	I18n.t('${1:type.key}', { defaultValue: '${2}' })${3}
@@ -63,7 +67,7 @@ snippet seti
 		${2}
 	}, ${1:0});
 snippet while
-	while ( ${1} ) {
+	while (${1}) {
 		${2}
 	};
 snippet gebi
@@ -99,3 +103,7 @@ snippet map
 	});
 snippet euc
 	encodeURIComponent(${1})${2}
+snippet timer
+	var date = new Date
+	${1}
+	new Date - date

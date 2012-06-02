@@ -153,16 +153,12 @@ snippet inj
 	inject(${1:init}) { |${2:total}, ${3:next}| ${4:body} }
 snippet ip
 	ip_addr = request.env['REMOTE_ADDR']
-snippet mapdo
-	map do |${1:element}|
-		${2:body}
-	end
 snippet mapo
-	map do |${1:element}|
-		${2:body}
+	map do |${1}|
+		${2}
 	end
 snippet map
-	map { |${1:element}| ${2:body} }
+	map { |${1}| ${2} }${3}
 snippet Md
 	File.open(${1:dump_path}, "wb") { |${2:file}| Marshal.dump(${3:obj}, ${4:$2}) }
 snippet Ml

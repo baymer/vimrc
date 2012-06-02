@@ -116,6 +116,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
 " au FileType javascript set syntax=jquery
 au FileType htmldjango set ft=html.htmldjango
 au FileType scss set ft=scss.css
+au FileType less set ft=less.css
 au BufNewFile *.json set ft=javascript
 
 nmap <F2> :w<cr>
@@ -151,7 +152,7 @@ nnoremap <m-v> :e ~/.vim/.vimrc<cr>
 
 nnoremap <m-r> :!rm %<cr>:bd<cr>
 
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public/assets|public/assets)($|[/\\])'
 nnoremap <c-t> :<c-u>FufFile **/<cr>
 nnoremap <c-b> :<c-u>FufBuffer<cr>
 nnoremap <m-F> :FufRenewCache<cr>
@@ -173,14 +174,22 @@ nmap <m-c> :Gcommit<cr>
 nmap <m-s> :Gstatus<cr>/modif<cr>:nohls<cr>
 nmap <m-w> :Gwrite<cr>
 nmap <m-p> :!git pull && git push<cr>
-nmap <m-g> :Ggrep 
-nmap <m-G> :Ggrep -l 
-nmap <m-f> g*:Ggrep <c-r>/<cr>
-" nmap <m-f> g*:vimgrep /<c-r>// **/*<cr>
 nmap <m-o> <c-o>:copen<cr><c-w>T
-" nmap <m-c> :Gcommit -am ''<left>
 " nmap <m-p> :Git pull origin dev<cr>
 " nmap <m-h> :Git push origin dev<cr>
+
+" some grep stuff
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+nmap <m-a> :Ack 
+nmap <m-f> g*:Ack <c-r>/ app
+" nmap <m-G> :Ggrep -l 
+" nmap <m-f> g*:Ggrep <c-r>/<cr>
+" nmap <m-f> g*:vimgrep /<c-r>// app/**/*<cr>
+
+" slime-vim
+" $ screen -S mysession
+xmap gx <Plug>SlimeRegionSend
+nmap gx <Plug>SlimeParagraphSend
 
 """"""""""
 set showcmd
@@ -293,7 +302,13 @@ function! AutoGenSass()
 endfunction
 
 function! SQLUpperCase()
-  %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
+  %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<group\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
+endfunction
+
+function! Html2Haml()
+  %g:^\s*<\/:d
+  %s:<:%:
+  %s:>::
 endfunction
 
 " set virtualedit=block
@@ -306,3 +321,8 @@ set spell
 " :history : -20,
 " :redir END
 " "ap
+
+" multiword search
+" vnoremap * yq/p<cr>
+
+vmap <c-C> "+y
