@@ -22,4 +22,4 @@ let &l:include = '^\s*@import\s\+\%(url(\)\='
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-inoremap { {<cr><cr>}<up><tab>
+" inoremap { {<cr><cr>}<up><tab>

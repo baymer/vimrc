@@ -9,8 +9,8 @@ if has('gui_running')
 
   colorscheme railscasts
   " window size
-  " set lines=34
-  " set columns=148
+  set lines=41
+  set columns=82
   set showtabline=1
 
   function! ToggleGuiOptions()
@@ -51,6 +51,7 @@ endfunction
 nmap <silent> <F5> :call ToggleNu()<cr>
 
 set encoding=utf8
+set fileencoding=utf8
 set fileformat=unix
 
 set nobackup
@@ -85,7 +86,7 @@ imap [ []<left>
 imap ( ()<left>
 inoremap { {}<left>
 inoremap {<space> {<space><space>}<left><left>
-inoremap {<cr> {<cr>}<esc>O<tab>
+inoremap {<cr> {<cr>}<esc>O
 
 inoremap " ""<left>
 inoremap ' ''<left>
@@ -118,6 +119,7 @@ au FileType htmldjango set ft=html.htmldjango
 au FileType scss set ft=scss.css
 au FileType less set ft=less.css
 au BufNewFile *.json set ft=javascript
+au BufNewFile *.plaintex set ft=plaintex.tex
 
 nmap <F2> :w<cr>
 imap <F2> <esc>:w<cr>
@@ -152,7 +154,9 @@ nnoremap <m-v> :e ~/.vim/.vimrc<cr>
 
 nnoremap <m-r> :!rm %<cr>:bd<cr>
 
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public/assets|public/assets)($|[/\\])'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|public|tmp)($|[/\\])'
+" let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
+" let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'
 nnoremap <c-t> :<c-u>FufFile **/<cr>
 nnoremap <c-b> :<c-u>FufBuffer<cr>
 nnoremap <m-F> :FufRenewCache<cr>
@@ -323,6 +327,10 @@ set spell
 " "ap
 
 " multiword search
-" vnoremap * yq/p<cr>
+vnoremap * yq/p<cr>
 
 vmap <c-C> "+y
+
+" nnoremap + :set guifont=Inconsolata\ 15<cr>
+
+
