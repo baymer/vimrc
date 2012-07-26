@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/usr/share/vim/vim72'
-let g:netrw_dirhist_2='/home/user/.vim/snippets'
-let g:netrw_dirhist_3='/home/inovak/Desktop/sandbox'
+let g:netrw_dirhist_1='/Users/vorian/Desktop/cfgs/.vim/bundle'
+let g:netrw_dirhist_2='/Users/vorian/Desktop/cfgs/.vim'
+let g:netrw_dirhist_3='/Users/vorian/Desktop/cfgs/.vim/autoload'
