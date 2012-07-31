@@ -21,21 +21,7 @@ nmap <M--> <C-W>2-
 nmap <M-.> <C-w>2>
 nmap <M-,> <C-w>2<
 
-nmap <m-d> :diffsplit 
-
-" fugitive
-nmap <m-b> :.Gblame<cr>
-vmap <m-b> :Gblame<cr>
-nmap <m-c> :Gcommit<cr>
-nmap <m-s> :Gstatus<cr>/modif<cr>:nohls<cr>
-nmap <m-w> :Gwrite<cr>
-nmap <m-p> :!git pull && git push<cr>
-nmap <m-o> <c-o>:copen<cr><c-w>T
-" nmap <m-p> :Git pull origin dev<cr>
-" nmap <m-h> :Git push origin dev<cr>
-
 " Some bash shortcuts
-imap <c-f> <right>
 cmap <m-f> <c-right>
 cmap <m-b> <c-left>
 
@@ -82,14 +68,4 @@ endfunction
 " if [ "$COLORTERM" == "gnome-terminal" ]; then
 "   export TERM=xterm-256color
 " fi
-
-if has('unix')
-  set guifont=Inconsolata\ 12
-else
-  " set guifont=Monospace_821_BT:h10
-  " set guifont=Monaco:h11          " windows
-  " source $VIMRUNTIME/vimrc_example.vim
-  " source $VIMRUNTIME/mswin.vim
-  " behave mswin
-endif
 

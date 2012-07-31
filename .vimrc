@@ -58,11 +58,11 @@ colorscheme solarized
 " call togglebg#map("<leader>b")
 
 "FuzzyFinder
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|public|tmp)($|[/\\])'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 " let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
 " let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'
 nnoremap <silent> ffb :FufBuffer<CR>
-" nnoremap <silent> fff :FufFile **/<CR>
+nnoremap <silent> <leader>t :FufFile **/<CR>
 nnoremap <silent> fff :FufFile<CR>
 nnoremap <silent> ffd :FufDir<CR>
 nnoremap <silent> ffj :FufJumpList<CR>
@@ -79,6 +79,16 @@ let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
+
+" fugitive
+nmap <leader>b :.Gblame<cr>
+vmap <leader>b :Gblame<cr>
+nmap <leader>st :Gstatus<cr>/modif<cr>:nohls<cr>
+nmap <leader>w :Gwrite<cr>
+nmap <leader>p :!git pull && git push<cr>
+" nmap <m-o> <c-o>:copen<cr><c-w>T
+" nmap <m-p> :Git pull origin dev<cr>
+" nmap <m-h> :Git push origin dev<cr>
 
 set iskeyword+=-
 
@@ -133,10 +143,11 @@ nnoremap Q :bd<cr>
 " Do not set autochdir (working dir should be root)
 nnoremap <leader>e :e <c-r>=expand("%:h")<cr>/
 nnoremap <leader>v :e ~/.vim/.vimrc<cr>
+nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
 
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-nmap <m-a> :Ack 
+nmap <leader>a :Ack 
 nmap <m-f> g*:Ack <c-r>/ app
 
 " Slime-vim
@@ -232,32 +243,6 @@ set spell
 " multiword search
 " vnoremap * yq/p<cr>
 
-if has('gui_running')
-
-  colorscheme railscasts
-  " window size
-  set lines=41
-  set columns=82
-  set showtabline=1
-
-  function! ToggleGuiOptions()
-    if &guioptions =~# 'T'
-      set guioptions-=T
-      set guioptions-=m
-    else
-      set guioptions+=T
-      set guioptions+=m
-    endif
-  endfunction
-
-  set guioptions-=T
-  set guioptions-=m
-  set guioptions-=R
-  set guioptions-=r
-  set guioptions-=L
-
-endif
-
 function! ToggleNu()
   if &number == 0
     set number
@@ -268,3 +253,18 @@ endfunction
 nmap <silent> <F5> :call ToggleNu()<cr>
 
 imap <c-f> <right>
+
+if has('unix')
+  set guifont=Inconsolata:h18
+else
+  " set guifont=Monospace_821_BT:h10
+  " set guifont=Monaco:h11          " windows
+  " source $VIMRUNTIME/vimrc_example.vim
+  " source $VIMRUNTIME/mswin.vim
+  " behave mswin
+endif
+
+if has('gui_running')
+  source ~/.vim/.gvimrc
+endif
+
