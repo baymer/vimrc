@@ -1,3 +1,5 @@
+snippet !
+	!important
 snippet el
 	${1} {
 		${2}
@@ -5,14 +7,6 @@ snippet el
 snippet #
 	#${1:id} {
 		${2}
-	}
-snippet cl
-	.${1:class} {
-		${2:color: pink;}
-	}
-snippet tag
-	${1:tag} {
-		${2:color: pink;}
 	}
 snippet url
 	url('${1:../images/}${2}')${3}
@@ -25,17 +19,13 @@ snippet @m
 snippet @f
 	@font-face {\n\tfont-family: ${1};\n\tsrc:url(${2});\n}
 	${3}
-snippet !
-	!important
 snippet pos
-	position: ${1};${2}
-snippet poss
 	position: static;
-snippet posa
+snippet poa
 	position: absolute;
-snippet posr
+snippet por
 	position: relative;
-snippet posf
+snippet pof
 	position: fixed;
 snippet t
 	top: ${1};${2}
@@ -57,26 +47,20 @@ snippet z
 	z-index: ${1};${2}
 snippet z:a
 	z-index: auto;
-snippet fl
-	float: ${1};${2}
-snippet fln
+snippet fn
 	float: none;
-snippet fll
+snippet fl
 	float: left;
-snippet flr
+snippet fr
 	float: right;
-snippet cl
-	clear: ${1};${2}
-snippet cln
+snippet cn
 	clear: none;
-snippet cll
+snippet cl
 	clear: left;
-snippet clr
+snippet cr
 	clear: right;
-snippet clb
+snippet cb
 	clear: both;
-snippet d
-	display: ${1};${2}
 snippet da
 	display: auto;
 snippet dn
@@ -93,9 +77,9 @@ snippet dri
 	display: run-in;
 snippet dcp
 	display: compact;
-snippet dtb
+snippet dt
 	display: table;
-snippet ditb
+snippet dit
 	display: inline-table;
 snippet dtbcp
 	display: table-caption;
@@ -107,11 +91,11 @@ snippet dtbhg
 	display: table-header-group;
 snippet dtbfg
 	display: table-footer-group;
-snippet dtbr
+snippet dtr
 	display: table-row;
 snippet dtbrg
 	display: table-row-group;
-snippet dtbc
+snippet dtc
 	display: table-cell;
 snippet drb
 	display: ruby;
@@ -131,36 +115,30 @@ snippet vh
 	visibility: hidden;
 snippet vc
 	visibility: collapse;
-snippet ov
-	overflow: ${1};${2}
-snippet ovv
-	overflow: visible;
-snippet ovh
-	overflow: hidden;
-snippet ovs
-	overflow: scroll;
-snippet ova
+snippet oa
 	overflow: auto;
-snippet ovx
-	overflow-x: ${1};${2}
-snippet ovxv
-	overflow-x: visible;
-snippet ovxh
-	overflow-x: hidden;
-snippet ovxs
-	overflow-x: scroll;
-snippet ovxa
+snippet oh
+	overflow: hidden;
+snippet os
+	overflow: scroll;
+snippet ov
+	overflow: visible;
+snippet oxa
 	overflow-x: auto;
-snippet ovy
-	overflow-y: ${1};${2}
-snippet ovyv
-	overflow-y: visible;
-snippet ovyh
-	overflow-y: hidden;
-snippet ovys
-	overflow-y: scroll;
-snippet ovya
+snippet oxh
+	overflow-x: hidden;
+snippet oxs
+	overflow-x: scroll;
+snippet oxv
+	overflow-x: visible;
+snippet oya
 	overflow-y: auto;
+snippet oyh
+	overflow-y: hidden;
+snippet oys
+	overflow-y: scroll;
+snippet oyv
+	overflow-y: visible;
 snippet ovs:a
 	overflow-style: auto;
 snippet ovs:s
@@ -171,7 +149,7 @@ snippet ovs:m
 	overflow-style: move;
 snippet ovs:mq
 	overflow-style: marquee;
-snippet zoo
+snippet z1
 	zoom: 1;
 snippet cp
 	clip: ${1};${2}
@@ -179,58 +157,30 @@ snippet cp:a
 	clip: auto;
 snippet cp:r
 	clip: rect(${1});${2}
-snippet bxz
-	box-sizing: ${1};${2}
-snippet bxz:cb
-	box-sizing: content-box;
-snippet bxz:bb
-	box-sizing: border-box;
-snippet bxsh
+snippet bsb
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+snippet bsc
+	-moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box;
+snippet bxs
 	box-shadow: ${1};${2}
-snippet bxsh:n
-	box-shadow: none;
-snippet bxsh:w
-	-webkit-box-shadow: 0 0 0 #000;
-snippet bxsh:m
-	-moz-box-shadow: 0 0 0 0 #000;
 snippet m
 	margin: ${1};${2}
-snippet m:a
-	margin: auto;
-snippet m:0
+snippet m0
 	margin: 0;
-snippet m:2
-	margin: 0 0;
-snippet m:3
-	margin: 0 0 0;
-snippet m:4
-	margin: 0 0 0 0;
+snippet ma
+	margin: auto;
 snippet mt
 	margin-top: ${1};${2}
-snippet mt:a
-	margin-top: auto;
 snippet mr
 	margin-right: ${1};${2}
-snippet mr:a
-	margin-right: auto;
 snippet mb
 	margin-bottom: ${1};${2}
-snippet mb:a
-	margin-bottom: auto;
 snippet ml
 	margin-left: ${1};${2}
-snippet ml:a
-	margin-left: auto;
 snippet p
 	padding: ${1};${2}
-snippet p:0
+snippet p0
 	padding: 0;
-snippet p:2
-	padding: 0 0;
-snippet p:3
-	padding: 0 0 0;
-snippet p:4
-	padding: 0 0 0 0;
 snippet pt
 	padding-top: ${1};${2}
 snippet pr
@@ -241,11 +191,15 @@ snippet pl
 	padding-left: ${1};${2}
 snippet w
 	width: ${1};${2}
-snippet w:a
+snippet w1
+	width: 100%;
+snippet wa
 	width: auto;
 snippet h
 	height: ${1};${2}
-snippet h:a
+snippet h1
+	height: 100%;
+snippet ha
 	height: auto;
 snippet maw
 	max-width: ${1};${2}
@@ -261,36 +215,34 @@ snippet mih
 	min-height: ${1};${2}
 snippet o
 	outline: ${1};${2}
-snippet o:n
+snippet on
 	outline: none;
 snippet oo
 	outline-offset: ${1};${2}
 snippet ow
 	outline-width: ${1};${2}
-snippet os
+snippet ost
 	outline-style: ${1};${2}
 snippet oc
-	outline-color: #000;
+	outline-color: #${1};${2}
 snippet oc:i
 	outline-color: invert;
 snippet bd
 	border: ${1};${2}
 snippet bd+
-	border: 1px solid #${1:000};${2}
+	border: 1px solid #${1};${2}
 snippet bdn
 	border: none;
 snippet bdbk
 	border-break: ${1};${2}
 snippet bdbk:c
 	border-break: close;
-snippet bdcl
-	border-collapse: ${1};${2}
-snippet bdcl:c
+snippet bcc
 	border-collapse: collapse;
-snippet bdcl:s
+snippet bcs
 	border-collapse: separate;
 snippet bdc
-	border-color: #${1:000};${2}
+	border-color: #${1};${2}
 snippet bdi
 	border-image: url(${1});${2}
 snippet bdi:n
@@ -365,98 +317,96 @@ snippet bdl
 	border-left: ${1};${2}
 snippet bdl:a
 	border-length: auto;
-snippet bdsp
-	border-spacing: ${1};${2}
+snippet bos
+	border-spacing: ${1:0};${2}
 snippet bds
 	border-style: ${1};${2}
-snippet bds:n
+snippet bdsn
 	border-style: none;
-snippet bds:h
+snippet bdsh
 	border-style: hidden;
-snippet bds:dt
+snippet bdsdt
 	border-style: dotted;
-snippet bds:ds
+snippet bdsds
 	border-style: dashed;
-snippet bds:s
+snippet bdss
 	border-style: solid;
-snippet bds:db
+snippet bdsdb
 	border-style: double;
-snippet bds:dtds
+snippet bdsdtds
 	border-style: dot-dash;
-snippet bds:dtdtds
+snippet bdsdtdtds
 	border-style: dot-dot-dash;
-snippet bds:w
+snippet bdsw
 	border-style: wave;
-snippet bds:g
+snippet bdsg
 	border-style: groove;
-snippet bds:r
+snippet bdsr
 	border-style: ridge;
-snippet bds:i
+snippet bdsi
 	border-style: inset;
-snippet bds:o
+snippet bdso
 	border-style: outset;
 snippet bdw
 	border-width: ${1};${2}
 snippet bdt
 	border-top: ${1};${2}
 snippet bdt+
-	border-top: 1px solid #000;
-snippet bdt:n
+	border-top: 1px solid #${1};${2}
+snippet bdtn
 	border-top: none;
 snippet bdtw
 	border-top-width: ${1};${2}
 snippet bdts
 	border-top-style: ${1};${2}
-snippet bdts:n
+snippet bdtsn
 	border-top-style: none;
 snippet bdtc
-	border-top-color: #000;
+	border-top-color: #${1};${2}
 snippet bdr
 	border-right: ${1};${2}
 snippet bdr+
-	border-right: 1px solid #000;
-snippet bdr:n
+	border-right: 1px solid #${1};${2}
+snippet bdrn
 	border-right: none;
 snippet bdrw
 	border-right-width: ${1};${2}
 snippet bdrs
 	border-right-style: ${1};${2}
-snippet bdrs:n
+snippet bdrsn
 	border-right-style: none;
 snippet bdrc
-	border-right-color: #000;
+	border-right-color: #${1};${2}
 snippet bdb
 	border-bottom: ${1};${2}
 snippet bdb+
-	border-bottom: 1px solid #000;
-snippet bdb:n
+	border-bottom: 1px solid #${1};${2}
+snippet bdbn
 	border-bottom: none;
 snippet bdbw
 	border-bottom-width: ${1};${2}
 snippet bdbs
 	border-bottom-style: ${1};${2}
-snippet bdbs:n
+snippet bdbsn
 	border-bottom-style: none;
 snippet bdbc
-	border-bottom-color: #000;
+	border-bottom-color: #${1};${2}
 snippet bdln
 	border-length: ${1};${2}
 snippet bdl+
-	border-left: 1px solid #000;
-snippet bdl:n
+	border-left: 1px solid #${1};${2}
+snippet bdln
 	border-left: none;
 snippet bdlw
 	border-left-width: ${1};${2}
 snippet bdls
 	border-left-style: ${1};${2}
-snippet bdls:n
+snippet bdlsn
 	border-left-style: none;
 snippet bdlc
-	border-left-color: #000;
-snippet bdrus
+	border-left-color: #${1};${2}
+snippet bor
 	border-radius: ${1};${2}
-snippet bdrus:w
-	-webkit-border-radius: ${1};${2}
 snippet bdtrrs
 	border-top-right-radius: ${1};${2}
 snippet bdtlrs
@@ -475,26 +425,28 @@ snippet bg:ie
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=''${1}x.png'');${2}
 snippet bgc
 	background-color: #${1};${2}
+snippet bgct
+	background-color: transparent;
 snippet bgi
 	background-image: url(${1});${2}
-snippet bgi:n
+snippet bgin
 	background-image: none;
 snippet bgr
 	background-repeat: ${1};${2}
-snippet bgr:n
+snippet bgrn
 	background-repeat: no-repeat;
-snippet bgr:x
+snippet bgrx
 	background-repeat: repeat-x;
-snippet bgr:y
+snippet bgry
 	background-repeat: repeat-y;
-snippet bga
-	background-attachment: ${1};${2}
-snippet bga:f
+snippet bgaf
 	background-attachment: fixed;
-snippet bga:s
+snippet bgal
+	background-attachment: local;
+snippet bgas
 	background-attachment: scroll;
 snippet bgp
-	background-position: 0 0;
+	background-position: ${1};${2}
 snippet bgpx
 	background-position-x: ${1};${2}
 snippet bgpy
@@ -535,11 +487,9 @@ snippet bgz:cv
 	background-size: cover;
 snippet c
 	color: #${1:000};${2}
-snippet tbl
-	table-layout: ${1};${2}
-snippet tbl:a
+snippet tla
 	table-layout: auto;
-snippet tbl:f
+snippet tlf
 	table-layout: fixed;
 snippet cps
 	caption-side: ${1};${2}
@@ -547,15 +497,13 @@ snippet cps:t
 	caption-side: top;
 snippet cps:b
 	caption-side: bottom;
-snippet ec
-	empty-cells: ${1};${2}
-snippet ec:s
+snippet ecs
 	empty-cells: show;
-snippet ec:h
+snippet ech
 	empty-cells: hide;
-snippet lis
+snippet ls
 	list-style: ${1};${2}
-snippet lisn
+snippet lsn
 	list-style: none;
 snippet lisp
 	list-style-position: ${1};${2}
@@ -593,8 +541,8 @@ snippet q:ru
 	quotes: ''\00AB'' ''\00BB'' ''\201E'' ''\201C'';
 snippet q:en
 	quotes: ''\201C'' ''\201D'' ''\2018'' ''\2019'';
-snippet ct
-	content: ${1};${2}
+snippet co
+	content: '${1}';${2}
 snippet ct:n
 	content: normal;
 snippet ct:oq
@@ -639,6 +587,8 @@ snippet tac
 	text-align: center;
 snippet tar
 	text-align: right;
+snippet taj
+	text-align: justify;
 snippet tala
 	text-align-last: auto;
 snippet tall
@@ -715,16 +665,14 @@ snippet tr
 	text-replace: ${1};${2}
 snippet tr:n
 	text-replace: none;
-snippet tt
-	text-transform: ${1};${2}
-snippet tt:n
+snippet ttn
 	text-transform: none;
-snippet tt:c
-	text-transform: capitalize;
-snippet tt:u
+snippet ttu
 	text-transform: uppercase;
-snippet tt:l
+snippet ttl
 	text-transform: lowercase;
+snippet ttc
+	text-transform: capitalize;
 snippet tw
 	text-wrap: ${1};${2}
 snippet tw:n
@@ -735,22 +683,18 @@ snippet tw:u
 	text-wrap: unrestricted;
 snippet tw:s
 	text-wrap: suppress;
-snippet tsh
+snippet ts
 	text-shadow: ${1};${2}
-snippet tsh+
-	text-shadow: 0 0 0 #000;
-snippet tsh:n
-	text-shadow: none;
 snippet lh
 	line-height: ${1};${2}
-snippet whs
+snippet ws
 	white-space: ${1};${2}
+snippet wsn
+	white-space: nowrap;
+snippet wsp
+	white-space: pre;
 snippet whsn
 	white-space: normal;
-snippet whsp
-	white-space: pre;
-snippet whsnw
-	white-space: nowrap;
 snippet whspw
 	white-space: pre-wrap;
 snippet whspl
@@ -791,7 +735,7 @@ snippet wow:u
 	word-wrap: unrestricted;
 snippet wow:s
 	word-wrap: suppress;
-snippet lts
+snippet les
 	letter-spacing: ${1};${2}
 snippet f
 	font: ${1};${2}
@@ -831,8 +775,8 @@ snippet ff
 	font-family: ${1};${2}
 snippet ff:s
 	font-family: serif;
-snippet ff:ss
-	font-family: sans-serif;
+snippet ffa
+	font-family: Arial, sans-serif;
 snippet ff:c
 	font-family: cursive;
 snippet ff:f
@@ -913,23 +857,23 @@ snippet rz:h
 	resize: horizontal;
 snippet rz:v
 	resize: vertical;
-snippet cur
+snippet cu
 	cursor: ${1};${2}
-snippet cura
+snippet cua
 	cursor: auto;
-snippet curd
+snippet cud
 	cursor: default;
-snippet curc
+snippet cuc
 	cursor: crosshair;
-snippet curha
+snippet cuh
 	cursor: hand;
 snippet curhe
 	cursor: help;
-snippet curm
+snippet cum
 	cursor: move;
-snippet curp
+snippet cup
 	cursor: pointer;
-snippet curt
+snippet cut
 	cursor: text;
 snippet pgbb
 	page-break-before: ${1};${2}
