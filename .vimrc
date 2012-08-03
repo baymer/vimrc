@@ -92,16 +92,9 @@ nmap <leader>p :!git pull && git push<cr>
 
 set iskeyword+=-
 
-" braces autoclosing
-imap [ []<left>
-imap ( ()<left>
-inoremap { {}<left>
-inoremap {<space> {<space><space>}<left><left>
-inoremap {<cr> {<cr>}<esc>O
-
-inoremap " ""<left>
-inoremap ' ''<left>
-snoremap ' ''<left>
+" delimitMate
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
 
 set hidden
 set diffopt=filler
@@ -127,15 +120,17 @@ au FileType scss set ft=scss.css
 au FileType less set ft=less.css
 
 " au FileType javascript set syntax=jquery
-au BufNewFile *.json set ft=javascript
-au BufNewFile *.plaintex set ft=plaintex.tex
+au BufRead,BufNewFile *.json set ft=javascript
+au BufRead,BufNewFile *.bemhtml set ft=javascript
+au BufRead,BufNewFile *.xjst set ft=javascript
+au BufRead,BufNewFile *.plaintex set ft=plaintex.tex
 
 nmap <leader>s :w<cr>
 imap <leader>s <esc>:w<cr>
 
 " OPTIMIZE: try to improve behavior
-" nnoremap Q <c-w>v:bp<cr><c-w>l:bd<cr>
-nnoremap Q :bd<cr>
+nnoremap Q <c-w>s:bp<cr><c-w>j:bd<cr>
+" nnoremap Q :bd<cr>
 
 " let g:user_zen_leader_key = ','
 
