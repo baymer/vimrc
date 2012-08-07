@@ -50,14 +50,16 @@ set softtabstop=4
 " set pastetoggle=<leader>v
 set smarttab
 
-"  Solarized
+" Solarized
 set t_Co=256
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 " call togglebg#map("<leader>b")
 
-"FuzzyFinder
+au VimEnter * if @% == '_search-js.priv.js' | syntax off | set ft=css.javascript | endif
+
+" FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 " let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
 " let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'

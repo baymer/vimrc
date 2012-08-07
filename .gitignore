@@ -1,1 +1,5 @@
+bundle/delimitMate/
 bundle/latex/
+bundle/vcscommand/
+bundle/vim-slime/
+.netrwhist
