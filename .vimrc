@@ -34,8 +34,6 @@ set scrolloff=3
 
 set incsearch
 set hlsearch
-set ignorecase
-set smartcase
 nnoremap <cr> :nohlsearch<cr><cr>
 
 syntax on
@@ -85,7 +83,7 @@ let NERDTreeKeepTreeInNewTab=1
 " fugitive
 nmap <leader>b :.Gblame<cr>
 vmap <leader>b :Gblame<cr>
-nmap <leader>st :Gstatus<cr>/modif<cr>:nohls<cr>
+nmap <leader>g :Gstatus<cr>/modif<cr>:nohls<cr>
 nmap <leader>w :Gwrite<cr>
 nmap <leader>p :!git pull && git push<cr>
 " nmap <m-o> <c-o>:copen<cr><c-w>T
