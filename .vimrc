@@ -55,7 +55,7 @@ set background=dark
 colorscheme solarized
 " call togglebg#map("<leader>b")
 
-au VimEnter * if @% == '_search-js.priv.js' | syntax off | set ft=css.javascript | endif
+au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | endif
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
@@ -123,6 +123,7 @@ au FileType less set ft=less.css
 au BufRead,BufNewFile *.json set ft=javascript
 au BufRead,BufNewFile *.bemhtml set ft=javascript
 au BufRead,BufNewFile *.xjst set ft=javascript
+au BufRead,BufNewFile *.tt2 set ft=tt2
 au BufRead,BufNewFile *.plaintex set ft=plaintex.tex
 
 nmap <leader>s :w<cr>
@@ -139,6 +140,7 @@ nnoremap Q <c-w>s:bp<cr><c-w>j:bd<cr>
 nnoremap <leader>e :e <c-r>=expand("%:h")<cr>/
 nnoremap <leader>v :e ~/.vim/.vimrc<cr>
 nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
+cnoremap <leader>e <c-r>=expand("%:h")<cr>/
 
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"

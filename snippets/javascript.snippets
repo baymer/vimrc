@@ -109,7 +109,17 @@ snippet timer
 	new Date - date
 snippet uw
 	Util.warn(${1});${2}
+snippet uwv
+	Util.warn('${1:var}: ' + $1);${2}
 snippet uwj
 	Util.warn(JSON.stringify(${1}));${2}
 snippet js
 	JSON.stringify(${1});${2}
+snippet blocks
+	blocks['${1}']${2}
+snippet block
+	block: '${1}',${2}
+snippet elem
+	elem: '${1}',${2}
+snippet mod
+	mod: { ${1}: '${2}' },${3}
