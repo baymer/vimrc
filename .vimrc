@@ -1,10 +1,58 @@
 set nocompatible
-
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype plugin indent on
 
+" Setting up Vundle - the vim plugin bundler
+  let iCanHazVundle=1
+  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+  if !filereadable(vundle_readme)
+    echo 'Installing Vundle..'
+    echo ''
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+  endif
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+  Bundle 'gmarik/vundle'
+
+  " Add your bundles here
+
+  " Snipmate dependencies
+  Bundle 'MarcWeber/vim-addon-mw-utils'
+  Bundle 'tomtom/tlib_vim'
+  Bundle 'honza/snipmate-snippets'
+
+  Bundle 'garbas/vim-snipmate'
+  Bundle 'jpalardy/vim-slime'
+  Bundle 'mileszs/ack.vim'
+  Bundle 'Raimondi/delimitMate'
+  Bundle 'scrooloose/nerdtree'
+  Bundle 'tomtom/tcomment_vim'
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'tpope/vim-endwise'
+  Bundle 'tpope/vim-repeat'
+  Bundle 'tpope/vim-surround'
+  Bundle 'vim-scripts/FuzzyFinder'
+  Bundle 'vim-scripts/L9'
+  Bundle 'vim-scripts/vcscommand.vim'
+  Bundle 'vim-scripts/tlib'
+
+  Bundle 'skammer/vim-css-color'
+  Bundle 'lukaszb/vim-web-indent'
+
+  " Bundle zencoding-vim
+  " Bundle 'tpope/vim-rails.git'
+  " Bundle 'tpope/vim-haml.git'
+  " Bundle 'kchmck/vim-coffee-script.git'
+
+  if iCanHazVundle == 0
+    echo 'Installing Bundles, please ignore key map error messages'
+    echo ''
+    :BundleInstall
+  endif
+" Setting up Vundle - the vim plugin bundler end
+
+filetype plugin indent on
 
 " Remember last location in file
 if has("autocmd")
