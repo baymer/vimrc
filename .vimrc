@@ -74,11 +74,6 @@ nnoremap <silent> ffj :FufJumpList<CR>
 " NERDTree
 nmap <leader>nf :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
 
 " fugitive
 nmap <leader>b :.Gblame<cr>
@@ -125,6 +120,8 @@ au BufRead,BufNewFile *.bemhtml set ft=javascript
 au BufRead,BufNewFile *.xjst set ft=javascript
 au BufRead,BufNewFile *.plaintex set ft=plaintex.tex
 
+au BufRead,BufNewFile *.html nmap <leader>o :!open %<cr>
+
 nmap <leader>s :w<cr>
 imap <leader>s <esc>:w<cr>
 
@@ -149,7 +146,10 @@ nmap <m-f> g*:Ack <c-r>/ app
 "
 " $ screen -S mysession
 xmap gx <Plug>SlimeRegionSend
-" nmap gx <Plug>SlimeParagraphSend
+" WARN: netrwPlugin has the same mapping
+nmap gx <Plug>SlimeParagraphSend
+
+nnoremap <leader>x 0y$:<c-r>"<cr>
 
 """"""""""
 set linebreak
