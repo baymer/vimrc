@@ -37,13 +37,28 @@ filetype off
   Bundle 'vim-scripts/vcscommand.vim'
   Bundle 'vim-scripts/tlib'
 
+  Bundle 'othree/html5.vim'
   Bundle 'skammer/vim-css-color'
+  Bundle 'hail2u/vim-css3-syntax'
   Bundle 'lukaszb/vim-web-indent'
+  Bundle 'walm/jshint.vim'
+
+  " HTML/HAML
+  " Bundle 'hokaccha/vim-html5validator'
+  " Bundle 'gregsexton/MatchTag'
+  " CSS/LESS
+  " Bundle 'miripiruni/vim-better-css-indent'
+  " Bundle 'miripiruni/CSScomb-for-Vim'
+  " JavaScript
+  " Bundle 'pangloss/vim-javascript'
+  " Bundle 'itspriddle/vim-jquery'
+  " JSON
+  " Bundle 'leshill/vim-json'
 
   " Bundle zencoding-vim
-  " Bundle 'tpope/vim-rails.git'
-  " Bundle 'tpope/vim-haml.git'
-  " Bundle 'kchmck/vim-coffee-script.git'
+  " Bundle 'tpope/vim-rails'
+  " Bundle 'tpope/vim-haml'
+  " Bundle 'kchmck/vim-coffee-script'
 
   if iCanHazVundle == 0
     echo 'Installing Bundles, please ignore key map error messages'
@@ -178,7 +193,7 @@ imap <leader>s <esc>:w<cr>
 nnoremap Q <c-w>s:bp<cr><c-w>j:bd<cr>
 " nnoremap Q :bd<cr>
 
-" let g:user_zen_leader_key = ','
+nmap <leader>j :JSHint<cr>
 
 " Open files
 " Do not set autochdir (working dir should be root)
@@ -284,8 +299,6 @@ function! ToggleNu()
   endif
 endfunction
 nmap <silent> <F5> :call ToggleNu()<cr>
-
-imap <c-f> <right>
 
 if has('unix')
   set guifont=Inconsolata:h18
