@@ -1,65 +1,141 @@
-snippet p
-	print 
-snippet r
-	return
-snippet classold
-	class ${1:``Snippet_PythonClassNameFromFilename()``}(${2:data}):
-	${3}
-snippet class
-	class ${1:MyClass}(${2:Parent}):
-		${3:pass}
-snippet def
-	def ${1:name}(${2:self}):
-		${3:pass}
-snippet for
-	for ${1:var} in ${2:set}:
-		${3:pass}
-snippet from
-	from ${1:module} import ${2:name}
-snippet get
-	def get_${1:name}(self):
-		return self._$1
-	${2}
-snippet ifmain
-	if __name__ == '__main__':
-		${1}
+snippet #!
+	#!/usr/bin/env python
 snippet imp
 	import ${1:module}
-snippet init
-	def __init__(self, ${1:args}):
-		${2:pass}
-snippet li
-	logging.info(${1})${2}
-snippet set
-	def set_${1:name}(self, ${2:value}):
-		self._$1 = $2
-	${3}
-snippet try
-	try:
-		${1}
-	except ${2:Exception}:
+snippet from
+	from ${1:package} import ${2:module}
+# Module Docstring
+snippet docs
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+snippet wh
+	while ${1:condition}:
+		${2:# code...}
+# dowh - does the same as do...while in other languages
+snippet dowh
+	while True:
+		${1:# code...}
+		if ${2:condition}:
+			break
+snippet with
+	with ${1:expr} as ${2:var}:
+		${3:# code...}
+# New Class
+snippet cl
+	class ${1:ClassName}(${2:object}):
+		"""${3:docstring for $1}"""
+		def __init__(self, ${4:arg}):
+			${5:super($1, self).__init__()}
+			self.$4 = $4
+			${6}
+# New Function
+snippet def
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		"""${3:docstring for $1}"""
+		${4:pass}
+snippet deff
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${3}
+# New Method
+snippet defs
+	def ${1:mname}(self, ${2:arg}):
 		${3:pass}
-snippet gae
-	from google.appengine.ext import webapp
-	from google.appengine.ext.webapp import util
-
-	class Handler(webapp.RequestHandler):
-		def get(self):
-			self.response.out.write('<h1>It Works</h1>')
-
-	def main():
-		application = webapp.WSGIApplication([
-					('.*', Handler)
-					], debug=True)
-		util.run_wsgi_app(application)
-
+# New Property
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+# Ifs
+snippet if
+	if ${1:condition}:
+		${2:code...}
+snippet el
+	else:
+		${1:code...}
+snippet ei
+	elif ${1:condition}:
+		${2:code...}
+# For
+snippet for
+	for ${1:item} in ${2:items}:
+		${3:code...}
+# Encodes
+snippet cutf8
+	# -*- coding: utf-8 -*-
+snippet clatin1
+	# -*- coding: latin-1 -*-
+snippet cascii
+	# -*- coding: ascii -*-
+# Lambda
+snippet ld
+	${1:var} = lambda ${2:vars} : ${3:action}
+snippet .
+	self.
+snippet try Try/Except
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+snippet try Try/Except/Else
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+snippet try Try/Except/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	finally:
+		${5:pass}
+snippet try Try/Except/Else/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+	finally:
+		${6:pass}
+# if __name__ == '__main__':
+snippet ifmain
 	if __name__ == '__main__':
-		main()
-snippet handl
-	class ${1:Handler}(webapp.RequestHandler):
-		def get(self):
-			${2}
-snippet req
-	self.request.get('${1}')${2}
-snippet resp
-	self.response.out.write(${1})${2}
+		${1:main()}
+# __magic__
+snippet _
+	__${1:init}__${2}
+# python debugger (pdb)
+snippet pdb
+	import pdb; pdb.set_trace()
+# ipython debugger (ipdb)
+snippet ipdb
+	import ipdb; ipdb.set_trace()
+# ipython debugger (pdbbb)
+snippet pdbbb
+	import pdbpp; pdbpp.set_trace()
+snippet pprint
+	import pprint; pprint.pprint(${1})${2}
+snippet "
+	"""
+	${1:doc}
+	"""
+# test function/method
+snippet test
+	def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):
+		${3:pass}
+# test case
+snippet testcase
+	class ${1:ExampleCase}(unittest.TestCase):
+		
+		def test_${2:description}(self):
+			${3:pass}
+snippet fut
+	from __future__ import ${1}

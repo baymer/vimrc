@@ -2,8 +2,26 @@ snippet ?
 	(${1}) ? ${2} : ${3}
 snippet d
 	debugger
+snippet f
+	function(${1}) {
+		${2}
+	}
+snippet fun
+	function ${1}(${2}) {
+		${3}
+	};
+snippet m
+	${1}: function(${2}) {
+		${3}
+	},
+snippet clos
+	(function() {
+		${1}
+	})();
 snippet r
 	return
+snippet pr
+	prototype
 snippet for
 	for (var ${1:i}${2: = 0}, ${3:l}${4: = 10}; $1 < $3; $1++) {
 		${5}
@@ -12,18 +30,6 @@ snippet fori
 	for (${1:var i} in ${2}) {
 		${3}
 	};
-snippet fun
-	function(${1}) {
-		${2}
-	}
-snippet func
-	function ${1}(${2}) {
-		${3}
-	};
-snippet m
-	${1}: function(${2}) {
-		${3}
-	},
 snippet i
 	if (${1})
 		${2}
@@ -38,7 +44,9 @@ snippet ife
 	};
 snippet switch
 	switch (${1}) {
-		case ${2}: 
+		case ${2}:
+			${3}
+			break;
 	};
 snippet cl
 	console.log(${1});${2}
@@ -66,7 +74,7 @@ snippet seti
 	setInterval(function() {
 		${2}
 	}, ${1:0});
-snippet while
+snippet wh
 	while (${1}) {
 		${2}
 	};
@@ -78,10 +86,6 @@ snippet gebt
 	document.getElementsByTagName('${1}')${2:[0]}
 snippet gebn
 	document.getElementsByName('${1}')${2:[0]}
-snippet clos
-	(function() {
-		${1}
-	})();
 snippet try
 	try {
 		${1}
@@ -91,8 +95,8 @@ snippet try
 
 snippet get
 	get('${1}')${2}
-# snippet set
-# set('${1}', '${2}')${3}
+snippet has
+	hasOwnProperty(${1})
 snippet set
 	set({ '${1}': '${2}' })${3}
 snippet ext
@@ -123,3 +127,12 @@ snippet elem
 	elem: '${1}',${2}
 snippet mod
 	mod: { ${1}: '${2}' },${3}
+snippet /**
+	/**
+	 * ${1:description}
+	 *
+	 */
+snippet @par
+	@param {${1:type}} ${2:name} ${3:description}
+snippet @ret
+	@return {${1:type}} ${2:description}

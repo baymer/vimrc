@@ -1,24 +1,27 @@
-snippet !
-	!important
-snippet el
-	${1} {
+snippet .
+	.${1}
+	{
 		${2}
 	}
 snippet #
-	#${1:id} {
+	#${1} {
 		${2}
 	}
 snippet url
 	url('${1:../images/}${2}')${3}
-snippet @i
-	@import url(${1});
-	${2}
-snippet @m
-	@media print {\n\t${1}\n}
-	${2}
+snippet !
+	!important
 snippet @f
-	@font-face {\n\tfont-family: ${1};\n\tsrc:url(${2});\n}
-	${3}
+	@font-face {
+		font-family: ${1};
+		src: url(${2});
+	}
+snippet @i
+	@import url(${1});${2}
+snippet @m
+	@media ${1:print} {
+		${2}
+	}
 snippet pos
 	position: static;
 snippet poa

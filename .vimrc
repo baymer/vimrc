@@ -20,7 +20,7 @@ filetype off
   " Snipmate dependencies
   Bundle 'MarcWeber/vim-addon-mw-utils'
   Bundle 'tomtom/tlib_vim'
-  Bundle 'honza/snipmate-snippets'
+  " Bundle 'honza/snipmate-snippets'
 
   Bundle 'garbas/vim-snipmate'
   Bundle 'jpalardy/vim-slime'
@@ -251,18 +251,6 @@ endfunction
 nmap <F6> :call ToggleErrorMsg()<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
-function! MergeSnippets()
-  " merge.sh
-  " for file in `ls .`
-  " do
-  "   echo $file >> ruby.snippets
-  "   cat $file >> ruby.snippets
-  " done
-  " for file in `ls .`; do echo $file >> ruby.snippets; cat $file >> ruby.snippets; done
-  v:snippet:s:^:\t:
-  g:snippet:s:^\(\w\+\).*$:snippet \1:
-endfunction
 
 function! SQLUpperCase()
   %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<group\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
