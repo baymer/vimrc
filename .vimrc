@@ -32,6 +32,7 @@ filetype off
   Bundle 'tpope/vim-endwise'
   Bundle 'tpope/vim-repeat'
   Bundle 'tpope/vim-surround'
+  Bundle 'tpope/vim-unimpaired'
   Bundle 'vim-scripts/FuzzyFinder'
   Bundle 'vim-scripts/L9'
   Bundle 'vim-scripts/vcscommand.vim'
@@ -43,12 +44,12 @@ filetype off
   Bundle 'lukaszb/vim-web-indent'
   Bundle 'walm/jshint.vim'
 
+  Bundle 'miripiruni/CSScomb-for-Vim'
   " HTML/HAML
   " Bundle 'hokaccha/vim-html5validator'
   " Bundle 'gregsexton/MatchTag'
   " CSS/LESS
   " Bundle 'miripiruni/vim-better-css-indent'
-  " Bundle 'miripiruni/CSScomb-for-Vim'
   " JavaScript
   " Bundle 'pangloss/vim-javascript'
   " Bundle 'itspriddle/vim-jquery'
@@ -111,22 +112,21 @@ set softtabstop=4
 " set pastetoggle=<leader>v
 set smarttab
 
+au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | else | set t_Co=256 | let g:solarized_termcolors=256 | endif
+
 " Solarized
-set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 " call togglebg#map("<leader>b")
 
-au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | endif
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 " let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
 " let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'
-nnoremap <silent> ffb :FufBuffer<CR>
-nnoremap <silent> <leader>t :FufFile **/<CR>
-nnoremap <silent> fff :FufFile<CR>
+nnoremap <silent> <c-b> :FufBuffer<CR>
+" nnoremap <silent> <leader>t :FufFile **/<CR>
+nnoremap <silent> <c-t> :FufFile<CR>
 nnoremap <silent> ffd :FufDir<CR>
 nnoremap <silent> ffj :FufJumpList<CR>
 " nnoremap <c-t> :<c-u>FufFile **/<cr>
@@ -198,9 +198,12 @@ nmap <leader>j :JSHint<cr>
 " Open files
 " Do not set autochdir (working dir should be root)
 nnoremap <leader>e :e <c-r>=expand("%:h")<cr>/
-nnoremap <leader>v :e ~/.vim/.vimrc<cr>
 nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
 cnoremap <leader>e <c-r>=expand("%:h")<cr>/
+
+nnoremap <leader>vi :e ~/.vim/.vimrc<cr>
+nnoremap <leader>vs :e ~/.vim/snippets/
+nnoremap <leader>vd :VCSVimDiff<cr>
 
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -317,3 +320,5 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" find global variables
+" ^\s*var \(\w\+\s*\(=.*\)\?,\(\s*\/\/.*\)\?\_\s\+\)\+\w\+\s*\(=.*\)\?;\_\s\+\w\+\s*\(=.*\)\?;

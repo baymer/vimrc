@@ -113,10 +113,16 @@ snippet timer
 	new Date - date
 snippet uw
 	Util.warn(${1});${2}
+snippet uwn
+	Util.warn('\n\n\n\n\n\n\n\n\n\n');
 snippet uwv
 	Util.warn('${1:var}: ' + $1);${2}
 snippet uwj
 	Util.warn(JSON.stringify(${1}));${2}
+snippet exp
+	data.experiments['${1}']${2}
+snippet expr
+	data.rdat.cgi().p('test-id') == ${1}
 snippet js
 	JSON.stringify(${1});${2}
 snippet blocks
