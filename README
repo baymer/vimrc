@@ -1,4 +1,4 @@
 ~$ git clone git://github.com/ignovak/vimrc ~/.vim
-~$ echo 'so ~/.vim/.vimrc' > ~/.vimrc
+~$ ln -s ~/.vim/.vimrc ~/.vimrc
 
 Inconsolata font: http://levien.com/type/myfonts/inconsolata.html

@@ -32,6 +32,7 @@ filetype off
   Bundle 'tpope/vim-endwise'
   Bundle 'tpope/vim-repeat'
   Bundle 'tpope/vim-surround'
+  Bundle 'tpope/vim-unimpaired'
   Bundle 'vim-scripts/FuzzyFinder'
   Bundle 'vim-scripts/L9'
   Bundle 'vim-scripts/vcscommand.vim'
@@ -45,10 +46,10 @@ filetype off
 
   " HTML/HAML
   " Bundle 'hokaccha/vim-html5validator'
-  " Bundle 'gregsexton/MatchTag'
+  Bundle 'gregsexton/MatchTag'
   " CSS/LESS
   " Bundle 'miripiruni/vim-better-css-indent'
-  " Bundle 'miripiruni/CSScomb-for-Vim'
+  Bundle 'miripiruni/CSScomb-for-Vim'
   " JavaScript
   " Bundle 'pangloss/vim-javascript'
   " Bundle 'itspriddle/vim-jquery'
@@ -125,7 +126,7 @@ let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|
 " let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
 " let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'
 nnoremap <silent> ffb :FufBuffer<CR>
-nnoremap <silent> <leader>t :FufFile **/<CR>
+" nnoremap <silent> <leader>t :FufFile **/<CR>
 nnoremap <silent> fff :FufFile<CR>
 nnoremap <silent> ffd :FufDir<CR>
 nnoremap <silent> ffj :FufJumpList<CR>
@@ -135,15 +136,15 @@ nnoremap <silent> ffj :FufJumpList<CR>
 
 
 " NERDTree
-nmap <leader>nf :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeToggle<CR>
+" nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 
 " fugitive
 nmap <leader>b :.Gblame<cr>
 vmap <leader>b :Gblame<cr>
 nmap <leader>g :Gstatus<cr>/modif<cr>:nohls<cr>
 nmap <leader>w :Gwrite<cr>
-nmap <leader>p :!git pull && git push<cr>
+" nmap <leader>p :!git pull && git push<cr>
 " nmap <m-o> <c-o>:copen<cr><c-w>T
 " nmap <m-p> :Git pull origin dev<cr>
 " nmap <m-h> :Git push origin dev<cr>
@@ -178,6 +179,7 @@ au FileType scss set ft=scss.css
 au FileType less set ft=less.css
 
 " au FileType javascript set syntax=jquery
+au BufRead,BufNewFile *.js set ft=javascript.javascript-jquery
 au BufRead,BufNewFile *.json set ft=javascript
 au BufRead,BufNewFile *.bemhtml set ft=javascript
 au BufRead,BufNewFile *.xjst set ft=javascript
@@ -200,7 +202,7 @@ nmap <leader>j :JSHint<cr>
 nnoremap <leader>e :e <c-r>=expand("%:h")<cr>/
 nnoremap <leader>v :e ~/.vim/.vimrc<cr>
 nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
-cnoremap <leader>e <c-r>=expand("%:h")<cr>/
+cmap <leader>e <c-r>=expand("%:h")<cr>/
 
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -266,6 +268,7 @@ endfunction
 nmap <F6> :call ToggleErrorMsg()<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
+command! JSON :normal :%!python -m json.tool<cr><c-o><cr>
 
 function! SQLUpperCase()
   %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<group\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
@@ -300,15 +303,7 @@ function! ToggleNu()
 endfunction
 nmap <silent> <F5> :call ToggleNu()<cr>
 
-if has('unix')
-  set guifont=Inconsolata:h18
-else
-  " set guifont=Monospace_821_BT:h10
-  " set guifont=Monaco:h11          " windows
-  " source $VIMRUNTIME/vimrc_example.vim
-  " source $VIMRUNTIME/mswin.vim
-  " behave mswin
-endif
+set guifont=Monaco:h13
 
 if has('gui_running')
   source ~/.vim/.gvimrc
