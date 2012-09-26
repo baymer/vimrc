@@ -39,15 +39,16 @@ filetype off
   Bundle 'vim-scripts/tlib'
 
   Bundle 'othree/html5.vim'
+  Bundle 'gregsexton/MatchTag'
   Bundle 'skammer/vim-css-color'
   Bundle 'hail2u/vim-css3-syntax'
   Bundle 'lukaszb/vim-web-indent'
   Bundle 'walm/jshint.vim'
 
   Bundle 'miripiruni/CSScomb-for-Vim'
+
   " HTML/HAML
   " Bundle 'hokaccha/vim-html5validator'
-  Bundle 'gregsexton/MatchTag'
 
   " CSS/LESS
   " JavaScript
@@ -56,10 +57,11 @@ filetype off
   " JSON
   " Bundle 'leshill/vim-json'
 
-  " Bundle zencoding-vim
   " Bundle 'tpope/vim-rails'
   " Bundle 'tpope/vim-haml'
   " Bundle 'kchmck/vim-coffee-script'
+  " Bundle 'klen/vim-jsmode'
+  " Bundle 'mattn/gist-vim'
 
   if iCanHazVundle == 0
     echo 'Installing Bundles, please ignore key map error messages'
@@ -68,124 +70,167 @@ filetype off
   endif
 " Setting up Vundle - the vim plugin bundler end
 
+
 filetype plugin indent on
+syntax on
 
-" Remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-endif
+" Buffer options
+set hidden                  " hide buffers when they are abandoned
+set autoread                " auto reload changed files
+set autowrite               " automatically save before commands like :next and :make
 
-set encoding=utf8
-set fileencoding=utf8
+" Display options
+set title                   " show file name in window title
+set novisualbell            " mute error bell
+set list
+set listchars=tab:⇥\ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
+set wrap
+set linebreak               " break lines by words
+" set scrolloff=4           " min 4 symbols bellow cursor
+set scrolljump=5
+set sidescroll=4
+set sidescrolloff=10
+set showcmd
+set whichwrap=b,s,<,>,[,],l,h
+set completeopt=menu,preview
+set infercase
+set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+
+" Tab options
+set autoindent              " copy indent from previous line
+set smartindent             " enable nice indent
+set expandtab               " tab with spaces
+set smarttab                " indent using shiftwidth"
+set shiftwidth=4            " number of spaces to use for each step of indent
+set tabstop=4
+set softtabstop=4           " tab like 4 spaces
+set shiftround              " drop unused spaces
+
+" Search options
+set hlsearch                " Highlight search results
+set ignorecase              " Ignore case in search patterns
+set smartcase               " Override the 'ignorecase' option if the search pattern contains upper case characters
+set incsearch               " While typing a search command, show where the pattern
+nnoremap <silent> <cr> :nohlsearch<cr><cr>
+
+" Matching characters
+set showmatch               " Show matching brackets
+set matchpairs+=<:>         " Make < and > match as well
+
+" Localization
+set langmenu=none            " Always use english menu
+set keymap=russian-jcukenwin " Alternative keymap
+highlight lCursor guifg=NONE guibg=Cyan
+set iminsert=0               " English by default
+set imsearch=-1              " Search keymap from insert mode
+set spell
+set spelllang=en,ru          " Languages
+set encoding=utf-8           " Default encoding
+set fileencodings=utf-8,cp1251,koi8-r,cp866
+set termencoding=utf-8
 set fileformat=unix
 
-set backspace=indent,eol,start
+" Wildmenu
+set wildmenu                " use wildmenu ...
+set wildcharm=<TAB>
+set wildignore=*.pyc        " ignore file pattern
 
+" Folding
+if has('folding')
+  set foldmethod=indent
+  set foldlevel=1
+  " toggle folds with space
+  nmap <space> za
+endif
+
+" Edit
+set backspace=indent,eol,start " Allow backspace to remove indents, newlines and old tex"
+" set virtualedit=block
+set pastetoggle=<leader>vp
+set iskeyword+=-
 set nobackup
 set nowritebackup
 set noswapfile
 
-set wildmenu
+set diffopt=filler
+set diffopt+=vertical
+set diffopt+=iwhite
 
-set title
-set ruler
-set showcmd
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+fun! BufNewFile_PY()
+  0put = '#!/usr/bin/env python'
+  1put = '#-*- coding: utf-8 -*-'
+  normal G
+endfunction
 
-set scrolljump=5
-set scrolloff=3
+if has("autocmd")
 
-set incsearch
-set hlsearch
-nnoremap <cr> :nohlsearch<cr><cr>
+    augroup vimrc
+    au!
+        " Auto reload vim settings
+        au! BufWritePost *.vim source ~/.vimrc
 
-syntax on
-" syntax enable " What the difference?
-set autoindent
-" set smartindent
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+        " Restore cursor position
+        au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+          \| exe "normal g'\"" | endif
 
-" set pastetoggle=<leader>v
-set smarttab
+        " Filetypes
+            au BufNewFile *.py call BufNewFile_PY()
+            au FileType htmldjango set ft=html.htmldjango
 
-au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | else | set t_Co=256 | let g:solarized_termcolors=256 | endif
+            au FileType vim setlocal sw=2
+            au FileType vim setlocal ts=2
+            au FileType vim setlocal sts=2
+            au FileType vim nnoremap <leader>x 0y$:<c-r>"<cr>
 
-" Solarized
+            au FileType scss set ft=scss.css
+            au FileType less set ft=less.css
+            au! FileType sass,scss syn cluster sassCssAttributes add=@cssColors
+
+            au BufRead,BufNewFile *.js set ft=javascript.javascript-jquery
+            au BufRead,BufNewFile *.json set ft=javascript
+            au BufRead,BufNewFile *.bemhtml set ft=javascript
+            au BufRead,BufNewFile *.xjst set ft=javascript
+
+            au BufRead,BufNewFile *.tt2 set ft=tt2
+
+            au BufRead,BufNewFile *.plaintex set ft=plaintex.tex
+
+            au BufRead,BufNewFile *.html nmap <leader>o :!open %<cr>
+
+        " Auto close preview window
+        autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+        autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+    augroup END
+
+endif
+
+
+au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | else | set t_Co=256 | let g:solarized_termcolors=256 | let g:solarized_contrast='high' | let g:solarized_termtrans=1 | endif
+
 set background=dark
 colorscheme solarized
-" call togglebg#map("<leader>b")
 
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
-" let g:fuf_dir_exclude = '\v(^|[/\\])(public)($|[/\\])'
-" let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp|public)($|[/\\])'
 nnoremap <silent> <c-b> :FufBuffer<CR>
-" nnoremap <silent> <leader>t :FufFile **/<CR>
 nnoremap <silent> <c-t> :FufFile<CR>
-nnoremap <silent> ffd :FufDir<CR>
-nnoremap <silent> ffj :FufJumpList<CR>
-" nnoremap <c-t> :<c-u>FufFile **/<cr>
-" nnoremap <c-b> :<c-u>FufBuffer<cr>
-" nnoremap <m-F> :FufRenewCache<cr>
-
 
 " NERDTree
-" nmap <leader>nf :NERDTreeFind<CR>
 nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 
 " fugitive
 nmap <leader>b :.Gblame<cr>
 vmap <leader>b :Gblame<cr>
 nmap <leader>g :Gstatus<cr>/modif<cr>:nohls<cr>
 nmap <leader>w :Gwrite<cr>
-" nmap <leader>p :!git pull && git push<cr>
-" nmap <m-o> <c-o>:copen<cr><c-w>T
-" nmap <m-p> :Git pull origin dev<cr>
-" nmap <m-h> :Git push origin dev<cr>
-
-set iskeyword+=-
 
 " delimitMate
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
-
-set hidden
-set diffopt=filler
-set diffopt+=vertical
-set diffopt+=iwhite
-set autoread
-
-" Python
-autocmd FileType python setlocal sw=4
-autocmd FileType python setlocal ts=4
-autocmd FileType python setlocal sts=4
-function! BufNewFile_PY()
-  0put = '#!/usr/bin/env python'
-  1put = '#-*- coding: utf-8 -*-'
-  normal G
-endfunction
-autocmd BufNewFile *.py call BufNewFile_PY()
-au FileType htmldjango set ft=html.htmldjango
-
-" Sass
-autocmd! FileType sass,scss syn cluster sassCssAttributes add=@cssColors
-au FileType scss set ft=scss.css
-au FileType less set ft=less.css
-
-" au FileType javascript set syntax=jquery
-au BufRead,BufNewFile *.js set ft=javascript.javascript-jquery
-au BufRead,BufNewFile *.json set ft=javascript
-au BufRead,BufNewFile *.bemhtml set ft=javascript
-au BufRead,BufNewFile *.xjst set ft=javascript
-au BufRead,BufNewFile *.tt2 set ft=tt2
-au BufRead,BufNewFile *.plaintex set ft=plaintex.tex
-
-au BufRead,BufNewFile *.html nmap <leader>o :!open %<cr>
 
 nmap <leader>s :w<cr>
 imap <leader>s <esc>:w<cr>
@@ -209,43 +254,12 @@ nnoremap <leader>vd :VCSVimDiff<cr>
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 nmap <leader>a :Ack 
-nmap <m-f> g*:Ack <c-r>/ app
+" nmap <m-f> g*:Ack <c-r>/ app
 
 " Slime-vim
-"
-" $ screen -S mysession
 xmap gx <Plug>SlimeRegionSend
 " WARN: netrwPlugin has the same mapping
 nmap gx <Plug>SlimeParagraphSend
-
-nnoremap <leader>x 0y$:<c-r>"<cr>
-
-""""""""""
-set linebreak
-set wrap
-set matchpairs+=<:>
-" set browsedir
-
-set foldmethod=indent
-set foldlevel=1
-" toggle folds with space
-nmap <space> za
-
-function! ToggleFoldMethod()
-  if &foldmethod == 'diff'
-    " echo 'diff'
-    set foldmethod=indent
-  else
-    " echo 'nodiff'
-    set foldmethod=diff
-  endif
-endfunction
-nmap <silent> <F3> :call ToggleFoldMethod()<cr>
-
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-highlight lCursor guifg=NONE guibg=Cyan
 
 function! HighlightUnwantedSpaces()
   if &ft =~ 'help\|snippet'
@@ -276,34 +290,18 @@ function! SQLUpperCase()
   %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<group\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
 endfunction
 
-function! Html2Haml()
-  %g:^\s*<\/:d
-  %s:<:%:
-  %s:>::
-endfunction
-
-" set virtualedit=block
-
-set listchars=trail:$
-" set list
-set spell
-
+" Creating macros
 " :redir @a>
 " :history : -20,
 " :redir END
 " "ap
 
+" Regexp notes
+" /text1\(text2\)\@= 'text1' followed by 'text2'
+" /\(text1\)\@<=text2  'text2' preceded with 'text1'
+
 " multiword search
 " vnoremap * yq/p<cr>
-
-function! ToggleNu()
-  if &number == 0
-    set number
-  else
-    set nonumber
-  endif
-endfunction
-nmap <silent> <F5> :call ToggleNu()<cr>
 
 set guifont=Monaco:h13
 
