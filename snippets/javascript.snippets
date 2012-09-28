@@ -34,12 +34,12 @@ snippet i
 snippet if
 	if (${1}) {
 		${2}
-	};
+	}
 snippet ife
 	if (${1}) {
 		${2}
 	} else {
-	};
+	}
 snippet switch
 	switch (${1}) {
 		case ${2}:
@@ -58,6 +58,10 @@ snippet cte
 	console.timeEnd('${1}');${2}
 snippet clv
 	console.log('${1:var}: ' + $1);${2}
+snippet cln
+	console.log('\n\n\n\n\n\n\n\n\n\n');
+snippet clj
+	console.log(JSON.stringify(${1}));${2}
 snippet proto
 	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 		${4}
@@ -109,14 +113,6 @@ snippet timer
 	var date = new Date
 	${1}
 	new Date - date
-snippet uw
-	Util.warn(${1});${2}
-snippet uwn
-	Util.warn('\n\n\n\n\n\n\n\n\n\n');
-snippet uwv
-	Util.warn('${1:var}: ' + $1);${2}
-snippet uwj
-	Util.warn(JSON.stringify(${1}));${2}
 snippet exp
 	data.experiments['${1}']${2}
 snippet expr

@@ -77,7 +77,6 @@ syntax on
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
 set autoread                " auto reload changed files
-set autowrite               " automatically save before commands like :next and :make
 
 " Display options
 set title                   " show file name in window title
@@ -249,7 +248,10 @@ cmap <leader>e <c-r>=expand("%:h")<cr>/
 
 nnoremap <leader>vi :e ~/.vim/.vimrc<cr>
 nnoremap <leader>vs :e ~/.vim/snippets/
-nnoremap <leader>vd :VCSVimDiff<cr>
+
+" Monkeypatch for vcscommand.vim
+" Opens commit data in new window
+" nnoremap <buffer> o yiw:VCSLog -r<c-r>"<cr>
 
 " Some grep stuff
 " let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -260,28 +262,6 @@ nmap <leader>a :Ack
 xmap gx <Plug>SlimeRegionSend
 " WARN: netrwPlugin has the same mapping
 nmap gx <Plug>SlimeParagraphSend
-
-function! HighlightUnwantedSpaces()
-  if &ft =~ 'help\|snippet'
-    return
-  endif
-  syntax match ErrorMsg /\t/
-  let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
-  " let w:m3=matchadd('ErrorMsg', '\%81v.\+', -1)
-endfunction
-au BufWinEnter * call HighlightUnwantedSpaces()
-
-let g:highlight_unwanted_spaces = 1
-function! ToggleErrorMsg()
-  if exists("g:highlight_unwanted_spaces")
-    highlight ErrorMsg ctermfg=white ctermbg=red guifg=NONE guibg=NONE
-    unlet g:highlight_unwanted_spaces
-  else
-    highlight ErrorMsg ctermfg=white ctermbg=red guifg=white guibg=#800000
-    let g:highlight_unwanted_spaces = 1
-  endif
-endfunction
-nmap <F6> :call ToggleErrorMsg()<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 command! JSON :normal :%!python -m json.tool<cr><c-o><cr>
