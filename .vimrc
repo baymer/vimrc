@@ -40,7 +40,7 @@ filetype off
 
   Bundle 'othree/html5.vim'
   Bundle 'gregsexton/MatchTag'
-  Bundle 'skammer/vim-css-color'
+  " Bundle 'skammer/vim-css-color'
   Bundle 'hail2u/vim-css3-syntax'
   Bundle 'lukaszb/vim-web-indent'
   Bundle 'walm/jshint.vim'
@@ -215,7 +215,7 @@ colorscheme solarized
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
 nnoremap <silent> <c-b> :FufBuffer<CR>
-nnoremap <silent> <c-t> :FufFile<CR>
+nnoremap <silent> <c-t> :FufFile **/<CR>
 
 " NERDTree
 nmap <leader>t :NERDTreeToggle<CR>
@@ -248,6 +248,7 @@ cmap <leader>e <c-r>=expand("%:h")<cr>/
 
 nnoremap <leader>vi :e ~/.vim/.vimrc<cr>
 nnoremap <leader>vs :e ~/.vim/snippets/
+nnoremap <leader>vp :vsp <c-r>=expand("%:h")<cr>/
 
 " Monkeypatch for vcscommand.vim
 " Opens commit data in new window
@@ -294,3 +295,18 @@ endif
 
 " find global variables
 " ^\s*var \(\w\+\s*\(=.*\)\?,\(\s*\/\/.*\)\?\_\s\+\)\+\w\+\s*\(=.*\)\?;\_\s\+\w\+\s*\(=.*\)\?;
+
+function! JsStyling()
+  retab
+  KillWhitespace
+  %s:){:) {:e
+  %s:\(if\|while\|for\)\s*(\s*:\1 ( :e
+  %s:}\_\s*else\s*{:} else {:e
+  g:\<if\>\|\<for\>:s:\s*) {$: ) {:e
+  %s:\(\S\)\s*\(&&\|||\)\s*:\1 \2 :ge
+
+  s:[,;{]:&\r:g
+  s:}:\r&:g
+  s:=\([!=\s]\)\@!:= :g
+  s:\([!=\s]\)\@<!=: =:g
+endfunction
