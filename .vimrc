@@ -95,6 +95,8 @@ set completeopt=menu,preview
 set infercase
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set ttyfast                 " Optimize for fast terminal connections
+set shortmess=atI           " Don’t show the intro message when starting Vim
 
 " Tab options
 set autoindent              " copy indent from previous line
@@ -107,6 +109,7 @@ set softtabstop=4           " tab like 4 spaces
 set shiftround              " drop unused spaces
 
 " Search options
+set gdefault                " Add the g flag to search/replace by default
 set hlsearch                " Highlight search results
 set ignorecase              " Ignore case in search patterns
 set smartcase               " Override the 'ignorecase' option if the search pattern contains upper case characters
@@ -218,6 +221,7 @@ nnoremap <silent> <c-b> :FufBuffer<CR>
 nnoremap <silent> <c-t> :FufFile<CR>
 
 " NERDTree
+let NERDTreeShowHidden=1
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
@@ -228,6 +232,7 @@ nmap <leader>g :Gstatus<cr>/modif<cr>:nohls<cr>
 nmap <leader>w :Gwrite<cr>
 
 " delimitMate
+let delimitMate_matchpairs = '(:),[:],{:}'
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 
@@ -247,7 +252,7 @@ nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
 cmap <leader>e <c-r>=expand("%:h")<cr>/
 
 nnoremap <leader>vi :e ~/.vim/.vimrc<cr>
-nnoremap <leader>vs :e ~/.vim/snippets/
+nnoremap <leader>vs :e ~/.vim/snippets/javascript.snippets
 
 " Monkeypatch for vcscommand.vim
 " Opens commit data in new window

@@ -1,7 +1,7 @@
 colorscheme railscasts
 " window size
 set lines=35
-set columns=120
+set columns=100
 set showtabline=1
 
 " set shiftwidth=2
