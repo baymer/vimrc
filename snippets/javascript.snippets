@@ -17,7 +17,9 @@ snippet clos
 		${1}
 	})();
 snippet r
-	return
+	return${1}
+snippet re
+	require('${1}')${2}
 snippet pr
 	prototype
 snippet for
@@ -106,27 +108,15 @@ snippet ext
 snippet map
 	map(function(${1:i}) {
 		${2}
-	});
+	})
 snippet euc
 	encodeURIComponent(${1})${2}
 snippet timer
 	var date = new Date
 	${1}
 	new Date - date
-snippet exp
-	data.experiments['${1}']${2}
-snippet expr
-	data.rdat.cgi().p('test-id') == ${1}
 snippet js
 	JSON.stringify(${1});${2}
-snippet blocks
-	blocks['${1}']${2}
-snippet block
-	block: '${1}',${2}
-snippet elem
-	elem: '${1}',${2}
-snippet mod
-	mod: { ${1}: '${2}' },${3}
 snippet /**
 	/**
 	 * ${1:description}
@@ -136,3 +126,17 @@ snippet @par
 	@param {${1:type}} ${2:name} ${3:description}
 snippet @ret
 	@return {${1:type}} ${2:description}
+snippet blocks
+	blocks['${1}']${2}
+snippet block
+	block: '${1}',${2}
+snippet elem
+	elem: '${1}',${2}
+snippet mod
+	mod: { ${1}: '${2}' },${3}
+snippet exp
+	data.experiments['${1}']${2}
+snippet expr
+	data.rdat.cgi().p('test-id') == ${1}
+snippet fbi
+	findBlockInside${1}
