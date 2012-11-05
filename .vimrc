@@ -170,7 +170,8 @@ if has("autocmd")
     augroup vimrc
     au!
         " Auto reload vim settings
-        au! BufWritePost *.vim source ~/.vimrc
+        au BufWritePost *.vim source $MYVIMRC
+        au BufWritePost .vimrc source $MYVIMRC
 
         " Restore cursor position
         au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -191,6 +192,7 @@ if has("autocmd")
 
             au BufRead,BufNewFile *.js set ft=javascript.javascript-jquery
             au BufRead,BufNewFile *.json set ft=javascript
+            au BufRead,BufNewFile *.json set equalprg=python\ -mjson.tool
             au BufRead,BufNewFile *.bemhtml set ft=javascript
             au BufRead,BufNewFile *.xjst set ft=javascript
 
@@ -271,7 +273,6 @@ xmap gx <Plug>SlimeRegionSend
 nmap gx <Plug>SlimeParagraphSend
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-command! JSON :normal :%!python -m json.tool<cr><c-o><cr>
 
 function! SQLUpperCase()
   %s:\<analyze\>\|\<and\>\|\<as\>\|\<by\>\|\<desc\>\|\<exists\>\|\<explain\>\|\<from\>\|\<group\>\|\<in\>\|\<insert\>\|\<intersect\>\|\<into\>\|\<join\>\|\<limit\>\|\<not\>\|\<on\>\|\<order\>\|\<select\>\|\<set\>\|\<update\>\|\<where\>:\U&:gi
