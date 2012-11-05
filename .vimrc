@@ -228,9 +228,10 @@ nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
 " fugitive
+autocmd BufReadPost fugitive://* set bufhidden=delete
 nmap <leader>b :.Gblame<cr>
 vmap <leader>b :Gblame<cr>
-nmap <leader>g :Gstatus<cr>/modif<cr>:nohls<cr>
+nmap <leader>g :Gstatus<cr>
 nmap <leader>w :Gwrite<cr>
 
 " delimitMate

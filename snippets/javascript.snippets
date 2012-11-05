@@ -2,8 +2,8 @@ snippet d
 	debugger
 snippet f
 	function(${1}) {
-		${2}
-	}
+		${3}
+	}${2}
 snippet fun
 	function ${1}(${2}) {
 		${3}
@@ -146,3 +146,15 @@ snippet expr
 	data.rdat.cgi().p('test-id') == ${1}
 snippet fbi
 	findBlockInside${1}
+snippet decl
+	BEM.DOM.decl(${1}, {
+
+		onSetMod: {
+			js: function() {
+				${2}
+			}
+		}
+
+	}, {
+
+	});
