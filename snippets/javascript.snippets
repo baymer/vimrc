@@ -64,6 +64,8 @@ snippet cln
 	console.log('\n\n\n\n\n\n\n\n\n\n');
 snippet clj
 	console.log(JSON.stringify(${1}));${2}
+snippet pd
+	e.preventDefault();${1}
 snippet proto
 	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 		${4}
@@ -158,3 +160,15 @@ snippet decl
 	}, {
 
 	});
+snippet logger
+	logger = $('<ul>').css({
+		'position': 'absolute',
+		'top': 0,
+		'right': 0,
+		'z-index': 9999,
+		'background-color': '#fff'
+	}).appendTo($('body'))
+	function log(s) {
+		logger.append('<li>' + s + '</li>')
+	};
+
