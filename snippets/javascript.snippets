@@ -61,7 +61,13 @@ snippet cte
 snippet clv
 	console.log('${1:var}: ' + $1);${2}
 snippet cln
-	console.log('\n\n\n\n\n\n\n\n\n\n');
+	console.log("\n\n\n\033[31m");
+	console.log(${1});
+	console.log("\033[0m\n\n\n");
+snippet dmp
+	console.log("\n\n\n\033[31m");
+	console.log(JSON.stringify(${1}, null, '  '))
+	console.log("\033[0m\n\n\n");
 snippet clj
 	console.log(JSON.stringify(${1}));${2}
 snippet pd
@@ -124,7 +130,7 @@ snippet timer
 	${1}
 	new Date - date
 snippet js
-	JSON.stringify(${1});${2}
+	JSON.stringify(${1}, null, '  ')
 snippet /**
 	/**
 	 * ${1:description}
@@ -171,4 +177,5 @@ snippet logger
 	function log(s) {
 		logger.append('<li>' + s + '</li>')
 	};
-
+snippet static
+	data.pushCSSJS({ name: '${1:wiz}', elem: 'js', url: data.config.staticHost + '/bundles/$1/_$1.js' });${2}

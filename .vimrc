@@ -141,7 +141,7 @@ set wildignore=*.pyc        " ignore file pattern
 " Folding
 if has('folding')
   set foldmethod=indent
-  set foldlevel=1
+  set foldlevel=99
   " toggle folds with space
   nmap <space> za
 endif
@@ -212,9 +212,6 @@ endif
 
 
 au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | else | set t_Co=256 | let g:solarized_termcolors=256 | let g:solarized_contrast='high' | let g:solarized_termtrans=1 | endif
-
-set background=dark
-colorscheme solarized
 
 
 " FuzzyFinder
@@ -317,3 +314,5 @@ function! JsStyling()
   s:=\([!=\s]\)\@!:= :g
   s:\([!=\s]\)\@<!=: =:g
 endfunction
+
+colorscheme solarized
