@@ -1,3 +1,4 @@
+" Convert bookmarks list to plain text
 function! OpmlToText()
   set nogdefault
   normal zRgg/<body>ditggVGpdd

@@ -85,7 +85,7 @@ set list
 set listchars=tab:⇥\ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
 set wrap
 set linebreak               " break lines by words
-" set scrolloff=4           " min 4 symbols bellow cursor
+" set scrolloff=4           " min 4 symbols below cursor
 set scrolljump=5
 set sidescroll=4
 set sidescrolloff=10
@@ -210,9 +210,10 @@ if has("autocmd")
 
 endif
 
-
-au VimEnter * if @% =~ '^_\(\w\+\.\)\+js' | syntax off | set ft=css.javascript | else | set t_Co=256 | let g:solarized_termcolors=256 | let g:solarized_contrast='high' | let g:solarized_termtrans=1 | endif
-
+set t_Co=256
+let g:solarized_termcolors=256
+let g:solarized_contrast='high'
+let g:solarized_termtrans=1
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc|jpg|png|gif|svg)$|(^|[/\\])(\.(hg|git|bzr)|tmp)($|[/\\])'
@@ -221,15 +222,15 @@ nnoremap <silent> <c-t> :FufFile **/<CR>
 
 " NERDTree
 let NERDTreeShowHidden=1
-nmap <leader>t :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+nmap <silent> <leader>t :NERDTreeToggle<CR>
+nmap <silent> <leader>f :NERDTreeFind<CR>
 
 " fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
-nmap <leader>b :.Gblame<cr>
-vmap <leader>b :Gblame<cr>
-nmap <leader>g :Gstatus<cr>
-nmap <leader>w :Gwrite<cr>
+nmap <silent> <leader>b :.Gblame<cr>
+vmap <silent> <leader>b :Gblame<cr>
+nmap <silent> <leader>g :Gstatus<cr>
+nmap <silent> <leader>w :Gwrite<cr>
 
 " delimitMate
 let delimitMate_matchpairs = '(:),[:],{:}'
@@ -251,9 +252,9 @@ nnoremap <leader>e :e <c-r>=expand("%:h")<cr>/
 nnoremap <leader>d :diffsplit <c-r>=expand("%:h")<cr>/
 cmap <leader>e <c-r>=expand("%:h")<cr>/
 
-nnoremap <leader>vi :e ~/.vim/.vimrc<cr>
-nnoremap <leader>vs :e ~/.vim/snippets/javascript.snippets
-nnoremap <leader>vp :vsp <c-r>=expand("%:h")<cr>/
+nnoremap <silent> <leader>vi :e ~/.vim/.vimrc<cr>
+nnoremap <silent> <leader>vs :e ~/.vim/snippets/javascript.snippets
+nnoremap <silent> <leader>vp :vsp <c-r>=expand("%:h")<cr>/
 
 " Monkeypatch for vcscommand.vim
 " Opens commit data in new window
@@ -290,13 +291,6 @@ endfunction
 
 set guifont=Monaco:h13
 
-if has('gui_running')
-  source ~/.vim/.gvimrc
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
 " find global variables
 " ^\s*var \(\w\+\s*\(=.*\)\?,\(\s*\/\/.*\)\?\_\s\+\)\+\w\+\s*\(=.*\)\?;\_\s\+\w\+\s*\(=.*\)\?;
 
@@ -315,4 +309,12 @@ function! JsStyling()
   s:\([!=\s]\)\@<!=: =:g
 endfunction
 
+set background=light
 colorscheme solarized
+
+if has('gui_running')
+  source ~/.vim/.gvimrc
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

@@ -93,21 +93,15 @@ snippet animate
 snippet app
 	append('${1}')${2}
 snippet appto
-	appendTo(${1:selector})${2}
+	appendTo(${1})${2}
 snippet attr
-	attr('${1:attribute}', '${2:value}')${3}
-snippet attrm
-	attr({'${1:attr1}': '${2:value1}', '${3:attr2}': '${4:value2}'})${5}
+	attr(${1}, ${2})${3}
+snippet attrs
+	attr({
+		${1}
+	})${2}
 snippet before
 	before('${1:Some text <b>and bold!</b>}')${2}
-snippet bind
-	bind('${1:event}', function(${2:event}) {
-		${3}
-	});
-snippet blur
-	blur(function() {
-		${1}
-	});
 snippet C
 	$.Callbacks()${1}
 snippet Cadd
@@ -135,19 +129,11 @@ snippet change
 		${1}
 	});
 snippet children
-	children('${1:selector}')${2}
+	children('${1}')${2}
 snippet clearq
 	${1:obj}.clearQueue(${2:'queue name'})${3}
-snippet click
-	click(function() {
-		${1}
-	})
-snippet clone
-	clone()
 snippet contains
 	$.contains(${1:container}, ${2:contents});
-snippet css
-	css('${1:attribute}', '${2:value}')${3}
 snippet csshooks
 	$.cssHooks['${1:CSS prop}'] = {
 		get: function (elem, computed, extra) {
@@ -156,10 +142,6 @@ snippet csshooks
 		set: function (elem, value) {
 			${3: // handle setting the CSS value}
 		}
-snippet cssm
-	css({${1:attribute1}: '${2:value1}', ${3:attribute2}: '${4:value2}'})${5}
-snippet cssm
-	${1:obj}.css({${2:attribute1}: '${3:value1}', ${4:attribute2}: '${5:value2}'})${6}
 snippet D
 	$.Deferred()${1}
 snippet Dalways
@@ -196,20 +178,8 @@ snippet Dthen
 	${1:deferred}.then(${2:doneCallbacks}, ${3:failCallbacks}, ${4:progressCallbacks})${5}
 snippet Dwhen
 	$.when(${1:deferreds})${2}
-snippet data
-	data('${1}')${2}
-snippet dataa
-	$.data('${1:selector expression}', '${2:key}'${3:, 'value'})${4}
-snippet dblclick
-	dblclick(function() {
-		${1}
-	});
 snippet delay
 	${1:obj}.delay('${2:slow/400/fast}'${3:, 'queue name'})${4}
-snippet dele
-	${1:obj}.delegate('${2:selector expression}', '${3:event name}', function (${4:e}) {
-		${5:// event handler}
-	});
 snippet deq
 	${1:obj}.dequeue(${2:'queue name'})${3}
 snippet deqq
@@ -218,74 +188,20 @@ snippet detach
 	${1:obj}.detach('${2:selector expression}')${3}
 snippet die
 	${1:obj}.die(${2:event}, ${3:handler})${4}
-snippet each
-	each(function() {
-		${1}
-	});
 snippet eltrim
 	$.trim('${1:string}')${2}
-snippet empty
-	empty()
-snippet end
-	end()${1}
-snippet error
-	error(function() {
-		${1}
-	});
-snippet fadein
-	fadeIn('${1:slow/400/fast}')${2}
-snippet fadeinc
-	fadeIn('slow/400/fast', function() {
-		${1};
-	});
-snippet fadeout
-	fadeOut('${1:slow/400/fast}')${2}
-snippet fadeoutc
-	fadeOut('slow/400/fast', function() {
-		${1};
-	});
-snippet fadeto
-	fadeTo('${1:slow/400/fast}', ${2:0.5})${3}
-snippet fadetoc
-	fadeTo('slow/400/fast', ${1:0.5}, function() {
-		${2};
-	});
-snippet filter
-	filter(function() {
-		${1}
-	});
 snippet find
 	find('${1}')${2}
-snippet focus
-	focus(function() {
-		${1}
-	});
-snippet height
-	height(${1:integer})${2}
-snippet hide
-	hide('${1:slow/400/fast}')${2}
-snippet hidec
-	hide('${1:slow/400/fast}', function() {
-		${2}
-	});
 snippet hover
 	hover(function() {
 		${1}
 	}, function() {
 		${2}
 	});
-snippet html
-	html(${1})${2}
-snippet insertAfter
-	insertAfter('${1:selector}')${2}
-snippet insertBefore
-	insertBefore('${1:selector}')${2}
-snippet is
-	is('${1:selector}')${2}
-snippet load
-	load(function() {
-		${1}
-	});
+snippet insa
+	insertAfter(${1})${2}
+snippet insb
+	insertBefore(${1})${2}
 snippet loadf
 	<+obj+>.load('<+/path/to/file.htm+>', { <+<+param1+>: "<+value1+>", <+param2+>: "<+value2+>"+> }, function() {
 		<+// Stuff to do after the page is loaded+>
@@ -314,10 +230,6 @@ snippet mup
 	mouseup(function() {
 		${1}
 	});
-snippet next
-	next('${1:selector}')${2}
-snippet not
-	not('${1:selector}')${2}
 snippet on
 	on('${1}', function(${2:e}) {
 		${3}
@@ -326,16 +238,10 @@ snippet one
 	one('${1:event name}', function(${2:event}) {
 		${3}
 	});
-snippet parent
-	parent('${1:selector}')${2}
-snippet par
-	parents('${1}')${2}
 snippet prepend
 	prepend('${1:Some text <b>and bold!</b>}')${2}
 snippet prependto
 	prependTo('${1:selector}')${2}
-snippet prev
-	prev('${1:selector}')${2}
 snippet ready
 	$(function() {
 		${1}
@@ -350,50 +256,24 @@ snippet reset
 	reset(function() {
 		${1}
 	});
-snippet resize
-	resize(function() {
-		${1}
-	});
-snippet scroll
-	scroll(function() {
-		${1}
-	});
 snippet sdown
 	slideDown('${1:slow/400/fast}')${2}
 snippet sdownc
 	slideDown('${1:slow/400/fast}', function() {
 		${2};
 	});
-snippet select
-	select(function() {
-		${1}
-	});
-snippet show
-	show('${1:slow/400/fast}')${2}
-snippet showc
-	show('${1:slow/400/fast}', function() {
-		${2}
-	});
 snippet sib
 	siblings('${1:selector}')${2}
-snippet size
-	size()${1}
-snippet stoggle
+snippet stog
 	slideToggle('${1:slow/400/fast}')${2}
 snippet stop
 	stop(${1:true, true})${2}
-snippet submit
-	submit(function() {
-		${1}
-	});
 snippet sup
 	slideUp('${1:slow/400/fast}')${2}
 snippet supc
 	slideUp('${1:slow/400/fast}', function() {
 		${2};
 	});
-snippet text
-	text(${1:'some text'})${2}
 snippet tog
 	toggle(function() {
 		${1}
@@ -406,8 +286,6 @@ snippet togsh
 	toggle('${1:slow/400/fast}')${2}
 snippet trig
 	trigger('${1:event name}')${2}
-snippet unbind
-	unbind('${1:event name}')${2}
 snippet val
 	val('${1:text}')${2}
 snippet width

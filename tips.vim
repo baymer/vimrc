@@ -1,11 +1,6 @@
-3/joe/e+1                   : find 3rd joe cursor set to End of match plus 1 *C*
 /fred\_s*joe/               : any whitespace including newline *C*
 /.*fred\&.*joe              : Search for FRED AND JOE in any ORDER!
 /\([^0-9]\|^\)%.*%          : Search for absence of a digit or beginning of line
-" using rexexp memory in a search
-/\(fred\).*\(joe\).*\2.*\1
-" Repeating the Regexp (rather than what the Regexp finds)
-/^\([^,]*,\)\{8}
 " visual searching
 :vmap // y/<C-R>"<CR>       : search for visually highlighted text
 :vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR> : with spec chars
@@ -211,38 +206,20 @@ N      last / or ? search in opposite direction
 " Absolutely essential
 ----------------------------------------
 * # g* g#           : find word under cursor (<cword>) (forwards/backwards)
-%                   : match brackets {}[]()
-.                   : repeat last modification 
 @:                  : repeat last : command (then @@)
 matchit.vim         : % now matches tags <tr><td><script> <?php etc
-<C-N><C-P>          : word completion in insert mode
-<C-X><C-L>          : Line complete SUPER USEFUL
 /<C-R><C-W>         : Pull <cword> onto search/command line
 /<C-R><C-A>         : Pull <CWORD> onto search/command line
-:set ignorecase     : you nearly always want this
-:set smartcase      : overrides ignorecase if uppercase used in search string (cool)
-:syntax on          : colour syntax in Perl,HTML,PHP etc
 :set syntax=perl    : force syntax (usually taken from file extension)
 :h regexp<C-D>      : type control-D and get a list all help topics containing
                       regexp (plus use TAB to Step thru list)
 ----------------------------------------
-" MAKE IT EASY TO UPDATE/RELOAD _vimrc
-:nmap ,s :source $VIM/_vimrc
-:nmap ,v :e $VIM/_vimrc
-:e $MYVIMRC         : edits your _vimrc whereever it might be  *N*
 " How to have a variant in your .vimrc for different PCs *N*
 if $COMPUTERNAME == "NEWPC"
 ab mypc vista
 else
 ab mypc dell25
 endif
-----------------------------------------
-" splitting windows
-:vsplit other.php       # vertically split current file with other.php *N*
-----------------------------------------
-"VISUAL MODE (easy to add other HTML Tags)
-:vmap sb "zdi<b><C-R>z</b><ESC>  : wrap <b></b> around VISUALLY selected Text
-:vmap st "zdi<?= <C-R>z ?><ESC>  : wrap <?=   ?> around VISUALLY selected Text
 ----------------------------------------
 "vim 7 tabs
 vim -p fred.php joe.php             : open files in tabs
@@ -254,7 +231,6 @@ vim -p fred.php joe.php             : open files in tabs
 :tab sball                           : retab all files in buffer (repair) *N*
 ----------------------------------------
 " Exploring
-:e .                            : file explorer
 :Exp(lore)                      : file explorer note capital Ex
 :Sex(plore)                     : file explorer in split window
 :browse e                       : windows style browser
@@ -273,7 +249,6 @@ VU                              : uppercase line
 g~~                             : flip case line
 vEU                             : Upper Case Word
 vE~                             : Flip Case Word
-ggguG                           : lowercase entire file
 " Titlise Visually Selected Text (map for .vimrc)
 vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 " Title Case A Line Or Selection (better)
@@ -283,10 +258,8 @@ nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr>  *N*
 " Uppercase first letter of sentences
 :%s/[.!?]\_s\+\a/\U&\E/g
 ----------------------------------------
-gf                              : open file name under cursor (SUPER)
 :nnoremap gF :view <cfile><cr>  : open file under cursor, create if necessary
 ga                              : display hex,ascii value of char under cursor
-ggVGg?                          : rot13 whole file
 ggg?G                           : rot13 whole file (quicker for large file)
 :8 | normal VGg?                : rot13 from line 8
 :normal 10GVGg?                 : rot13 from line 8
@@ -300,13 +273,10 @@ ggg?G                           : rot13 whole file (quicker for large file)
 :h!
 ----------------------------------------
 " disguise text (watch out) *N*
-ggVGg?                          : rot13 whole file (toggles)
 :set rl!                        : reverse lines right to left (toggles)
 :g/^/m0                         : reverse lines top to bottom (toggles)
 ----------------------------------------
 " Markers & moving about
-'.               : jump to last modification line (SUPER)
-`.               : jump to exact spot in last modification line
 g;               : cycle thru recent changes (oldest first)
 g,               : reverse direction 
 :changes
@@ -408,19 +378,12 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 ----------------------------------------
 " Recording (BEST TIP of ALL)
-qq  # record to q
-your complex series of commands
-q   # end recording
-@q to execute
-@@ to Repeat
-5@@ to Repeat 5 times
 qQ@qq                             : Make an existing recording q recursive *N*
 " editing a register/recording
 "qp                               :display contents of register q (normal mode)
 <ctrl-R>q                         :display contents of register q (insert mode)
 " you can now see recording contents, edit as required
 "qdd                              :put changed contacts back into q
-@q                                :execute recording/register q
 " Operating a Recording on a Visual BLOCK
 1) define recording/register
 qq:s/ to/ from/g^Mq
@@ -435,11 +398,6 @@ V}
 "here we operate on a file with a recording, then move to the next file *N*
 :nnoremap ] @q:update<bar>bd
 ----------------------------------------
-" Visual is the newest and usually the most intuitive editing mode
-" Visual basics
-v                               : enter visual mode
-V                               : visual mode whole line
-<C-V>                           : enter VISUAL BLOCK mode
 gv                              : reselect last visual area (ultra)
 o                               : navigate visual area
 "*y or "+y                      : yank visual area into paste buffer  *C*
@@ -451,11 +409,6 @@ V}gJ                            : Join Visual block w/o adding spaces
 ----------------------------------------
 " Delete first 2 characters of 10 successive lines
 0<c-v>10j2ld  (use Control Q on win32) *C*
-----------------------------------------
-" how to copy a set of columns using VISUAL BLOCK
-" visual block (AKA columnwise selection) (NOT BY ordinary v command)
-<C-V> then select "column(s)" with motion commands (win32 <C-Q>)
-then c,d,y,r etc
 ----------------------------------------
 " how to overwrite a visual-block of text with another such block *C*
 " move with hjkl etc
@@ -471,9 +424,7 @@ diB   daB                             : Empty a function {}
 das                                   : delete a sentence
 ----------------------------------------
 " _vimrc essentials
-:set incsearch : jumps to search word as you type (annoying but excellent)
 :set wildignore=*.o,*.obj,*.bak,*.exe : tab complete now ignores these
-:set shiftwidth=3                     : for shift/tabbing
 :set vb t_vb=".                       : set silent (no beep)
 :set browsedir=buffer                 : Maki GUI File Open use current directory
 ----------------------------------------
@@ -504,7 +455,6 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 >a{
 " also
 >% and <%
-==                            : index current line same as line above *N*
 ----------------------------------------
 " Redirection & Paste register *
 :redir @*                    : redirect commands to paste buffer
@@ -538,13 +488,10 @@ Vgq                          : current line
 :silent bufdo !zip proj.zip %:p   : zip all current files
 ----------------------------------------
 " Command line tricks
-gvim -h                    : help
 ls | gvim -                : edit a stream!!
 cat xx | gvim - -c "v/^\d\d\|^[3-9]/d " : filter a stream
 gvim -o file1 file2        : open into a horizontal split *C*
 gvim -O file1 file2        : open into a vertical split *N*
-" execute one command after opening file
-gvim.exe -c "/main" joe.c  : Open joe.c & jump to "main"
 " execute multiple command on a single file
 vim -c "%s/ABC/DEF/ge | update" file1.c
 " execute multiple command on a group of files
@@ -568,22 +515,12 @@ gvim -c 's/^/\=@*/|hardcopy!|q!'
 :copen
 ----------------------------------------
 " GVIM Difference Function (Brilliant)
-gvim -d file1 file2        : vimdiff (compare differences)
-dp                         : "put" difference under cursor to other file
-do                         : "get" difference under cursor from other file
 " complex diff parts of same file *N*
 :1,2yank a | 7,8yank b
 :tabedit | put a | vnew | put b
 :windo diffthis 
 ----------------------------------------
 " Vim traps
-In regular expressions you must backslash + (match 1 or more)
-In regular expressions you must backslash | (or)
-In regular expressions you must backslash ( (group)
-In regular expressions you must backslash { (count)
-/fred\+/                   : matches fred/freddy but not free
-/\(fred\)\{2,3}/           : note what you have to break
-----------------------------------------
 " \v or very magic (usually) reduces backslashing
 /codes\(\n\|\s\)*where  : normal regexp
 /\vcodes(\n|\s)*where   : very magic
@@ -603,8 +540,6 @@ In regular expressions you must backslash { (count)
 "5p              : retrieve 5th "ring" 
 "1p....          : retrieve numeric registers one by one
 :let @y='yy@"'   : pre-loading registers (put in .vimrc)
-qqq              : empty register "q"
-qaq              : empty register "a"
 :reg .-/%:*"     : the seven special registers *N*
 :reg 0           : what you last yanked, not affected by a delete *N*
 "_dd             : Delete to blackhole register "_ , don't affect any register *N*
@@ -680,11 +615,6 @@ i<c-r>/
 ----------------------------------------
 " more completions
 <C-X><C-F>                        :insert name of a file in current directory
-----------------------------------------
-" Substituting a Visual area
-" select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
-:'<,'>s/Emacs/Vim/g               : REMEMBER you dont type the '<.'>
-gv                                : Re-select the previous visual area (ULTRA)
 ----------------------------------------
 " inserting line number into file
 :g/^/exec "s/^/".strpart(line(".")."    ", 0, 4)
