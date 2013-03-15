@@ -177,5 +177,7 @@ snippet logger
 	function log(s) {
 		logger.append('<li>' + s + '</li>')
 	};
-snippet static
-	data.pushCSSJS({ name: '${1:wiz}', elem: 'js', url: data.config.staticHost + '/bundles/$1/_$1.js' });${2}
+snippet pcss
+	data.pushCSSJS({ name: '${1:wiz}', elem: 'css', url: data.config.staticHost + 'bundles/$1/$1.less.css' });${2}
+snippet pjs
+	data.pushCSSJS({ name: '${1:wiz}', elem: 'js', url: data.config.staticHost + 'bundles/$1/_$1.js' });${2}
