@@ -33,6 +33,7 @@ filetype off
   Bundle 'tpope/vim-repeat'
   Bundle 'tpope/vim-surround'
   Bundle 'tpope/vim-unimpaired'
+  Bundle 'tpope/vim-rsi'
   Bundle 'vim-scripts/FuzzyFinder'
   Bundle 'vim-scripts/L9'
   Bundle 'vim-scripts/vcscommand.vim'
@@ -149,7 +150,7 @@ endif
 " Edit
 set backspace=indent,eol,start " Allow backspace to remove indents, newlines and old tex"
 " set virtualedit=block
-set pastetoggle=<leader>vp
+set pastetoggle=<leader>p
 set iskeyword+=-
 set nobackup
 set nowritebackup
